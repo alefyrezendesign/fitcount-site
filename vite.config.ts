@@ -13,8 +13,7 @@ export default defineConfig({
         manualChunks: {
           // Heavy animation library — cache-busted independently
           'vendor-framer': ['framer-motion'],
-          // GSAP animation suite — cached separately
-          'vendor-gsap': ['gsap', '@gsap/react'],
+
           // Icon library — large but rarely changes
           'vendor-lucide': ['lucide-react'],
           // React core — almost never changes
