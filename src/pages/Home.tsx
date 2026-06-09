@@ -1,4 +1,4 @@
-import { lazy, Suspense, useRef } from 'react';
+import { useRef } from 'react';
 import { useScroll } from 'framer-motion';
 import SecaoHero from '../components/home/SecaoHero';
 import NumerosAutoridade from '../components/home/NumerosAutoridade';

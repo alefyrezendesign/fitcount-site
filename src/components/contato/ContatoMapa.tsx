@@ -1,5 +1,5 @@
 import { m } from 'framer-motion';
-import { MapPin, Building2, Globe, ExternalLink } from 'lucide-react';
+import { MapPin, Building2, ExternalLink } from 'lucide-react';
 import { TypewriterBadge } from '../ui/TypewriterBadge';
 
 const outrasUnidades = [

@@ -1,6 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
 import { m, useScroll, useTransform, useMotionValueEvent, MotionValue, useSpring  } from 'framer-motion';
-import { Clock } from 'lucide-react';
 
 const timelineEvents = [
   {
