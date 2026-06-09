@@ -10,6 +10,8 @@ interface UseTypewriterOptions {
     baseDelay?: number;
     /** IntersectionObserver threshold to trigger (0–1) */
     threshold?: number;
+    /** Initial delay before typing starts (ms) */
+    startDelay?: number;
 }
 
 /**
@@ -24,7 +26,7 @@ interface UseTypewriterOptions {
 export function useTypewriter(
     text: string,
     ref: React.RefObject<Element | null>,
-    { autoStart = false, baseDelay = 72, threshold = 0.5 }: UseTypewriterOptions = {}
+    { autoStart = false, baseDelay = 72, threshold = 0.5, startDelay = 300 }: UseTypewriterOptions = {}
 ) {
     const [displayed, setDisplayed] = useState('');
     const [done, setDone] = useState(false);
@@ -68,7 +70,7 @@ export function useTypewriter(
         };
 
         // Initial pause before typing starts (person "focusing")
-        rafRef.current = setTimeout(typeNext, 300 + Math.random() * 200);
+        rafRef.current = setTimeout(typeNext, startDelay + Math.random() * 200);
     };
 
     useEffect(() => {

@@ -7,11 +7,12 @@ interface TypewriterBadgeProps {
   inverted?: boolean;
   className?: string;
   autoStart?: boolean;
+  startDelay?: number;
 }
 
-export const TypewriterBadge = ({ text, icon, inverted, className = '', autoStart = false }: TypewriterBadgeProps) => {
+export const TypewriterBadge = ({ text, icon, inverted, className = '', autoStart = false, startDelay = 300 }: TypewriterBadgeProps) => {
     const ref = useRef<HTMLDivElement>(null);
-    const { displayed, done } = useTypewriter(text, ref, { threshold: 0.5, baseDelay: 40, autoStart });
+    const { displayed, done } = useTypewriter(text, ref, { threshold: 0.5, baseDelay: 40, autoStart, startDelay });
 
     return (
         <div
