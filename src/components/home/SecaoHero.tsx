@@ -216,7 +216,7 @@ const SecaoHero = () => {
               </m.div>
 
               {/* Title */}
-              <h1 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-dark-900 leading-[1.1] mb-6">
+              <h1 className="text-4xl sm:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-dark-900 leading-[1.1] mb-6">
                 <AnimatedTitle lines={[
                   "Sua farmácia precisa",
                   <span key="margem">
@@ -274,12 +274,12 @@ const SecaoHero = () => {
               >
                 <button
                   onClick={() => openModal()}
-                  className="group flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-[15px] transition-all shadow-[0_8px_20px_rgb(59,130,246,0.25)] bg-primary-600 text-white hover:bg-primary-700 hover:shadow-[0_8px_25px_rgb(59,130,246,0.35)]"
+                  className="w-full sm:w-auto group flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-[15px] transition-all shadow-[0_8px_20px_rgb(59,130,246,0.25)] bg-primary-600 text-white hover:bg-primary-700 hover:shadow-[0_8px_25px_rgb(59,130,246,0.35)]"
                 >
                   Solicitar um diagnóstico
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
                 </button>
-                <button onClick={() => openModalEspecialista()} className="flex items-center justify-center gap-2 px-8 py-3.5 bg-white border border-surface-200 text-dark-900 rounded-full font-semibold text-[15px] hover:bg-surface-50 transition-all shadow-sm cursor-pointer">
+                <button onClick={() => openModalEspecialista()} className="w-full sm:w-auto flex items-center justify-center gap-2 px-8 py-3.5 bg-white border border-surface-200 text-dark-900 rounded-full font-semibold text-[15px] hover:bg-surface-50 transition-all shadow-sm cursor-pointer">
                   Falar com especialista
                 </button>
               </m.div>

@@ -49,7 +49,7 @@ const solutions = [
   },
 ];
 
-const SolutionCard = ({ solution, index, scrollYProgress }: { solution: any, index: number, scrollYProgress: MotionValue<number> }) => {
+const SolutionCard = ({ solution, index, scrollYProgress, isDesktop }: { solution: any, index: number, scrollYProgress: MotionValue<number>, isDesktop: boolean }) => {
   const isEarly = index < 2;
 
   // A animação de scroll (para cards >= 2)
@@ -61,12 +61,16 @@ const SolutionCard = ({ solution, index, scrollYProgress }: { solution: any, ind
 
   return (
     <m.div 
-      style={isEarly ? {} : { opacity: scrollOpacity, x: scrollX }}
-      initial={isEarly ? { opacity: 0, x: 60 } : undefined}
-      whileInView={isEarly ? { opacity: 1, x: 0 } : undefined}
-      viewport={isEarly ? { once: true, margin: "0px -50px 0px 0px" } : undefined}
-      transition={isEarly ? { duration: 0.7, delay: 1.2 + (index * 0.15), ease: [0.25, 0.1, 0.25, 1] } : undefined}
-      className="group w-[55vw] sm:w-[35vw] md:w-[25vw] lg:w-[20vw] xl:w-[14vw] flex-shrink-0 flex flex-col justify-start px-3 md:px-5 relative py-12 md:py-20 min-h-[65vh] cursor-pointer"
+      style={(isDesktop && !isEarly) ? { opacity: scrollOpacity, x: scrollX } : {}}
+      initial={(!isDesktop || isEarly) ? { opacity: 0, y: 30 } : undefined}
+      whileInView={(!isDesktop || isEarly) ? { opacity: 1, y: 0 } : undefined}
+      viewport={(!isDesktop || isEarly) ? { once: true, margin: "0px 0px -50px 0px" } : undefined}
+      transition={
+        isDesktop && isEarly 
+          ? { duration: 0.7, delay: 1.2 + (index * 0.15), ease: [0.25, 0.1, 0.25, 1] } 
+          : { duration: 0.5 }
+      }
+      className="group w-full lg:w-[20vw] xl:w-[14vw] flex-shrink-0 flex flex-col justify-start px-2 md:px-5 relative py-8 md:py-12 lg:py-20 min-h-[auto] lg:min-h-[65vh] cursor-pointer border-b border-surface-100 lg:border-none last:border-0"
     >
       {/* Giant Index Number */}
       <div className="text-[5rem] md:text-[7rem] font-medium text-slate-800 transition-colors duration-500 group-hover:text-primary-600 mb-8 md:mb-10 tracking-tighter leading-none">
@@ -95,10 +99,14 @@ const ResumoSolucoes = () => {
   const targetRef = useRef<HTMLElement>(null);
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const [scrollRange, setScrollRange] = useState(0);
+  const [isDesktop, setIsDesktop] = useState(true);
 
   useEffect(() => {
-    const updateScrollRange = () => {
-      if (scrollContainerRef.current) {
+    const updateLayout = () => {
+      const desktop = window.innerWidth >= 1024;
+      setIsDesktop(desktop);
+
+      if (desktop && scrollContainerRef.current) {
         // Largura total de todos os itens (scrollWidth) - largura da tela (innerWidth)
         const totalWidth = scrollContainerRef.current.scrollWidth;
         const viewportWidth = window.innerWidth;
@@ -109,10 +117,10 @@ const ResumoSolucoes = () => {
       }
     };
 
-    updateScrollRange();
+    updateLayout();
     // Re-calcular caso a janela mude de tamanho
-    window.addEventListener('resize', updateScrollRange);
-    return () => window.removeEventListener('resize', updateScrollRange);
+    window.addEventListener('resize', updateLayout);
+    return () => window.removeEventListener('resize', updateLayout);
   }, []);
 
   const { scrollYProgress } = useScroll({
@@ -129,9 +137,9 @@ const ResumoSolucoes = () => {
     <section 
       ref={targetRef}
       id="solucoes" 
-      className="relative h-[380vh] bg-white" // h-[380vh] dá o espaço para o scroll-jacking ocorrer
+      className="relative h-auto lg:h-[380vh] bg-white overflow-hidden lg:overflow-visible" 
     >
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden pt-10 md:pt-14 lg:pt-20">
+      <div className="relative lg:sticky top-0 h-auto lg:h-screen flex flex-col lg:flex-row lg:items-center overflow-hidden pt-20 pb-16 lg:pb-0 lg:pt-20">
         
         {/* Background decoration */}
         <div
@@ -142,12 +150,12 @@ const ResumoSolucoes = () => {
         {/* Horizontal Scroll Container (Animado pelo Framer Motion) */}
         <m.div 
           ref={scrollContainerRef}
-          style={{ x }} 
-          className="flex items-stretch gap-8 md:gap-16 px-5 sm:px-8 md:px-24 lg:px-32 w-max relative z-10"
+          style={isDesktop ? { x } : {}} 
+          className="flex flex-col lg:flex-row lg:items-stretch gap-2 md:gap-8 lg:gap-16 px-5 sm:px-8 md:px-24 lg:px-32 w-full lg:w-max relative z-10"
         >
           
           {/* Slide 1: Intro / MenuPrincipal */}
-          <div className="w-[85vw] sm:w-[85vw] md:w-[60vw] lg:w-[45vw] xl:w-[40vw] flex-shrink-0 flex flex-col justify-center items-start px-2 sm:px-4 pl-0 py-8">
+          <div className="w-full lg:w-[45vw] xl:w-[40vw] flex-shrink-0 flex flex-col justify-center items-start px-2 sm:px-4 pl-0 py-4 lg:py-8 mb-8 lg:mb-0">
             
             <m.div
               initial={{ opacity: 0, y: 15 }}
@@ -184,21 +192,24 @@ const ResumoSolucoes = () => {
               Nossas soluções resolvem problemas reais. Combinamos expertise contábil, tributária e financeira para conectar sua farmácia às estratégias mais aderentes ao seu momento de crescimento.
             </m.p>
 
-            <div className="mt-8 md:mt-12 flex items-center gap-4 text-primary-600 font-semibold tracking-wide">
-              <span className="animate-pulse">Continue rolando</span>
-              <ArrowRight className="w-5 h-5" />
+            <div className="mt-6 md:mt-12 flex items-center gap-4 text-primary-600 font-semibold tracking-wide">
+              <span className="animate-pulse">{isDesktop ? 'Continue rolando' : 'Nossas soluções'}</span>
+              {isDesktop && <ArrowRight className="w-5 h-5" />}
             </div>
           </div>
 
           {/* Slides 2-7: Solution Cards */}
-          {solutions.map((solution, index) => (
-            <SolutionCard 
-              key={solution.id}
-              solution={solution}
-              index={index}
-              scrollYProgress={scrollYProgress}
-            />
-          ))}
+          <div className="flex flex-col lg:flex-row lg:items-stretch gap-2 lg:gap-0">
+            {solutions.map((solution, index) => (
+              <SolutionCard 
+                key={solution.id}
+                solution={solution}
+                index={index}
+                scrollYProgress={scrollYProgress}
+                isDesktop={isDesktop}
+              />
+            ))}
+          </div>
         </m.div>
       </div>
     </section>

@@ -57,6 +57,12 @@ const WorldScrollSequence = ({ progress }: WorldScrollSequenceProps) => {
   // Update canvas on scroll
   useMotionValueEvent(progress, 'change', (latest) => {
     if (!canvasRef.current || images.length === 0) return;
+
+    // Desativar scroll progressivo no mobile para economizar processamento
+    if (typeof window !== 'undefined' && window.innerWidth < 1024) {
+      return;
+    }
+
     
     let frameIndex = Math.floor(latest * (FRAME_COUNT - 1));
     if (frameIndex < 0) frameIndex = 0;

@@ -127,7 +127,7 @@ const PerguntasFrequentes = () => {
 
                 <button
                   onClick={() => openModal()}
-                  className="group inline-flex items-center gap-3 px-8 py-4 bg-primary-600 text-white rounded-full font-bold text-base hover:bg-primary-500 hover:scale-105 transition-all duration-300"
+                  className="w-full sm:w-auto group inline-flex items-center justify-center gap-3 px-8 py-4 bg-primary-600 text-white rounded-full font-bold text-base hover:bg-primary-500 hover:scale-105 transition-all duration-300"
                 >
                   Quero crescer com a Farmacon
                   <ArrowRight size={16} className="group-hover:translate-x-0.5 transition-transform" />

@@ -146,7 +146,7 @@ const AnalisesRx = () => {
               {/* CTA */}
               <button
                 onClick={() => openModal()}
-                className="group inline-flex items-center gap-2.5 px-8 py-4 bg-primary-600 text-white rounded-full font-semibold text-[15px] hover:bg-primary-700 hover:shadow-lg hover:shadow-primary-600/25 transition-all duration-300 w-fit"
+                className="group inline-flex items-center justify-center gap-2.5 px-8 py-4 bg-primary-600 text-white rounded-full font-semibold text-[15px] hover:bg-primary-700 hover:shadow-lg hover:shadow-primary-600/25 transition-all duration-300 w-full md:w-fit"
               >
                 <span>Solicitar um diagnóstico</span>
                 <ArrowRight

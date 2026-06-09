@@ -161,7 +161,7 @@ const MenuPrincipal = () => {
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: -10, scale: 0.96 }}
                                 transition={{ duration: 0.25, type: "spring", stiffness: 350, damping: 25 }}
-                                className="absolute top-full mt-4 right-0 min-w-[220px] md:min-w-[280px] bg-white border border-surface-200 rounded-3xl p-4 md:p-5 shadow-2xl origin-top-right flex flex-col overflow-hidden"
+                                className="absolute top-full mt-4 right-0 w-[calc(100vw-32px)] md:w-auto md:min-w-[280px] bg-white border border-surface-200 rounded-3xl p-4 md:p-5 shadow-2xl origin-top-right flex flex-col overflow-hidden"
                             >
                                 {navLinks.map((link, i) => (
                                     <m.a
