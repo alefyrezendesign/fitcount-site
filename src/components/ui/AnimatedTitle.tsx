@@ -1,4 +1,4 @@
-import { motion } from 'framer-motion';
+import { m  } from 'framer-motion';
 
 import type { ReactNode } from 'react';
 
@@ -13,7 +13,7 @@ export const AnimatedTitle = ({ lines, className = '', delay = 0 }: AnimatedTitl
     <span className={`flex flex-col ${className}`}>
       {lines.map((line, index) => (
         <span key={index} className="block overflow-hidden py-4 -my-4">
-            <motion.span
+            <m.span
             initial={{ opacity: 0, y: "110%" }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, margin: "-40px" }}
@@ -29,7 +29,7 @@ export const AnimatedTitle = ({ lines, className = '', delay = 0 }: AnimatedTitl
             aria-hidden="true"
           >
             {line}
-          </motion.span>
+          </m.span>
         </span>
       ))}
     </span>

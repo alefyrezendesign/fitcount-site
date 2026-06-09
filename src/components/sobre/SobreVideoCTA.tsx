@@ -1,7 +1,9 @@
-import { motion } from 'framer-motion';
+import { m  } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
+import { useModalEspecialista } from '../../hooks/useModalEspecialista';
 
 const SobreVideoCTA = () => {
+  const { openModal } = useModalEspecialista();
   return (
     <section className="pt-12 md:pt-16 pb-2 md:pb-4">
       <div className="container mx-auto px-5 md:px-10 xl:px-16">
@@ -26,7 +28,7 @@ const SobreVideoCTA = () => {
         
         {/* Left Column - Text */}
         <div className="flex-1 max-w-[500px] lg:max-w-[600px]">
-          <motion.h2 
+          <m.h2 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -34,9 +36,9 @@ const SobreVideoCTA = () => {
             className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-4 leading-tight [text-wrap:balance]"
           >
             Pronto para crescer com a gente?
-          </motion.h2>
+          </m.h2>
   
-          <motion.p 
+          <m.p 
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -46,26 +48,26 @@ const SobreVideoCTA = () => {
             Faça parte do ecossistema que está <br className="hidden md:block" />
             redefinindo o padrão de resultados <br className="hidden md:block" />
             no varejo farmacêutico do Brasil.
-          </motion.p>
+          </m.p>
         </div>
 
         {/* Right Column - Button */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, x: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          <a 
-            href="#contato" 
-            className="group flex items-center gap-4 bg-white text-slate-900 px-8 py-4 rounded-full font-medium text-lg hover:bg-slate-50 transition-all duration-300 hover:scale-105"
+          <button 
+            onClick={() => openModal()} 
+            className="group flex items-center gap-4 bg-white text-slate-900 px-8 py-4 rounded-full font-medium text-lg hover:bg-slate-50 transition-all duration-300 hover:scale-105 cursor-pointer"
           >
             Junte-se a nós
             <div className="bg-slate-100 rounded-full p-2 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
               <ArrowRight size={18} />
             </div>
-          </a>
-        </motion.div>
+          </button>
+        </m.div>
       </div>
 
         </div>

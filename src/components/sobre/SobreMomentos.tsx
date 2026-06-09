@@ -1,29 +1,34 @@
-import { motion } from 'framer-motion';
+import { m  } from 'framer-motion';
 import { Store, RefreshCcw, Network, ArrowRight, Compass } from 'lucide-react';
 import SectionHeader from '../ui/SectionHeader';
+import { useModalEspecialista } from '../../hooks/useModalEspecialista';
 
 const momentos = [
   {
     icon: <Store size={32} strokeWidth={1.5} />,
     title: "Quero abrir uma farmácia",
+    value: "Quero abrir uma farmácia",
     description: "Preciso de orientação societária, tributária e passos iniciais para inaugurar com segurança.",
     cta: "Planejar abertura"
   },
   {
     icon: <RefreshCcw size={32} strokeWidth={1.5} />,
     title: "Quero trocar de contabilidade",
+    value: "Quero trocar de contabilidade",
     description: "Minha contabilidade atual não entende do varejo farmacêutico e sinto que estou perdendo dinheiro.",
     cta: "Quero ser Farmacon"
   },
   {
     icon: <Network size={32} strokeWidth={1.5} />,
-    title: "Quero inteligência para rede",
+    title: "Quero inteligência tributária para rede",
+    value: "Quero inteligência tributária para minha rede",
     description: "Já possuo múltiplas lojas e preciso de otimização tributária avançada e gestão de holding.",
-    cta: "Solicitar diagnóstico"
+    cta: "Falar com especialista"
   }
 ];
 
 const SobreMomentos = () => {
+  const { openModal } = useModalEspecialista();
   return (
     <section className="pt-28 md:pt-40 pb-24 md:pb-32 bg-white relative overflow-hidden">
       <div className="container mx-auto px-5 md:px-10 xl:px-16 relative z-10">
@@ -42,7 +47,7 @@ const SobreMomentos = () => {
         {/* List Layout - Reference Style */}
         <div className="max-w-6xl mx-auto flex flex-col mt-8">
           {momentos.map((item, idx) => (
-            <motion.div
+            <m.div
               key={idx}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -69,15 +74,15 @@ const SobreMomentos = () => {
 
               {/* Coluna 3: Botão (Equivalente ao Número da referência) */}
               <div className="w-full lg:w-[25%] flex justify-start lg:justify-end mt-4 lg:mt-0">
-                <a 
-                  href="/contato" 
-                  className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 text-[15px] w-full sm:w-auto shadow-[0_4px_14px_rgba(37,99,235,0.2)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.3)] whitespace-nowrap"
+                <button 
+                  onClick={() => openModal(item.value)}
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 text-[15px] w-full sm:w-auto shadow-[0_4px_14px_rgba(37,99,235,0.2)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.3)] whitespace-nowrap cursor-pointer"
                 >
                   {item.cta}
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
-                </a>
+                </button>
               </div>
-            </motion.div>
+            </m.div>
           ))}
         </div>
 

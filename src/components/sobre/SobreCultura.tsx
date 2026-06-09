@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, useSpring } from 'framer-motion';
+import { m, useScroll, useTransform, useSpring  } from 'framer-motion';
 import { Target, Eye, Heart, Lightbulb, Landmark, Trophy, Shield, Scale, Handshake, TrendingUp, Rocket, BookOpen, Users, Star, Link, Pill, Store } from 'lucide-react';
 import SectionHeader from '../ui/SectionHeader';
 
@@ -32,7 +32,7 @@ const WordPill = ({ text, icon: Icon, bottom, left, targetRotate, delay, scrollY
   const otherOpacity = useTransform(scrollYProgress, [startDrop, startDrop + 0.02], [0, 1]);
 
   return (
-    <motion.div 
+    <m.div 
       style={{
         position: 'absolute',
         bottom,
@@ -49,7 +49,7 @@ const WordPill = ({ text, icon: Icon, bottom, left, targetRotate, delay, scrollY
     >
       {Icon && <Icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600" />}
       <span className="text-[13px] md:text-[15px] font-bold text-slate-800 tracking-tight whitespace-nowrap">{text}</span>
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -156,7 +156,7 @@ de pessoas e propósitos verdadeiros.</>}
           <div className="w-full md:w-1/2 relative flex flex-col justify-center min-h-[500px]">
               
               {/* CARDS */}
-              <motion.div 
+              <m.div 
                 style={{ opacity: cardsOpacity, scale: cardsScale }} 
                 className="flex flex-col gap-3 md:gap-4 relative z-20 w-full"
               >
@@ -166,12 +166,12 @@ de pessoas e propósitos verdadeiros.</>}
                   const zIndex = i === 1 ? 10 : 0;
 
                   return (
-                    <motion.div 
+                    <m.div 
                       key={i} 
                       style={{ y: cardY, zIndex }}
                       className="w-full h-[100px] md:h-[110px] relative perspective-[1200px]"
                     >
-                      <motion.div 
+                      <m.div 
                         style={{ rotateX: card.rotateX, transformStyle: "preserve-3d" }} 
                         className="w-full h-full relative origin-center"
                       >
@@ -187,11 +187,11 @@ de pessoas e propósitos verdadeiros.</>}
                           </p>
                           <Icon className="w-6 h-6 md:w-8 md:h-8 text-white shrink-0" />
                         </div>
-                      </motion.div>
-                    </motion.div>
+                      </m.div>
+                    </m.div>
                   );
                 })}
-              </motion.div>
+              </m.div>
 
               {/* Pílulas que caem e se acomodam */}
               <div className="absolute inset-0 pointer-events-none z-10">

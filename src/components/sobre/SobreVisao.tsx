@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion';
+import { m, useInView  } from 'framer-motion';
 import { Lightbulb } from 'lucide-react';
 import { useRef } from 'react';
 import SectionHeader from '../ui/SectionHeader';
@@ -72,7 +72,7 @@ const SolutionItem = ({ servico, index }: { servico: any, index: number }) => {
   const numStr = (index + 1).toString().padStart(2, '0');
   
   return (
-    <motion.div
+    <m.div
       ref={ref}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -103,50 +103,62 @@ const SolutionItem = ({ servico, index }: { servico: any, index: number }) => {
           <div className={`w-[16px] h-[16px] bg-white rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.1)] transition-transform duration-300 ease-out ${isOn ? 'translate-x-[16px]' : 'translate-x-0'}`} />
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 };
 
 const SobreVisao = () => {
   return (
-    <section className="pt-12 pb-4 md:pt-16 md:pb-8 relative -mt-[15vh] lg:-mt-[25vh] z-20">
+    <section className="pt-12 pb-4 md:pt-16 md:pb-8 relative -mt-[5vh] lg:-mt-[10vh] z-20">
       {/* Background removido a pedido */}
       <div className="container mx-auto px-5 md:px-10 xl:px-16 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 relative">
           
-          {/* Lado Esquerdo - Título Fixo (Sticky) */}
+          {/* Lado Esquerdo - Card Fixo (Sticky) */}
           <div className="lg:col-span-5 relative">
-            <div className="lg:sticky lg:top-0 lg:h-screen flex flex-col justify-center pt-4 lg:pt-0">
-              <SectionHeader
-                badgeIcon={<Lightbulb size={14} />}
-                badgeText="Soluções exclusivas"
-                titleLines={[
-                  "Muito além",
-                  "de impostos."
-                ]}
-                align="left"
-                className="!mb-4"
-              />
-
-              <motion.div 
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
+            <div className="lg:sticky lg:top-[70px] lg:h-[calc(100vh-70px)] flex flex-col justify-center py-10 lg:py-0">
+              <m.div 
+                initial={{ opacity: 0, x: -30 }}
+                whileInView={{ opacity: 1, x: 0 }}
                 viewport={{ once: true }}
-                transition={{ duration: 0.6 }}
-                className="w-[90%] aspect-[16/10] rounded-3xl overflow-hidden mt-0 relative shadow-[0_8px_30px_rgb(0,0,0,0.08)] group"
+                transition={{ duration: 0.8 }}
+                className="relative overflow-hidden rounded-[32px] md:rounded-[40px] py-20 px-10 md:py-28 md:px-16 flex flex-col items-start"
               >
-                 <img 
-                   src="https://images.unsplash.com/photo-1556761175-4b46a572b786?q=80&w=1200&auto=format&fit=crop" 
-                   alt="Especialistas Farmacon" 
-                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                 />
-                 <div className="absolute inset-0 bg-blue-900/5 mix-blend-multiply transition-colors duration-500 group-hover:bg-transparent"></div>
-              </motion.div>
+                {/* Video Background */}
+                <video 
+                  autoPlay 
+                  loop 
+                  muted 
+                  playsInline
+                  className="absolute inset-0 w-full h-full object-cover z-0"
+                >
+                  <source src="/background/serviços-bg-loop.mp4" type="video/mp4" />
+                </video>
+
+                {/* Color Overlay */}
+                <div className="absolute inset-0 bg-[#1e4ed8]/50 z-0"></div>
+
+                {/* Content */}
+                <div className="relative z-10 w-full">
+                  <SectionHeader
+                    badgeIcon={<Lightbulb size={14} />}
+                    badgeText="Soluções exclusivas"
+                    titleLines={[
+                      "Muito além",
+                      "de impostos."
+                    ]}
+                    subtitle="Contabilidade, tributação, recuperação e estratégia. Tudo pensado exclusivamente para o varejo farmacêutico."
+                    align="left"
+                    inverted={true}
+                    className="!mb-0"
+                  />
+                </div>
+              </m.div>
             </div>
           </div>
 
           {/* Lado Direito - Lista Scrollável */}
-          <div className="lg:col-span-7 flex flex-col pt-4 lg:pt-[20vh] xl:pt-[25vh]">
+          <div className="lg:col-span-7 flex flex-col pt-4 lg:pt-[10vh] xl:pt-[12vh]">
             {servicos.map((servico, idx) => (
               <SolutionItem key={idx} servico={servico} index={idx} />
             ))}

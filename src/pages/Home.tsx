@@ -1,20 +1,18 @@
 import { lazy, Suspense, useRef } from 'react';
 import { useScroll } from 'framer-motion';
-import SecaoHero from '../components/SecaoHero';
-import NumerosAutoridade from '../components/NumerosAutoridade';
-import CarrosselParceiros from '../components/CarrosselParceiros';
-import Beneficios from '../components/Beneficios';
-import FraseImpactante from '../components/FraseImpactante';
-import ResumoSolucoes from '../components/ResumoSolucoes';
-import Demonstracao from '../components/Demonstracao';
-import EcossistemaRx from '../components/EcossistemaRx';
-import Depoimentos from '../components/Depoimentos';
-import PerguntasFrequentes from '../components/PerguntasFrequentes';
-import WorldScrollSequence from '../components/WorldScrollSequence';
+import SecaoHero from '../components/home/SecaoHero';
+import NumerosAutoridade from '../components/home/NumerosAutoridade';
+import CarrosselParceiros from '../components/home/CarrosselParceiros';
+import Beneficios from '../components/home/Beneficios';
+import FraseImpactante from '../components/home/FraseImpactante';
+import ResumoSolucoes from '../components/home/ResumoSolucoes';
+import Demonstracao from '../components/home/Demonstracao';
+import EcossistemaRx from '../components/home/EcossistemaRx';
+import Depoimentos from '../components/home/Depoimentos';
+import PerguntasFrequentes from '../components/home/PerguntasFrequentes';
+import WorldScrollSequence from '../components/home/WorldScrollSequence';
 
-const RxDiagnosis = lazy(() => import('../components/AnalisesRx'));
-
-const SectionSkeleton = () => <div className="min-h-[400px] bg-white border-b border-surface-100" />;
+import AnalisesRx from '../components/home/AnalisesRx';
 
 const Home = () => {
   const sequenceContainerRef = useRef<HTMLDivElement>(null);
@@ -42,9 +40,7 @@ const Home = () => {
         </div>
 
         <div className="relative z-10 w-full shrink-0 -mt-20 md:-mt-32 lg:-mt-60">
-          <Suspense fallback={<SectionSkeleton />}>
-            <RxDiagnosis />
-          </Suspense>
+          <AnalisesRx />
         </div>
       </div>
 
@@ -60,7 +56,7 @@ const Home = () => {
         <ResumoSolucoes />
       </div>
 
-      <div id="rx-solucoes-wrapper" className="w-full shrink-0 flex items-center justify-center bg-[#0a0a0a]">
+      <div id="rx-solucoes" className="w-full shrink-0 flex items-center justify-center bg-[#0a0a0a]">
         <EcossistemaRx />
       </div>
 

@@ -1,4 +1,4 @@
-import { motion, useInView } from 'framer-motion';
+import { m, useInView  } from 'framer-motion';
 import { useRef, useEffect, useState } from 'react';
 import { Activity } from 'lucide-react';
 import SectionHeader from '../ui/SectionHeader';
@@ -57,7 +57,7 @@ const Counter = ({ value, prefix, suffix }: { value: number; prefix: string; suf
 
 const StatBlock = ({ stat, align, idx }: { stat: any, align: 'left' | 'right', idx: number }) => {
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: "-10%" }}
@@ -70,7 +70,7 @@ const StatBlock = ({ stat, align, idx }: { stat: any, align: 'left' | 'right', i
       <span className="text-[14px] md:text-[15px] font-[600] text-surface-600 max-w-[200px] leading-tight">
         {stat.label}
       </span>
-    </motion.div>
+    </m.div>
   );
 };
 
@@ -86,7 +86,7 @@ const SobreNumeros = () => {
 
       {/* Centro Orgânico Animado (Video em mix-blend-multiply) */}
       <div className="absolute inset-0 z-0 flex justify-center items-center pointer-events-none overflow-hidden mix-blend-multiply opacity-80 mt-32 md:mt-48 lg:mt-56">
-        <motion.div
+        <m.div
           animate={{ 
             y: [-25, 25, -25],
             rotate: [-4, 4, -4],
@@ -107,7 +107,7 @@ const SobreNumeros = () => {
             playsInline
             className="w-full h-full object-contain relative z-10 scale-[1.2]"
           />
-        </motion.div>
+        </m.div>
       </div>
 
       <div className="container mx-auto px-5 md:px-10 xl:px-16 relative z-10 flex flex-col items-center">

@@ -1,5 +1,5 @@
 import { useRef, useState, useEffect } from 'react';
-import { motion, useScroll, useTransform, useMotionValueEvent, MotionValue, useSpring } from 'framer-motion';
+import { m, useScroll, useTransform, useMotionValueEvent, MotionValue, useSpring  } from 'framer-motion';
 import { Clock } from 'lucide-react';
 
 const timelineEvents = [
@@ -121,7 +121,7 @@ const TimelineItem = ({
           <h3 className="text-xl md:text-2xl font-semibold text-slate-900 tracking-tight">
             {event.title}
           </h3>
-          <motion.div
+          <m.div
             initial={false}
             animate={{ height: isActive ? "auto" : 0, opacity: isActive ? 1 : 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -132,7 +132,7 @@ const TimelineItem = ({
                 {event.description}
               </p>
             </div>
-          </motion.div>
+          </m.div>
         </div>
         <div className="mt-3">
            <span className={`text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-75 ${isActive ? 'text-blue-600' : 'text-slate-200'}`}>
@@ -152,7 +152,7 @@ const TimelineItem = ({
           <h3 className="text-xl md:text-2xl font-semibold text-slate-900 tracking-tight">
             {event.title}
           </h3>
-          <motion.div
+          <m.div
             initial={false}
             animate={{ height: isActive ? "auto" : 0, opacity: isActive ? 1 : 0 }}
             transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
@@ -163,7 +163,7 @@ const TimelineItem = ({
                 {event.description}
               </p>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     </div>
@@ -251,7 +251,7 @@ const SobreTimeline = () => {
         />
 
 
-        <motion.div 
+        <m.div 
           ref={scrollContainerRef}
           style={{ x }} 
           className="flex items-stretch w-max relative z-10 h-[60vh] lg:mt-[15vh]"
@@ -266,7 +266,7 @@ const SobreTimeline = () => {
           />
 
           {/* Active Track Extension (Azul) - Anima de onde o 2013 parou até a extrema direita (w-full do restante) */}
-          <motion.div 
+          <m.div 
             className="absolute top-1/2 h-[2px] bg-blue-600 -translate-y-1/2 z-[5] origin-left"
             style={{ 
               left: trackGeometry.initialWidth ? `${trackGeometry.initialWidth}px` : 0,
@@ -291,7 +291,7 @@ const SobreTimeline = () => {
 
           {/* Spacer Final Longo: O "1 scroll extra" exato pedido. Cerca de 1 a 2 ticks do mouse. */}
           <div className="flex-shrink-0 relative w-[10vw] md:w-[12vw]" />
-        </motion.div>
+        </m.div>
       </div>
     </section>
   );

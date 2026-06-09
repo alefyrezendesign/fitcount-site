@@ -1,15 +1,15 @@
 import { useRef } from 'react';
-import { motion, useScroll, useTransform, MotionValue } from 'framer-motion';
+import { m, useScroll, useTransform, MotionValue  } from 'framer-motion';
 
 const AnimatedChar = ({ char, progress, start, end }: { char: string, progress: MotionValue<number>, start: number, end: number }) => {
   const opacity = useTransform(progress, [start, end], [0.2, 1]);
   return (
-    <motion.span 
+    <m.span 
       style={{ opacity }}
       className="inline-block"
     >
       {char}
-    </motion.span>
+    </m.span>
   );
 };
 
@@ -36,7 +36,7 @@ const SobreHistoria = () => {
           
           {/* Lado Esquerdo: Título */}
           <div className="w-full lg:w-[45%] flex flex-col pr-0 lg:pr-8">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, x: -20 }}
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true, margin: "-50px" }}
@@ -45,7 +45,7 @@ const SobreHistoria = () => {
               <h2 className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-dark-900 leading-[1.1] m-0">
                 Muito prazer, nós somos a Farmacon
               </h2>
-            </motion.div>
+            </m.div>
           </div>
 
           {/* Lado Direito: Textos Revelados */}

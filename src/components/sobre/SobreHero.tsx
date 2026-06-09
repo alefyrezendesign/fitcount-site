@@ -1,33 +1,19 @@
-import { motion, useScroll } from 'framer-motion';
+import { m, useScroll  } from 'framer-motion';
 import { useState, useRef } from 'react';
-import { FundoCodigoHero } from '../FundoCodigoHero';
-
-const TypewriterText = ({ text, delay = 0.5 }: { text: string; delay?: number }) => {
-  return (
-    <span className="inline-flex overflow-hidden">
-      {text.split('').map((char, index) => (
-        <motion.span
-          key={index}
-          initial={{ opacity: 0, display: 'none' }}
-          animate={{ opacity: 1, display: 'inline' }}
-          transition={{ duration: 0.05, delay: delay + index * 0.03 }}
-        >
-          {char === ' ' ? '\u00A0' : char}
-        </motion.span>
-      ))}
-    </span>
-  );
-};
+import { FundoCodigoHero } from '../home/FundoCodigoHero';
+import { useModalEspecialista } from '../../hooks/useModalEspecialista';
+import { TypewriterBadge } from '../ui/TypewriterBadge';
 
 const especialistas = [
-  { id: 1, bg: 'bg-[#FFB5C6]', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=800&auto=format&fit=crop' },
-  { id: 2, bg: 'bg-[#B4B6FF]', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop' },
-  { id: 3, bg: 'bg-[#B6EDFF]', img: 'https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?q=80&w=800&auto=format&fit=crop' },
-  { id: 4, bg: 'bg-[#BEFFD3]', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=800&auto=format&fit=crop' },
+  { id: 1, bg: 'bg-[#FFB5C6]', img: '/background/sobre-bg/1.png' },
+  { id: 2, bg: 'bg-[#B4B6FF]', img: '/background/sobre-bg/2.png' },
+  { id: 3, bg: 'bg-[#B6EDFF]', img: '/background/sobre-bg/3.png' },
+  { id: 4, bg: 'bg-[#BEFFD3]', img: '/background/sobre-bg/4.png' },
 ];
 
 const SobreHero = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const { openModal } = useModalEspecialista();
 
   const heroRef = useRef<HTMLElement>(null);
   const { scrollYProgress: heroProgress } = useScroll({
@@ -59,7 +45,7 @@ const SobreHero = () => {
       {/* Procedural Code Background */}
       <FundoCodigoHero progress={heroProgress} inverted={true} />
 
-      <motion.div 
+      <m.div 
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -71,46 +57,41 @@ const SobreHero = () => {
           <div className="w-full lg:w-auto flex flex-col items-start">
             
             {/* Badge */}
-            <motion.div
+            <m.div
               variants={badgeVariants}
-              className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/20 border border-white/30 mb-6 shadow-sm backdrop-blur-sm"
+              className="mb-6"
             >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white">
-                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path>
-                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path>
-                <path d="M4 22h16"></path>
-                <path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path>
-                <path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path>
-                <path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path>
-              </svg>
-              <span className="text-[10.5px] md:text-[11.5px] font-bold text-white uppercase tracking-[0.08em]">
-                <TypewriterText text="SOBRE NÓS" delay={0.4} />
-              </span>
-            </motion.div>
+              <TypewriterBadge 
+                text="SOBRE NÓS"
+                icon={<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="text-white"><path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"></path><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"></path><path d="M4 22h16"></path><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"></path><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"></path><path d="M18 2H6v7a6 6 0 0 0 12 0V2Z"></path></svg>}
+                inverted
+                autoStart
+              />
+            </m.div>
 
             {/* Title */}
-            <motion.h1 
+            <m.h1 
               variants={itemVariants}
               className="text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-white leading-[1.1] mb-8 lg:w-auto text-left lg:whitespace-nowrap"
             >
               Há mais de uma década <br className="hidden md:block"/>
               transformando histórias, <br className="hidden md:block"/>
               pessoas e negócios.
-            </motion.h1>
+            </m.h1>
 
             {/* CTA Button */}
-            <motion.div variants={itemVariants}>
-              <a 
-                href="/contato" 
-                className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-[15px] transition-all shadow-[0_8px_20px_rgba(59,130,246,0.25)] bg-blue-500 text-white hover:bg-blue-400 hover:shadow-[0_8px_25px_rgba(59,130,246,0.35)]"
+            <m.div variants={itemVariants}>
+              <button 
+                onClick={() => openModal()} 
+                className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-[15px] transition-all shadow-[0_8px_20px_rgba(59,130,246,0.25)] bg-blue-500 text-white hover:bg-blue-400 hover:shadow-[0_8px_25px_rgba(59,130,246,0.35)] cursor-pointer"
               >
-                Solicitar um diagnóstico
+                Falar com especialista
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right group-hover:translate-x-1 transition-transform" aria-hidden="true">
                   <path d="M5 12h14"></path>
                   <path d="m12 5 7 7-7 7"></path>
                 </svg>
-              </a>
-            </motion.div>
+              </button>
+            </m.div>
 
           </div>
 
@@ -119,7 +100,7 @@ const SobreHero = () => {
             
             <div className="flex flex-col items-start w-full lg:w-[410px]">
               
-              <motion.div 
+              <m.div 
                 variants={itemVariants}
                 className="flex items-center gap-[17px] mb-8 lg:mb-[20px] w-full"
               >
@@ -130,10 +111,10 @@ const SobreHero = () => {
                    Centenas de Especialistas que <br />
                    se dedicam aos seus resultados
                  </p>
-              </motion.div>
+              </m.div>
 
               {/* Overlapping Cards Container */}
-              <motion.div 
+              <m.div 
                 variants={itemVariants}
                 className="relative flex items-center h-[150px] lg:h-[200px] w-full"
                 onMouseLeave={() => setHoveredIndex(null)}
@@ -173,7 +154,7 @@ const SobreHero = () => {
                   }
 
                   return (
-                    <motion.div
+                    <m.div
                       key={esp.id}
                       onMouseEnter={() => setHoveredIndex(i)}
                       className={`absolute rounded-3xl w-[105px] lg:w-[133px] h-[150px] lg:h-[200px] bg-slate-200 cursor-pointer overflow-hidden left-0 origin-bottom`}
@@ -204,15 +185,15 @@ const SobreHero = () => {
                            className={`w-full h-full object-cover transition-transform duration-700 ease-out ${isHovered ? 'scale-110' : 'scale-100'}`} 
                          />
                        </div>
-                    </motion.div>
+                    </m.div>
                   );
                 })}
-              </motion.div>
+              </m.div>
             </div>
 
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </section>
   );
 };
