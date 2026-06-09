@@ -17,7 +17,7 @@ const ContatoMapa = () => {
         {/* Title */}
         <div className="text-center mb-12 flex flex-col items-center">
           <div className="mb-4">
-             <TypewriterBadge text="Nossas Unidades" icon={<Building2 size={16} />} autoStart />
+             <TypewriterBadge text="Nossas Unidades" icon={<Building2 size={16} />} />
           </div>
           <m.h2 
             initial={{ opacity: 0, y: 20 }}

@@ -159,7 +159,6 @@ const ResumoSolucoes = () => {
               <TypewriterBadge 
                 text="Soluções"
                 icon={<Lightbulb className="w-3.5 h-3.5 text-primary-600" strokeWidth={2.5} />}
-                autoStart
               />
             </m.div>
 
