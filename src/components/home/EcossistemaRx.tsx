@@ -29,7 +29,7 @@ const EcossistemaRx = () => {
   };
 
   return (
-    <section id="rx-solucoes" className="-mt-12 lg:-mt-20 flex flex-col bg-[#050505] relative overflow-hidden w-full z-20">
+    <section id="rx-solucoes" className="-mt-12 lg:-mt-20 flex flex-col bg-[#050505] relative overflow-hidden w-full z-20 min-h-[103.125vw]">
       {/* Unified Background Image */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <img src="/background/bg-rx-gradient.jpg" alt="" className="w-full h-full object-cover object-top" loading="lazy" decoding="async" />
