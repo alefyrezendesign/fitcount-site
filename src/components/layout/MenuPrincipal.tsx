@@ -20,7 +20,7 @@ const MenuPrincipal = () => {
             setIsScrolled(window.scrollY > 20);
 
             const authoritySection = document.getElementById('sobre-nos');
-            const darkSection = document.getElementById('rx-solucoes-wrapper');
+            const darkSection = document.getElementById('rx-solucoes');
 
             if (authoritySection) {
                 const rect = authoritySection.getBoundingClientRect();
