@@ -76,7 +76,7 @@ const SobreMomentos = () => {
               <div className="w-full lg:w-[25%] flex justify-start lg:justify-end mt-4 lg:mt-0">
                 <button 
                   onClick={() => openModal(item.value)}
-                  className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 text-[15px] w-full sm:w-auto shadow-[0_4px_14px_rgba(37,99,235,0.2)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.3)] whitespace-nowrap cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 text-[15px] w-full sm:w-[280px] shadow-[0_4px_14px_rgba(37,99,235,0.2)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.3)] whitespace-nowrap cursor-pointer"
                 >
                   {item.cta}
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
