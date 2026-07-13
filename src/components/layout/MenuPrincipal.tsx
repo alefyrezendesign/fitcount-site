@@ -7,47 +7,21 @@ import { useModalSolucoes } from '../../hooks/useModalSolucoes';
 const MenuPrincipal = () => {
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-    const [isInAuthority, setIsInAuthority] = useState(false);
-    const [isInDarkSection, setIsInDarkSection] = useState(false);
-    const [isHeroDark, setIsHeroDark] = useState(false);
     const { openModal } = useModalSolucoes();
 
     const location = useLocation();
     const navigate = useNavigate();
-    const isSobreTop = location.pathname === '/sobre' && !isScrolled;
 
     useEffect(() => {
         const handleScroll = () => {
             setIsScrolled(window.scrollY > 20);
-
-            const authoritySection = document.getElementById('sobre-nos');
-            const darkSection = document.getElementById('rx-solucoes');
-
-            if (authoritySection) {
-                const rect = authoritySection.getBoundingClientRect();
-                setIsInAuthority(rect.top <= 82 && rect.bottom >= 80);
-            } else {
-                setIsInAuthority(false);
-            }
-
-            if (darkSection) {
-                const rect = darkSection.getBoundingClientRect();
-                // trigger when the dark background reaches the bottom of the MenuPrincipal
-                setIsInDarkSection(rect.top <= 80 && rect.bottom >= 80);
-            } else {
-                setIsInDarkSection(false);
-            }
         };
         window.addEventListener('scroll', handleScroll, { passive: true });
         handleScroll(); // Check on mount and route change
         return () => window.removeEventListener('scroll', handleScroll);
     }, [location.pathname]);
 
-    useEffect(() => {
-        const handleHeroDark = (e: any) => setIsHeroDark(e.detail);
-        window.addEventListener('hero-dark-mode', handleHeroDark);
-        return () => window.removeEventListener('hero-dark-mode', handleHeroDark);
-    }, []);
+
 
     const scrollToTopSmooth = () => {
         const startY = window.scrollY;
@@ -99,32 +73,22 @@ const MenuPrincipal = () => {
     const navLinks = [
         { name: 'Início', path: '/' },
         { name: 'Sobre nós', path: '/sobre' },
-        { name: 'Rx Soluções', path: '/#rx-solucoes' },
-        { name: 'Trabalhe conosco', path: 'https://app.vaggou.com.br/farmacon', external: true },
+        { name: 'Soluções Fit', path: '/#rx-solucoes' },
         { name: 'Contato', path: '/contato' },
+        { name: 'Trabalhe conosco', path: 'https://app.vaggou.com.br/fitcount', external: true },
     ];
 
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
-                isMenuOpen
-                ? 'bg-white/90 backdrop-blur-xl py-3 border-surface-200 shadow-sm'
-                : isHeroDark
-                    ? 'bg-[#0B1528]/90 backdrop-blur-xl py-3 border-white/10 shadow-sm'
-                    : isInDarkSection
-                        ? 'bg-black/90 backdrop-blur-xl py-3 border-white/10 shadow-sm'
-                        : isInAuthority
-                            ? 'bg-gradient-to-r from-[#03329b]/95 to-[#2563eb]/95 backdrop-blur-xl py-3 border-transparent shadow-sm'
-                            : isScrolled
-                                ? 'bg-white/90 backdrop-blur-xl py-3 border-surface-200 shadow-sm'
-                                : 'bg-transparent py-4 md:py-6 border-transparent'
-                }`}
+                isScrolled ? 'py-3 bg-dark-950/90 backdrop-blur-xl border-white/10 shadow-sm' : 'py-4 md:py-6 bg-transparent border-transparent'
+            }`}
         >
             <div className="w-full px-3 sm:px-4 md:px-8 xl:px-12 mx-auto flex items-center justify-between mt-1 md:mt-2 transition-all">
                 
                 {/* Logo */}
                 <a href="/" onClick={(e) => handleNavigation(e, '/')} className="flex items-center z-50 relative min-w-0">
-                    <img src={isMenuOpen ? "/logo/farmacon_logo_horizontal_azul.png" : (isInAuthority || isInDarkSection || isSobreTop || isHeroDark) ? "/logo/farmacon_logo_horizontal_branca.png" : (isScrolled ? "/logo/farmacon_logo_horizontal_azul.png" : "/logo/farmacon_logo_horizontal_principal.png")} alt="Farmacon" className="h-5 sm:h-7 md:h-8 w-auto transition-opacity duration-300" />
+                    <img src="/logo/logo-fitcount-hz-cor-clara.png" alt="Fitcount" className="h-5 sm:h-7 md:h-8 w-auto transition-opacity duration-300" />
                 </a>
 
                 {/* Right Group: CTA + Menu Dropdown Toggle */}
@@ -132,12 +96,7 @@ const MenuPrincipal = () => {
                     
                     <button
                         onClick={() => openModal()}
-                        className={`px-2.5 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 rounded-full font-semibold text-[10px] sm:text-[11px] md:text-sm transition-all shadow-sm cursor-pointer border
-                            ${((isInAuthority || isInDarkSection || isHeroDark) && !isMenuOpen) || (isSobreTop && !isMenuOpen)
-                                ? 'bg-white text-dark-900 border-transparent hover:bg-blue-50'
-                                : 'bg-primary-50 border-primary-100 text-primary-700 hover:bg-primary-600 hover:text-white hover:border-primary-600'
-                            }
-                        `}
+                        className="px-2.5 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 rounded-full font-semibold text-[10px] sm:text-[11px] md:text-sm transition-all shadow-sm cursor-pointer border bg-primary-500 border-primary-500 text-white hover:bg-primary-600 hover:border-primary-600"
                     >
                         <span className="hidden sm:inline">Solicitar um diagnóstico</span>
                         <span className="sm:hidden">Diagnóstico</span>
@@ -145,21 +104,14 @@ const MenuPrincipal = () => {
 
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className={`group flex items-center justify-center gap-1 sm:gap-1.5 md:gap-3 px-2.5 py-1.5 sm:px-5 sm:py-2 md:py-2.5 rounded-full font-bold text-[10px] sm:text-xs md:text-sm tracking-widest uppercase transition-all duration-300 border backdrop-blur-md cursor-pointer
-                            ${isMenuOpen 
-                                ? 'bg-primary-600 text-white border-transparent shadow-md'
-                                : (isInAuthority || isInDarkSection || isSobreTop || isHeroDark)
-                                    ? 'bg-white/10 text-white border-white/20 hover:bg-white/20'
-                                    : 'bg-primary-50 text-primary-700 border-primary-100 hover:bg-primary-100 hover:border-primary-200'
-                            }
-                        `}
+                        className={`group flex items-center justify-center gap-1 sm:gap-1.5 md:gap-3 px-2.5 py-1.5 sm:px-5 sm:py-2 md:py-2.5 rounded-full font-bold text-[10px] sm:text-xs md:text-sm tracking-widest uppercase transition-all duration-300 border backdrop-blur-md cursor-pointer ${isMenuOpen ? 'bg-primary-600 text-white border-transparent shadow-md' : 'bg-white/10 text-white border-white/20 hover:bg-white/20'}`}
                     >
                         <span className="mt-[1px]">{isMenuOpen ? 'Fechar' : 'Menu'}</span>
                         
                         <div className={`flex flex-row items-center justify-center gap-[3px] transition-transform duration-300 origin-center ${isMenuOpen ? 'rotate-90' : 'group-hover:rotate-90'}`}>
-                            <div className={`w-[5px] h-[5px] rounded-full transition-all duration-300 border ${isMenuOpen || (isInAuthority && !isMenuOpen) || (isInDarkSection && !isMenuOpen) || (isSobreTop && !isMenuOpen) || (isHeroDark && !isMenuOpen) ? 'bg-white border-white' : 'bg-transparent border-primary-700 group-hover:bg-primary-700'}`} />
-                            <div className={`w-[5px] h-[5px] rounded-full transition-all duration-300 border ${isMenuOpen || (isInAuthority && !isMenuOpen) || (isInDarkSection && !isMenuOpen) || (isSobreTop && !isMenuOpen) || (isHeroDark && !isMenuOpen) ? 'bg-white border-white' : 'bg-transparent border-primary-700 group-hover:bg-primary-700'}`} />
-                            <div className={`w-[5px] h-[5px] rounded-full transition-all duration-300 border ${isMenuOpen || (isInAuthority && !isMenuOpen) || (isInDarkSection && !isMenuOpen) || (isSobreTop && !isMenuOpen) || (isHeroDark && !isMenuOpen) ? 'bg-white border-white' : 'bg-transparent border-primary-700 group-hover:bg-primary-700'}`} />
+                            <div className="w-[5px] h-[5px] rounded-full transition-all duration-300 border bg-white border-white" />
+                            <div className="w-[5px] h-[5px] rounded-full transition-all duration-300 border bg-white border-white" />
+                            <div className="w-[5px] h-[5px] rounded-full transition-all duration-300 border bg-white border-white" />
                         </div>
                     </button>
 
@@ -171,7 +123,7 @@ const MenuPrincipal = () => {
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: -10, scale: 0.96 }}
                                 transition={{ duration: 0.25, type: "spring", stiffness: 350, damping: 25 }}
-                                className="absolute top-full mt-4 right-0 w-[calc(100vw-32px)] md:w-auto md:min-w-[280px] bg-white border border-surface-200 rounded-3xl p-4 md:p-5 shadow-2xl origin-top-right flex flex-col overflow-hidden"
+                                className="absolute top-full mt-4 right-0 w-[calc(100vw-32px)] md:w-auto md:min-w-[280px] bg-dark-900 border border-white/10 rounded-3xl p-4 md:p-5 shadow-2xl origin-top-right flex flex-col overflow-hidden"
                             >
                                 {navLinks.map((link, i) => (
                                     <m.a
@@ -189,12 +141,12 @@ const MenuPrincipal = () => {
                                         initial={{ opacity: 0, x: 20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: i * 0.05 + 0.05, duration: 0.3 }}
-                                        className={`group flex items-center justify-between p-2 md:p-3 rounded-2xl hover:bg-surface-50 transition-all cursor-pointer relative z-10 ${
-                                            location.pathname === link.path ? 'bg-surface-50' : ''
+                                        className={`group flex items-center justify-between p-2 md:p-3 rounded-2xl hover:bg-white/5 transition-all cursor-pointer relative z-10 ${
+                                            location.pathname === link.path ? 'bg-white/5' : ''
                                         }`}
                                     >
-                                        <span className={`text-xs md:text-sm font-semibold tracking-wide group-hover:text-primary-600 transition-colors uppercase ${
-                                            location.pathname === link.path ? 'text-primary-600' : 'text-dark-900'
+                                        <span className={`text-xs md:text-sm font-semibold tracking-wide group-hover:text-primary-500 transition-colors uppercase ${
+                                            location.pathname === link.path ? 'text-primary-500' : 'text-gray-200'
                                         }`}>
                                             {link.name}
                                         </span>

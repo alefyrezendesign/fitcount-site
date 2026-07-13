@@ -12,7 +12,7 @@ const statsLeft = [
 const statsRight = [
   { value: 7.2, label: "Bilhões operados em 2025", prefix: "R$", suffix: " bi" },
   { value: 67, label: "Mil folhas processadas", prefix: "+", suffix: "" },
-  { value: 3, label: "Novas farmácias por dia", prefix: "+", suffix: "" },
+  { value: 3, label: "Novas academias por dia", prefix: "+", suffix: "" },
 ];
 
 const Counter = ({ value, prefix, suffix, align = 'center' }: { value: number; prefix: string; suffix: string; align?: 'left' | 'right' | 'center' }) => {

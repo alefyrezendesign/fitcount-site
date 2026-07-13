@@ -1,6 +1,6 @@
-import { m, AnimatePresence, useInView  } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
-import { ShieldCheck, BarChart2, CalendarDays, ChevronDown, TrendingUp, Rocket } from 'lucide-react';
+import { m, type Variants } from 'framer-motion';
+import { useRef } from 'react';
+import { ShieldCheck, BarChart2, CalendarDays, TrendingUp, Rocket } from 'lucide-react';
 import SectionHeader from '../ui/SectionHeader';
 
 const allCards = [
@@ -8,255 +8,111 @@ const allCards = [
     number: "01",
     title: "Margem protegida",
     subtitle: "Auditoria Tributária Contínua",
-    desc: "Auditoria tributária contínua que devolve ao caixa o que nunca deveria ter saído. Monitoramos cada operação fiscal para garantir que sua farmácia não pague mais do que deve.",
-    icon: <ShieldCheck className="w-5 h-5" />,
+    desc: "Auditoria tributária contínua que devolve ao caixa o que nunca deveria ter saído. Monitoramos cada operação fiscal para garantir que seu negócio fitness não pague mais do que deve.",
+    icon: <ShieldCheck className="w-6 h-6 text-primary-500" />,
   },
   {
     number: "02",
     title: "Clareza estratégica",
     subtitle: "Dashboards & Indicadores",
-    desc: "Dashboards e indicadores construídos para a realidade do varejo farmacêutico. Visualize seus números com clareza e tome decisões baseadas em dados reais.",
-    icon: <BarChart2 className="w-5 h-5" />,
+    desc: "Dashboards e indicadores construídos para a realidade do mundo fitness. Visualize seus números com clareza e tome decisões baseadas em dados reais.",
+    icon: <BarChart2 className="w-6 h-6 text-primary-500" />,
   },
   {
     number: "03",
     title: "Previsibilidade real",
     subtitle: "Planejamento Financeiro",
     desc: "Planejamento financeiro sob medida, para decidir com 90 dias de antecedência. Antecipe cenários e proteja o futuro da sua operação com projeções precisas.",
-    icon: <CalendarDays className="w-5 h-5" />,
+    icon: <CalendarDays className="w-6 h-6 text-primary-500" />,
   },
   {
     number: "04",
     title: "Crescimento escalável",
     subtitle: "Estratégia de Expansão",
-    desc: "Estruture sua operação para crescer sem perder rentabilidade. Modelagem financeira para abertura de novas lojas de forma segura e sustentável.",
-    icon: <TrendingUp className="w-5 h-5" />,
+    desc: "Estruture sua operação para crescer sem perder rentabilidade. Modelagem financeira para abertura de novas unidades de forma segura e sustentável.",
+    icon: <TrendingUp className="w-6 h-6 text-primary-500" />,
   },
 ];
 
-const phrases = [
-  "Ela precisa de segurança em cada operação fiscal.",
-  "Ela precisa de dados claros para tomar decisões.",
-  "Ela precisa antecipar cenários com precisão.",
-  "Ela precisa de resultados reais.",
-];
-
-const useTypewriter = (targetText: string) => {
-  const [displayText, setDisplayText] = useState(targetText);
-  const currentTextRef = useRef(displayText);
-
-  useEffect(() => {
-    // Skip if it's already the target text
-    if (currentTextRef.current === targetText) return;
-
-    let isCancelled = false;
-
-    const animateText = async () => {
-      const current = currentTextRef.current;
-
-      // Erase current text
-      for (let i = current.length; i >= 0; i--) {
-        if (isCancelled) return;
-        setDisplayText(current.substring(0, i));
-        await new Promise(r => setTimeout(r, 15));
-      }
-
-      // Type new text
-      for (let i = 0; i <= targetText.length; i++) {
-        if (isCancelled) return;
-        setDisplayText(targetText.substring(0, i));
-        await new Promise(r => setTimeout(r, 25));
-      }
-
-      if (!isCancelled) {
-        currentTextRef.current = targetText;
-      }
-    };
-
-    animateText();
-
-    return () => { isCancelled = true; };
-  }, [targetText]);
-
-  return displayText;
-};
-
 const Beneficios = () => {
-  const [expandedCard, setExpandedCard] = useState<number>(-1);
-  const targetPhrase = phrases[expandedCard === -1 ? 0 : expandedCard];
-  const displayText = useTypewriter(targetPhrase);
+  const containerRef = useRef<HTMLDivElement>(null);
 
-  // Triggers the first card to open after the cascade animation finishes
-  const cardsContainerRef = useRef<HTMLDivElement>(null);
-  const cardsInView = useInView(cardsContainerRef, { once: true, margin: "-50px" });
-
-  useEffect(() => {
-    if (cardsInView) {
-      // The cascade takes about ~1.45s to fully settle (4 cards).
-      // Opening the first card at 1500ms creates a seamless, fluid transition.
-      const timer = setTimeout(() => {
-        setExpandedCard((prev) => (prev === -1 ? 0 : prev));
-      }, 1500);
-      return () => clearTimeout(timer);
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: { 
+      opacity: 1,
+      transition: { staggerChildren: 0.2, delayChildren: 0.1 }
     }
-  }, [cardsInView]);
+  };
 
-  const toggleCard = (idx: number) => {
-    setExpandedCard(expandedCard === idx ? -1 : idx);
+  const cardVariants: Variants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: { 
+      opacity: 1, 
+      y: 0,
+      transition: { duration: 0.6, ease: "easeOut" }
+    }
   };
 
   return (
-    <section className="pt-16 pb-12 md:pt-52 lg:pt-64 md:pb-0 mb-0 lg:-mb-[190px] relative w-full bg-white z-10">
-      <div className="container mx-auto px-5 md:px-10 xl:px-16 relative z-10">
-
-        {/* Two-column layout: text left, accordion right */}
-        <div className="flex flex-col lg:flex-row lg:items-center lg:gap-16 xl:gap-20">
-
-          {/* Left column — text (40%) */}
-          <div className="lg:w-[40%] mb-10 lg:mb-0">
-            <SectionHeader
-              className="!mb-0 md:!mb-0"
-              badgeIcon={<Rocket className="w-3.5 h-3.5" />}
-              badgeText="Evolução Estratégica"
-              titleLines={["O mercado farmacêutico", "está evoluindo."]}
-              subtitle={
-                <div className="grid">
-                  {/* Invisible spacer — always renders the longest phrase to lock height */}
-                  <div className="invisible col-start-1 row-start-1" aria-hidden="true">
-                    Sua farmácia não precisa apenas mudar de contabilidade.{' '}
-                    <span className="font-semibold">
-                      Ela precisa de segurança em cada operação fiscal.
-                    </span>
-                  </div>
-                  {/* Visible text overlaid */}
-                  <div className="col-start-1 row-start-1">
-                    Sua farmácia não precisa apenas mudar de contabilidade.{' '}
-                    <span className="text-dark-900 font-semibold">
-                      {displayText}
-                      <m.span
-                        animate={{ opacity: [1, 0] }}
-                        transition={{ duration: 0.7, repeat: Infinity }}
-                        className="inline-block w-[2px] h-[18px] md:h-[20px] bg-dark-900 ml-1 align-middle"
-                      />
-                    </span>
-                  </div>
-                </div>
-              }
-              align="mobile-center"
-            />
-          </div>
-
-          {/* Right column — vertical accordion (60%) */}
-          <div ref={cardsContainerRef} className="lg:w-[60%] flex flex-col gap-3">
-            {allCards.map((card, idx) => {
-              const isExpanded = expandedCard === idx;
-
-              return (
-                <m.div
-                  key={idx}
-                  initial={{ opacity: 0, x: 40 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  viewport={{ once: true, margin: "-50px" }}
-                  transition={{ 
-                    delay: 0.25 * idx, 
-                    duration: 0.7, 
-                    ease: [0.25, 0.8, 0.25, 1] 
-                  }}
-                  className={`
-                    group rounded-3xl overflow-hidden cursor-pointer
-                    transition-[background-color,border-color,box-shadow] duration-700 ease-out
-                    ${isExpanded
-                      ? 'bg-white border border-primary-200 shadow-lg shadow-primary-500/10'
-                      : 'bg-[#F8FAFC] border border-blue-100/50 hover:bg-white hover:border-blue-200 hover:shadow-[0_4px_20px_rgba(37,99,235,0.06)]'
-                    }
-                  `}
-                  onClick={() => toggleCard(idx)}
-                >
-                  {/* Card MenuPrincipal — always visible */}
-                  <div className="flex items-center justify-between px-5 py-4 md:px-6 md:py-5">
-                    <div className="flex items-center gap-4">
-                      {/* Number */}
-                      <span className={`
-                        text-[13px] font-semibold tracking-wider tabular-nums
-                        transition-colors duration-400
-                        ${isExpanded ? 'text-primary-600' : 'text-slate-400'}
-                      `}>
-                        {card.number}
-                      </span>
-
-                      {/* Icon */}
-                      <div className={`
-                        w-9 h-9 rounded-xl flex items-center justify-center
-                        transition-colors duration-400
-                        ${isExpanded
-                          ? 'bg-primary-50 text-primary-600'
-                          : 'bg-slate-100 text-slate-400'
-                        }
-                      `}>
-                        {card.icon}
-                      </div>
-
-                      {/* Title */}
-                      <h3 className={`
-                        font-bold text-[1rem] md:text-[1.1rem] tracking-tight
-                        transition-colors duration-400
-                        ${isExpanded ? 'text-dark-900' : 'text-slate-900'}
-                      `}>
-                        {card.title}
-                      </h3>
-                    </div>
-
-                    {/* Toggle chevron */}
-                    <div className={`
-                      w-8 h-8 rounded-full flex items-center justify-center flex-shrink-0
-                      transition-all duration-700 ease-out
-                      ${isExpanded
-                        ? 'bg-primary-50 border border-primary-200 text-primary-600'
-                        : 'bg-white border border-slate-200 text-slate-500 group-hover:border-primary-200 group-hover:text-primary-500 group-hover:bg-primary-50/50'
-                      }
-                    `}>
-                      <ChevronDown className={`
-                        w-4 h-4 transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)]
-                        ${isExpanded 
-                          ? 'rotate-180 group-hover:-translate-y-0.5' 
-                          : 'rotate-0 group-hover:translate-y-0.5'
-                        }
-                      `} />
-                    </div>
-                  </div>
-
-                  {/* Expandable content */}
-                  <AnimatePresence>
-                    {isExpanded && (
-                      <m.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: 'auto', opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-                        className="overflow-hidden"
-                      >
-                        <div className="px-5 pb-5 md:px-6 md:pb-6 pt-0">
-                          {/* Divider */}
-                          <div className="w-full h-px bg-surface-200 mb-4" />
-
-                          {/* Subtitle */}
-                          <h4 className="text-primary-600 text-[13px] md:text-[14px] font-semibold mb-2 tracking-wide">
-                            {card.subtitle}
-                          </h4>
-
-                          {/* Description */}
-                          <p className="text-dark-900/65 text-[13.5px] md:text-[14px] leading-relaxed max-w-lg">
-                            {card.desc}
-                          </p>
-                        </div>
-                      </m.div>
-                    )}
-                  </AnimatePresence>
-                </m.div>
-              );
-            })}
-          </div>
+    <section className="py-24 lg:py-32 relative w-full bg-slate-900 z-10 border-t border-white/5">
+      <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl relative z-10">
+        
+        {/* Header Centered */}
+        <div className="flex flex-col items-center text-center mb-16 md:mb-20">
+          <SectionHeader
+            badgeIcon={<Rocket className="w-3.5 h-3.5" />}
+            badgeText="Evolução Estratégica"
+            titleLines={["O mercado fitness", "está evoluindo."]}
+            subtitle="Seu negócio não precisa apenas mudar de contabilidade. Ele precisa de segurança em cada operação, clareza nos dados e resultados reais."
+            align="center"
+            inverted={true}
+          />
         </div>
+
+        {/* Grid de Cards */}
+        <m.div 
+          ref={containerRef}
+          variants={containerVariants}
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: "-50px" }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 xl:gap-8"
+        >
+          {allCards.map((card, idx) => (
+            <m.div
+              key={idx}
+              variants={cardVariants}
+              className="group relative flex flex-col p-8 rounded-3xl bg-dark-900 border border-white/5 hover:border-primary-500/50 hover:bg-dark-950 transition-all duration-500 overflow-hidden"
+            >
+              {/* Glow Effect on Hover */}
+              <div className="absolute inset-0 bg-gradient-to-b from-primary-500/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none" />
+
+              {/* Number Background Watermark */}
+              <div className="absolute -right-4 -top-8 text-[120px] font-black text-white/[0.02] group-hover:text-primary-500/[0.05] transition-colors duration-500 pointer-events-none select-none">
+                {card.number}
+              </div>
+
+              {/* Icon */}
+              <div className="w-14 h-14 rounded-2xl flex items-center justify-center bg-white/5 border border-white/10 mb-6 group-hover:scale-110 group-hover:bg-primary-500/10 transition-all duration-500 relative z-10">
+                {card.icon}
+              </div>
+
+              {/* Content */}
+              <div className="relative z-10 flex flex-col flex-grow">
+                <h4 className="text-primary-500 text-[12px] uppercase tracking-widest font-bold mb-2">
+                  {card.subtitle}
+                </h4>
+                <h3 className="font-bold text-xl text-white mb-4 tracking-tight group-hover:text-primary-400 transition-colors duration-300">
+                  {card.title}
+                </h3>
+                <p className="text-surface-400 text-[14px] leading-relaxed group-hover:text-surface-300 transition-colors duration-300">
+                  {card.desc}
+                </p>
+              </div>
+            </m.div>
+          ))}
+        </m.div>
 
       </div>
     </section>
@@ -264,4 +120,3 @@ const Beneficios = () => {
 };
 
 export default Beneficios;
-

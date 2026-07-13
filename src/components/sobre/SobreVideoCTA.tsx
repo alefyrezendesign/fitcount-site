@@ -33,7 +33,7 @@ const SobreVideoCTA = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
-            className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-4 leading-tight [text-wrap:balance]"
+            className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white mb-4 leading-tight [text-wrap:balance]"
           >
             Pronto para crescer com a gente?
           </m.h2>
@@ -47,7 +47,7 @@ const SobreVideoCTA = () => {
           >
             Faça parte do ecossistema que está <br className="hidden md:block" />
             redefinindo o padrão de resultados <br className="hidden md:block" />
-            no varejo farmacêutico do Brasil.
+            no mercado fitness do Brasil.
           </m.p>
         </div>
 
@@ -64,7 +64,7 @@ const SobreVideoCTA = () => {
             className="w-full justify-center group flex items-center gap-3 bg-white text-slate-900 px-8 py-3.5 rounded-full font-semibold text-[15px] hover:bg-slate-50 transition-all duration-300 hover:scale-105 cursor-pointer"
           >
             Junte-se a nós
-            <div className="bg-slate-100 rounded-full p-1.5 group-hover:bg-blue-50 group-hover:text-blue-600 transition-colors">
+            <div className="bg-slate-100 rounded-full p-1.5 group-hover:bg-primary-50 group-hover:text-primary-600 transition-colors">
               <ArrowRight size={16} />
             </div>
           </button>

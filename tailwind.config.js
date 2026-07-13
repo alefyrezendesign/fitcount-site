@@ -9,7 +9,21 @@ export default {
     extend: {
       colors: {
         primary: {
-          DEFAULT: '#2563EB', // Blue-600
+          DEFAULT: '#E54B41', // Coral/Vermelho-alaranjado
+          50: '#fef1f0',
+          100: '#fce2e0',
+          200: '#f8c9c6',
+          300: '#f2a6a0',
+          400: '#eb7b72',
+          500: '#e54b41',
+          600: '#d22e23',
+          700: '#b02117',
+          800: '#922017',
+          900: '#792016',
+          950: '#410c08',
+        },
+        blue: {
+          DEFAULT: '#2563EB', // Azul funcional mantido
           50: '#EFF6FF',
           100: '#DBEAFE',
           200: '#BFDBFE',
@@ -23,18 +37,18 @@ export default {
           950: '#172554',
         },
         dark: {
-          DEFAULT: '#0F172A',
-          50: '#F8FAFC',
-          100: '#F1F5F9',
-          200: '#E2E8F0',
-          300: '#CBD5E1',
-          400: '#94A3B8',
-          500: '#64748B',
-          600: '#475569',
-          700: '#334155',
-          800: '#1E293B',
-          900: '#0F172A',
-          950: '#020617',
+          DEFAULT: '#141A28', // Azul-marinho profundo da referência
+          50: '#f5f7fa',
+          100: '#eaeff5',
+          200: '#d1dee9',
+          300: '#abc4d8',
+          400: '#7fa3c1',
+          500: '#5e86aa',
+          600: '#496b8d',
+          700: '#3c5673',
+          800: '#334861',
+          900: '#2d3d51',
+          950: '#141A28',
         },
         surface: {
           50: '#FFFFFF',
@@ -43,7 +57,7 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['Inter', 'sans-serif'],
+        sans: ['"Acumin Pro"', 'Acumin', 'Inter', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 1s ease-out',

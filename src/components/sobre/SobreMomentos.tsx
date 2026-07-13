@@ -6,8 +6,8 @@ import { useModalEspecialista } from '../../hooks/useModalEspecialista';
 const momentos = [
   {
     icon: <Store size={32} strokeWidth={1.5} />,
-    title: "Quero abrir uma farmácia",
-    value: "Quero abrir uma farmácia",
+    title: "Quero abrir uma academia",
+    value: "Quero abrir uma academia",
     description: "Preciso de orientação societária, tributária e passos iniciais para inaugurar com segurança.",
     cta: "Planejar abertura"
   },
@@ -15,8 +15,8 @@ const momentos = [
     icon: <RefreshCcw size={32} strokeWidth={1.5} />,
     title: "Quero trocar de contabilidade",
     value: "Quero trocar de contabilidade",
-    description: "Minha contabilidade atual não entende do varejo farmacêutico e sinto que estou perdendo dinheiro.",
-    cta: "Quero ser Farmacon"
+    description: "Minha contabilidade atual não entende do mercado fitness e sinto que estou perdendo dinheiro.",
+    cta: "Quero ser Fitcount"
   },
   {
     icon: <Network size={32} strokeWidth={1.5} />,
@@ -38,7 +38,7 @@ const SobreMomentos = () => {
             badgeIcon={<Compass size={14} />}
             badgeText="Soluções Direcionadas"
             titleLines={["Qual é o seu momento?"]}
-            subtitle="Independente do tamanho do seu desafio, a Farmacon tem a estrutura exata para levar sua operação ao próximo nível."
+            subtitle="Independente do tamanho do seu desafio, a Fitcount tem a estrutura exata para levar sua operação ao próximo nível."
             align="center"
             className="!mb-0"
           />
@@ -76,7 +76,7 @@ const SobreMomentos = () => {
               <div className="w-full lg:w-[25%] flex justify-start lg:justify-end mt-4 lg:mt-0">
                 <button 
                   onClick={() => openModal(item.value)}
-                  className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-blue-600 text-white rounded-full font-semibold hover:bg-blue-700 transition-all duration-300 text-[15px] w-full sm:w-[280px] shadow-[0_4px_14px_rgba(37,99,235,0.2)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.3)] whitespace-nowrap cursor-pointer"
+                  className="group inline-flex items-center justify-center gap-2 px-8 py-3.5 bg-primary-600 text-white rounded-full font-semibold hover:bg-primary-700 transition-all duration-300 text-[15px] w-full sm:w-[280px] shadow-[0_4px_14px_rgba(37,99,235,0.2)] hover:shadow-[0_6px_20px_rgba(37,99,235,0.3)] whitespace-nowrap cursor-pointer"
                 >
                   {item.cta}
                   <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />

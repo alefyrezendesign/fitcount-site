@@ -24,7 +24,7 @@ const SobreHistoria = () => {
     offset: ["start 85%", "end 60%"]
   });
 
-  const text = "A Farmacon nasceu para ser a solução definitiva para o varejo farmacêutico. Como a maior contabilidade exclusiva para farmácias da América Latina, unimos inteligência tributária, tecnologia própria e centenas de especialistas dedicados a maximizar o seu lucro na última linha. Com mais de uma década de experiência e fundadores vindos de grandes instituições financeiras, nosso foco é claro: conectar você às estratégias legais e inovadoras dos maiores grupos do setor.";
+  const text = "A Fitcount nasceu para ser a solução definitiva para o mercado fitness. Como a maior contabilidade exclusiva para academias, unimos inteligência tributária, tecnologia própria e centenas de especialistas dedicados a maximizar o seu lucro na última linha. Com mais de uma década de experiência, nosso foco é claro: conectar você às estratégias legais e inovadoras dos maiores grupos do setor.";
   
   return (
     <section 
@@ -42,8 +42,8 @@ const SobreHistoria = () => {
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.8 }}
             >
-              <h2 className="text-[2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-dark-900 leading-[1.1] m-0">
-                Muito prazer, nós somos a Farmacon
+              <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-dark-900 leading-[1.1] m-0">
+                Muito prazer, nós somos a Fitcount
               </h2>
             </m.div>
           </div>

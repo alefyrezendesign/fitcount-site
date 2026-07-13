@@ -7,34 +7,34 @@ const directors = [
   {
     id: 1,
     name: "Marcus Cordeiro",
-    role: "CEO Farmacon",
-    quote: "A inovação contábil não é sobre números, é sobre prever o futuro do varejo farmacêutico e agir agora.",
-    image: "/diretoria/Marcus Cordeiro - CEO Farmacon.webp",
-    thumb: "/diretoria/Marcus Cordeiro - CEO Farmacon.webp",
+    role: "CEO Fitcount",
+    quote: "A inovação contábil não é sobre números, é sobre prever o futuro do mercado fitness e agir agora.",
+    image: "/diretoria/Marcus Cordeiro - CEO Fitcount.webp",
+    thumb: "/diretoria/Marcus Cordeiro - CEO Fitcount.webp",
     social: "LinkedIn"
   },
   {
     id: 2,
     name: "Sérgio Vianna",
-    role: "CFO Farmacon",
+    role: "CFO Fitcount",
     quote: "Nossa inteligência financeira é desenhada para blindar sua margem de lucro em um mercado extremamente competitivo.",
-    image: "/diretoria/Sérgio Vianna - CFO Farmacon.webp",
-    thumb: "/diretoria/Sérgio Vianna - CFO Farmacon.webp",
+    image: "/diretoria/Sérgio Vianna - CFO Fitcount.webp",
+    thumb: "/diretoria/Sérgio Vianna - CFO Fitcount.webp",
     social: "LinkedIn"
   },
   {
     id: 3,
     name: "Pedro Brasil",
-    role: "COO Farmacon",
-    quote: "Processos bem definidos são a ponte entre o planejamento estratégico e o dinheiro efetivo no caixa da sua farmácia.",
-    image: "/diretoria/Pedro Brasil - COO Farmacon.webp",
-    thumb: "/diretoria/Pedro Brasil - COO Farmacon.webp",
+    role: "COO Fitcount",
+    quote: "Processos bem definidos são a ponte entre o planejamento estratégico e o dinheiro efetivo no caixa da sua academia.",
+    image: "/diretoria/Pedro Brasil - COO Fitcount.webp",
+    thumb: "/diretoria/Pedro Brasil - COO Fitcount.webp",
     social: "LinkedIn"
   },
   {
     id: 4,
     name: "Michel Medeiros",
-    role: "Conselho Farmacon",
+    role: "Conselho Fitcount",
     quote: "Segurança e governança são as bases fundamentais para o crescimento estruturado e sustentável do seu negócio.",
     image: "/diretoria/michel-medeiros-conselho.webp",
     thumb: "/diretoria/michel-medeiros-conselho.webp",
@@ -73,7 +73,7 @@ const SobreDiretoria = () => {
               "As mentes que",
               "constroem o",
               "futuro do varejo",
-              "farmacêutico."
+              "fitness."
             ]}
             align="left"
             className="!mb-0"
@@ -110,8 +110,8 @@ const SobreDiretoria = () => {
         <div className="flex flex-col md:flex-row justify-between items-start gap-4 md:gap-8 pointer-events-auto mb-6 md:mb-0">
           {/* Main Statement (Desktop Only) */}
           <div className="hidden md:block w-full md:w-[45%] lg:w-[35%]">
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight leading-tight md:leading-snug">
-              As mentes que constroem o futuro do varejo farmacêutico.
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight leading-tight md:leading-snug">
+              As mentes que constroem o futuro do mercado fitness.
             </h2>
           </div>
 

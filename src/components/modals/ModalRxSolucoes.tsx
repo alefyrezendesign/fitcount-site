@@ -115,7 +115,7 @@ export default function ModalRxSolucoes() {
 
     const inputCls = (err?: string) =>
         `w-full rounded-[10px] bg-slate-800/50 border px-3.5 py-2.5 text-[13px] text-white placeholder:text-slate-400 outline-none transition-all duration-300 focus:bg-slate-800 focus:shadow-[0_0_0_2px_rgba(139,92,246,0.2)] ${
-            err ? 'border-red-400/50 focus:border-red-500' : 'border-slate-700 focus:border-blue-500'
+            err ? 'border-red-400/50 focus:border-red-500' : 'border-slate-700 focus:border-primary-500'
         }`;
 
     return (
@@ -125,7 +125,7 @@ export default function ModalRxSolucoes() {
                     
                     <RDStationGhostForm 
                         ref={ghostFormRef} 
-                        formId="farmacon-site-rx-solucoes-82c64960378842624af4" 
+                        formId="fitcount-site-rx-solucoes" 
                     />
 
                     <m.div key="bd" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className="absolute inset-0 bg-slate-950/80 backdrop-blur-sm cursor-pointer" onClick={closeModal} />
@@ -135,8 +135,8 @@ export default function ModalRxSolucoes() {
                         initial={{ opacity: 0, scale: 0.95, y: 20 }} animate={{ opacity: 1, scale: 1, y: 0 }} exit={{ opacity: 0, scale: 0.95, y: 20 }} transition={{ type: 'spring', stiffness: 400, damping: 30 }}
                         className="relative z-10 w-full max-w-[500px] rounded-3xl border border-slate-800 bg-slate-900 shadow-[0_32px_80px_rgba(0,0,0,0.5)] flex flex-col overflow-hidden max-h-[calc(100vh-2rem)]"
                     >
-                        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-blue-500 to-transparent opacity-80" />
-                        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-80 h-40 bg-blue-500/20 blur-[60px] rounded-full pointer-events-none" />
+                        <div className="absolute top-0 inset-x-0 h-[2px] bg-gradient-to-r from-transparent via-primary-500 to-transparent opacity-80" />
+                        <div className="absolute -top-20 left-1/2 -translate-x-1/2 w-80 h-40 bg-primary-500/20 blur-[60px] rounded-full pointer-events-none" />
 
                         <button onClick={closeModal} className="absolute top-4 right-4 z-20 flex h-8 w-8 items-center justify-center rounded-full bg-slate-800 text-slate-400 hover:bg-slate-700 hover:text-white transition-all cursor-pointer" aria-label="Fechar"><X size={16} strokeWidth={2.5} /></button>
 
@@ -145,8 +145,8 @@ export default function ModalRxSolucoes() {
                                 <m.div key="f" initial={{ opacity: 0, y: 10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }} transition={{ duration: 0.2 }} className="flex flex-col h-full">
                                     <div className="shrink-0 px-6 pt-7 sm:px-8 sm:pt-8 pb-4 border-b border-slate-800">
                                         <div className="flex items-center gap-3.5 mb-1">
-                                            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-blue-500/30 bg-blue-500/10">
-                                                <Rocket size={20} className="text-blue-400" />
+                                            <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-primary-500/30 bg-primary-500/10">
+                                                <Rocket size={20} className="text-primary-400" />
                                             </div>
                                             <div>
                                                 <h2 id="rx-title" className="text-xl font-bold text-white tracking-tight leading-tight">Conheça as Soluções da RX</h2>
@@ -211,7 +211,7 @@ export default function ModalRxSolucoes() {
                                     </div>
 
                                     <div className="shrink-0 px-6 py-5 sm:px-8 border-t border-slate-800 bg-slate-900 flex justify-center">
-                                        <button form="rx-solucoes-form" type="submit" className="group inline-flex items-center gap-3 px-8 py-4 bg-blue-600 text-white rounded-full font-bold text-base hover:bg-blue-500 hover:scale-105 transition-all duration-300 cursor-pointer w-full justify-center">
+                                        <button form="rx-solucoes-form" type="submit" className="group inline-flex items-center gap-3 px-8 py-4 bg-primary-600 text-white rounded-full font-bold text-base hover:bg-primary-500 hover:scale-105 transition-all duration-300 cursor-pointer w-full justify-center">
                                             Conhecer Soluções
                                         </button>
                                     </div>
@@ -220,7 +220,7 @@ export default function ModalRxSolucoes() {
 
                             {state === 'submitting' && (
                                 <m.div key="s" initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="flex flex-col items-center justify-center gap-4 p-16 min-h-[400px]">
-                                    <Loader2 className="w-10 h-10 text-blue-500 animate-spin" />
+                                    <Loader2 className="w-10 h-10 text-primary-500 animate-spin" />
                                     <p className="text-slate-400 font-medium text-[14px]">Enviando seus dados...</p>
                                 </m.div>
                             )}

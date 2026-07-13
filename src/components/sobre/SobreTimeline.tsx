@@ -5,17 +5,17 @@ const timelineEvents = [
   {
     year: "2013",
     title: "Fundação",
-    description: "O início de um projeto focado em resolver as dores reais do mercado farmacêutico."
+    description: "O início de um projeto focado em resolver as dores reais do mercado fitness."
   },
   {
     year: "2016",
     title: "Expansão nacional",
-    description: "Alcançamos novos estados, levando nossa metodologia de gestão a mais de 500 farmácias."
+    description: "Alcançamos novos estados, levando nossa metodologia de gestão a mais de 500 academias."
   },
   {
     year: "2019",
     title: "Ecossistema RX",
-    description: "Nascimento da holding Farmacon RX, integrando tecnologia, contabilidade e consultoria."
+    description: "Nascimento da holding Fitcount Group, integrando tecnologia, contabilidade e consultoria."
   },
   {
     year: "2021",
@@ -127,12 +127,12 @@ const TimelineItem = ({
         {/* Bolinha */}
         <div className="absolute top-[6px] left-[-8px] w-4 h-4 flex items-center justify-center z-10">
           <div 
-            className={`w-3.5 h-3.5 rounded-full border-[2.5px] bg-white transition-colors duration-200 ${isActive ? 'border-blue-600 bg-blue-600' : 'border-slate-300'}`} 
+            className={`w-3.5 h-3.5 rounded-full border-[2.5px] bg-white transition-colors duration-200 ${isActive ? 'border-primary-600 bg-primary-600' : 'border-slate-300'}`} 
           />
         </div>
         
         <div className="flex flex-col w-full">
-          <span className={`text-2xl font-bold tracking-tighter mb-1 leading-none transition-colors duration-200 ${isActive ? 'text-blue-600' : 'text-slate-300'}`}>
+          <span className={`text-2xl font-bold tracking-tighter mb-1 leading-none transition-colors duration-200 ${isActive ? 'text-primary-600' : 'text-slate-300'}`}>
             {event.year}
           </span>
           <h3 className="text-lg font-semibold text-slate-900 tracking-tight mb-2">{event.title}</h3>
@@ -154,7 +154,7 @@ const TimelineItem = ({
       {/* Bolinha cravada matematicamente na linha central */}
       <div className="absolute top-1/2 left-0 -translate-y-1/2 flex items-center justify-center z-10 w-4 h-4">
         <div 
-          className={`w-3.5 h-3.5 rounded-full border-[2.5px] bg-white transition-colors duration-75 ${isActive ? 'border-blue-600 bg-blue-600' : 'border-slate-300'}`} 
+          className={`w-3.5 h-3.5 rounded-full border-[2.5px] bg-white transition-colors duration-75 ${isActive ? 'border-primary-600 bg-primary-600' : 'border-slate-300'}`} 
         />
       </div>
 
@@ -178,7 +178,7 @@ const TimelineItem = ({
           </m.div>
         </div>
         <div className="mt-3">
-           <span className={`text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-75 ${isActive ? 'text-blue-600' : 'text-slate-200'}`}>
+           <span className={`text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-75 ${isActive ? 'text-primary-600' : 'text-slate-200'}`}>
              {event.year}
            </span>
         </div>
@@ -187,7 +187,7 @@ const TimelineItem = ({
       {/* Bottom half */}
       <div className={`flex-1 flex flex-col justify-start pt-8 pr-8 ${!isTop ? '' : 'invisible'}`}>
         <div className="mb-3">
-           <span className={`text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-75 ${isActive ? 'text-blue-600' : 'text-slate-200'}`}>
+           <span className={`text-4xl md:text-5xl font-bold tracking-tighter transition-colors duration-75 ${isActive ? 'text-primary-600' : 'text-slate-200'}`}>
              {event.year}
            </span>
         </div>
@@ -329,13 +329,13 @@ const SobreTimeline = () => {
               
               {/* Active Track Base (Azul) - Horizontal */}
               <div 
-                className="absolute top-1/2 left-0 h-[2px] bg-blue-600 -translate-y-1/2 z-[5]" 
+                className="absolute top-1/2 left-0 h-[2px] bg-primary-600 -translate-y-1/2 z-[5]" 
                 style={{ width: trackGeometry.initialWidth ? `${trackGeometry.initialWidth}px` : 0 }}
               />
 
               {/* Active Track Extension (Azul) - Horizontal */}
               <m.div 
-                className="absolute top-1/2 h-[2px] bg-blue-600 -translate-y-1/2 z-[5] origin-left"
+                className="absolute top-1/2 h-[2px] bg-primary-600 -translate-y-1/2 z-[5] origin-left"
                 style={{ 
                   left: trackGeometry.initialWidth ? `${trackGeometry.initialWidth}px` : 0,
                   width: trackGeometry.totalWidth > 1 ? `${trackGeometry.totalWidth - trackGeometry.initialWidth}px` : 0,
@@ -356,7 +356,7 @@ const SobreTimeline = () => {
               
               {/* Active Track (Azul) - Vertical */}
               <m.div 
-                className="absolute left-[-1px] w-[2px] bg-blue-600 z-[5] origin-top"
+                className="absolute left-[-1px] w-[2px] bg-primary-600 z-[5] origin-top"
                 style={{ 
                   top: '14px', 
                   height: `${mobileLineHeight}px`,

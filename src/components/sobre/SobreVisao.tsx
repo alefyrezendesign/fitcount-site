@@ -10,15 +10,15 @@ const servicos = [
   },
   {
     title: "Emissão de guias e declarações",
-    desc: "Acompanhamento contínuo dos prazos legais e expertise absoluta nas legislações específicas do varejo farmacêutico."
+    desc: "Acompanhamento contínuo dos prazos legais e expertise absoluta nas legislações específicas do mercado fitness."
   },
   {
     title: "Planejamento tributário contínuo",
     desc: "Análise do seu panorama atual fornecendo indicadores claros, apresentação de planos de redução e mitigação de riscos."
   },
   {
-    title: "Legalização de empresas e farmácias",
-    desc: "Agilidade e rapidez na legalização de CNPJs nos âmbitos federal, estadual e municipal com foco em farmácias."
+    title: "Legalização de empresas e academias",
+    desc: "Agilidade e rapidez na legalização de CNPJs nos âmbitos federal, estadual e municipal com foco em academias."
   },
   {
     title: "Credenciamento de PBMs",
@@ -82,7 +82,7 @@ const SolutionItem = ({ servico, index }: { servico: any, index: number }) => {
     >
       {/* Número */}
       <div className="hidden md:block pt-1 flex-shrink-0 w-8">
-        <span className={`font-mono text-[13px] md:text-[15px] font-[600] tracking-wider transition-colors duration-300 ${isOn ? 'text-blue-600' : 'text-slate-300'}`}>
+        <span className={`font-mono text-[13px] md:text-[15px] font-[600] tracking-wider transition-colors duration-300 ${isOn ? 'text-primary-600' : 'text-slate-300'}`}>
           {numStr}
         </span>
       </div>
@@ -95,7 +95,7 @@ const SolutionItem = ({ servico, index }: { servico: any, index: number }) => {
           </h3>
           {/* Toggle Icon (Mobile Only) */}
           <div className="md:hidden pt-0.5 flex-shrink-0">
-            <div className={`w-[32px] h-[18px] rounded-full relative flex items-center p-[2px] transition-colors duration-300 ease-out ${isOn ? 'bg-blue-600' : 'bg-slate-200'}`}>
+            <div className={`w-[32px] h-[18px] rounded-full relative flex items-center p-[2px] transition-colors duration-300 ease-out ${isOn ? 'bg-primary-600' : 'bg-slate-200'}`}>
               <div className={`w-[14px] h-[14px] bg-white rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.1)] transition-transform duration-300 ease-out ${isOn ? 'translate-x-[14px]' : 'translate-x-0'}`} />
             </div>
           </div>
@@ -107,7 +107,7 @@ const SolutionItem = ({ servico, index }: { servico: any, index: number }) => {
 
       {/* Toggle Icon à direita */}
       <div className="hidden md:block pt-2 md:pt-1 flex-shrink-0">
-        <div className={`w-[36px] h-[20px] rounded-full relative flex items-center p-[2px] transition-colors duration-300 ease-out ${isOn ? 'bg-blue-600' : 'bg-slate-200'}`}>
+        <div className={`w-[36px] h-[20px] rounded-full relative flex items-center p-[2px] transition-colors duration-300 ease-out ${isOn ? 'bg-primary-600' : 'bg-slate-200'}`}>
           <div className={`w-[16px] h-[16px] bg-white rounded-full shadow-[0_1px_3px_rgba(0,0,0,0.1)] transition-transform duration-300 ease-out ${isOn ? 'translate-x-[16px]' : 'translate-x-0'}`} />
         </div>
       </div>
@@ -155,7 +155,7 @@ const SobreVisao = () => {
                       "Muito além",
                       "de impostos."
                     ]}
-                    subtitle="Contabilidade, tributação, recuperação e estratégia. Tudo pensado exclusivamente para o varejo farmacêutico."
+                    subtitle="Contabilidade, tributação, recuperação e estratégia. Tudo pensado exclusivamente para o mercado fitness."
                     align="left"
                     inverted={true}
                     className="!mb-0"

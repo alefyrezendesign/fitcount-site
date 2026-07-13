@@ -4,6 +4,8 @@ import { FundoCodigoHero } from '../home/FundoCodigoHero';
 import { useModalEspecialista } from '../../hooks/useModalEspecialista';
 import { TypewriterBadge } from '../ui/TypewriterBadge';
 
+import { AnimatedTitle } from '../ui/AnimatedTitle';
+
 const especialistas = [
   { id: 1, bg: 'bg-[#FFB5C6]', img: '/background/sobre-bg/1.png' },
   { id: 2, bg: 'bg-[#B4B6FF]', img: '/background/sobre-bg/2.png' },
@@ -70,31 +72,33 @@ const SobreHero = () => {
             </m.div>
 
             {/* Title */}
-            <m.h1 
-              variants={itemVariants}
-              className="text-[2.2rem] md:text-[clamp(2.5rem,5vw,4rem)] font-bold tracking-tight text-white leading-[1.1] mb-8 lg:w-auto text-left lg:whitespace-nowrap"
-            >
+            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white leading-[1.1] mb-8 lg:w-auto text-left lg:whitespace-nowrap">
               {/* Desktop Title */}
-              <span className="hidden md:inline-block">
-                Há mais de uma década <br />
-                transformando histórias, <br />
-                pessoas e negócios.
+              <span className="hidden md:block">
+                <AnimatedTitle lines={[
+                  <span key="d1">Há mais de uma década</span>,
+                  <span key="d2">transformando histórias,</span>,
+                  <span key="d3">pessoas e negócios.</span>
+                ]} delay={0.2} />
               </span>
               
               {/* Mobile Title */}
-              <span className="md:hidden">
-                Há mais de <br />
-                uma década <br />
-                transformando <br />
-                histórias, pessoas <br />
-                e negócios.
+              <span className="md:block hidden"></span>
+              <span className="md:hidden block">
+                <AnimatedTitle lines={[
+                  <span key="m1">Há mais de</span>,
+                  <span key="m2">uma década</span>,
+                  <span key="m3">transformando</span>,
+                  <span key="m4">histórias, pessoas</span>,
+                  <span key="m5">e negócios.</span>
+                ]} delay={0.2} />
               </span>
-            </m.h1>
+            </h1>
 
             <m.div variants={itemVariants} className="w-full sm:w-auto">
               <button 
                 onClick={() => openModal()} 
-                className="w-full group inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-[15px] transition-all shadow-[0_8px_20px_rgba(59,130,246,0.25)] bg-blue-500 text-white hover:bg-blue-400 hover:shadow-[0_8px_25px_rgba(59,130,246,0.35)] cursor-pointer"
+                className="w-full group inline-flex items-center justify-center gap-2 px-8 py-3.5 rounded-full font-semibold text-[15px] transition-all shadow-[0_8px_20px_rgba(59,130,246,0.25)] bg-primary-500 text-white hover:bg-primary-400 hover:shadow-[0_8px_25px_rgba(59,130,246,0.35)] cursor-pointer"
               >
                 Falar com especialista
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right group-hover:translate-x-1 transition-transform" aria-hidden="true">
@@ -115,7 +119,7 @@ const SobreHero = () => {
                 variants={itemVariants}
                 className="flex items-center gap-[17px] mb-8 lg:mb-[20px] w-full"
               >
-                 <div className="w-[54px] h-[54px] rounded-full bg-blue-500/20 flex items-center justify-center text-white font-[800] text-[14px] shrink-0 border border-blue-400/30">
+                 <div className="w-[54px] h-[54px] rounded-full bg-primary-500/20 flex items-center justify-center text-white font-[800] text-[14px] shrink-0 border border-primary-400/30">
                     +150
                  </div>
                  <p className="text-[14px] font-[400] text-white leading-snug w-[321px]">

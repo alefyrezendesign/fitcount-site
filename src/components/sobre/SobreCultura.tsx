@@ -47,7 +47,7 @@ const WordPill = ({ text, icon: Icon, bottom, left, targetRotate, delay, scrollY
       }}
       className="bg-gradient-to-br from-white/90 to-white/50 backdrop-blur-xl border border-white/80 shadow-[1px_3px_7px_rgba(0,0,0,0.12)] px-4 md:px-6 py-2 md:py-3 rounded-full flex items-center gap-2 z-10 whitespace-nowrap"
     >
-      {Icon && <Icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-blue-600" />}
+      {Icon && <Icon className="w-3.5 h-3.5 md:w-4 md:h-4 text-primary-600" />}
       <span className="text-[13px] md:text-[15px] font-bold text-slate-800 tracking-tight whitespace-nowrap">{text}</span>
     </m.div>
   );
@@ -96,7 +96,7 @@ const SobreCultura = () => {
     { text: "Clientes", icon: Store, bottom: "60%", left: "25%", targetRotate: -15 },
     { text: "Excelência", icon: Star, bottom: "55%", left: "50%", targetRotate: 8 },
     { text: "Parceria", icon: Link, bottom: "58%", left: "75%", targetRotate: -6 },
-    { text: "Mercado Farmacêutico", icon: Pill, bottom: "75%", left: "40%", targetRotate: 4 },
+    { text: "Mercado Fitness", icon: Pill, bottom: "75%", left: "40%", targetRotate: 4 },
     { text: "Time", icon: Users, bottom: "72%", left: "70%", targetRotate: -12 },
   ].map((w, i) => ({ ...w, delay: i * 0.015 }));
 
@@ -109,7 +109,7 @@ const SobreCultura = () => {
     },
     {
       title: "Visão",
-      text: "Atender o mercado farmacêutico brasileiro inovando o jeito de entregar sucesso e resultado.",
+      text: "Atender o mercado fitness brasileiro inovando o jeito de entregar sucesso e resultado.",
       icon: Eye,
       rotateX: rotateX2
     },
@@ -144,7 +144,7 @@ const SobreCultura = () => {
                 "Muito além de",
                 "contabilidade."
               ]}
-              subtitle={<>Mais do que tecnologia avançada, inteligência artificial e análise de dados, a Farmacon é feita essencialmente de pessoas e propósitos verdadeiros.</>}
+              subtitle={<>Mais do que tecnologia avançada, inteligência artificial e análise de dados, a Fitcount é feita essencialmente de pessoas e propósitos verdadeiros.</>}
               align="left"
               className="!mb-0"
             />

@@ -25,7 +25,7 @@ const ESTADOS = [
 ];
 
 const MOMENTOS = [
-    'Quero abrir uma farmácia',
+    'Quero abrir uma academia',
     'Quero trocar de contabilidade',
     'Quero inteligência tributária para minha rede'
 ];
@@ -94,8 +94,8 @@ export default function ContatoForm() {
     }, [form]);
 
     const inputCls = (err?: string) =>
-        `w-full px-4 py-3 md:px-5 md:py-4 text-[14px] md:text-base rounded-xl md:rounded-2xl border bg-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors shadow-sm ${
-            err ? 'border-red-400 focus:border-red-500' : 'border-surface-200 focus:border-blue-500'
+        `w-full px-4 py-3 md:px-5 md:py-4 text-[14px] md:text-base rounded-xl md:rounded-2xl border bg-dark-950 text-white focus:outline-none focus:ring-2 focus:ring-primary-500/20 focus:border-primary-500 transition-colors shadow-sm ${
+            err ? 'border-red-400 focus:border-red-500' : 'border-white/10 focus:border-primary-500'
         }`;
 
     if (state === 'success') {
@@ -104,12 +104,12 @@ export default function ContatoForm() {
                 <m.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ type: 'spring', delay: 0.1 }} className="mb-5 flex h-20 w-20 items-center justify-center rounded-full bg-green-100 text-green-500">
                     <CheckCircle2 size={40} />
                 </m.div>
-                <h3 className="text-2xl font-bold text-dark-900 mb-2">Mensagem enviada com sucesso!</h3>
-                <p className="text-surface-500 max-w-md mx-auto mb-8">
+                <h3 className="text-2xl font-bold text-white mb-2">Mensagem enviada com sucesso!</h3>
+                <p className="text-gray-400 max-w-md mx-auto mb-8">
                     Em breve, nossos especialistas entrarão em contato com você.
                 </p>
                 
-                <p className="text-sm font-semibold text-dark-900 mb-4">
+                <p className="text-sm font-semibold text-white mb-4">
                     Deseja continuar o atendimento pelo WhatsApp ou permanecer no site?
                 </p>
 
@@ -126,7 +126,7 @@ export default function ContatoForm() {
                     
                     <button 
                         onClick={() => { setForm(INITIAL); setState('form'); }} 
-                        className="w-full px-6 py-3 rounded-xl bg-surface-100 text-dark-900 font-semibold hover:bg-surface-200 transition-colors"
+                        className="w-full px-6 py-3 rounded-xl bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors"
                     >
                         Continuar no site
                     </button>
@@ -138,15 +138,15 @@ export default function ContatoForm() {
     if (state === 'submitting') {
         return (
             <div className="flex flex-col items-center justify-center p-8 min-h-[400px] w-full">
-                <Loader2 className="w-12 h-12 text-blue-600 animate-spin mb-4" />
-                <p className="text-surface-500 font-medium">Enviando seus dados...</p>
+                <Loader2 className="w-12 h-12 text-primary-600 animate-spin mb-4" />
+                <p className="text-gray-400 font-medium">Enviando seus dados...</p>
             </div>
         );
     }
 
     return (
         <>
-            <RDStationGhostForm ref={ghostFormRef} formId="farmacon-falar-com-especialista-61970b97e7b14c7e127d" />
+            <RDStationGhostForm ref={ghostFormRef} formId="fitcount-falar-com-especialista" />
             
             <form onSubmit={onSubmit} noValidate className="space-y-4 md:space-y-6 w-full">
                 {serverErr && (
@@ -158,13 +158,13 @@ export default function ContatoForm() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div className="flex flex-col gap-1.5 md:gap-2">
-                        <label htmlFor="name" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
+                        <label htmlFor="name" className="flex justify-between text-[13px] md:text-sm font-medium text-white ml-1">
                             Nome completo {errors.name && <span className="text-red-500 font-bold">{errors.name}</span>}
                         </label>
                         <input id="name" name="name" type="text" placeholder="João da Silva" value={form.name} onChange={onChange} className={inputCls(errors.name)} />
                     </div>
                     <div className="flex flex-col gap-1.5 md:gap-2">
-                        <label htmlFor="phone" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
+                        <label htmlFor="phone" className="flex justify-between text-[13px] md:text-sm font-medium text-white ml-1">
                             Telefone / WhatsApp {errors.phone && <span className="text-red-500 font-bold">{errors.phone}</span>}
                         </label>
                         <input id="phone" name="phone" type="tel" placeholder="(XX) XXXXX-XXXX" value={form.phone} onChange={onChange} className={inputCls(errors.phone)} />
@@ -173,55 +173,55 @@ export default function ContatoForm() {
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div className="flex flex-col gap-1.5 md:gap-2">
-                        <label htmlFor="email" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
+                        <label htmlFor="email" className="flex justify-between text-[13px] md:text-sm font-medium text-white ml-1">
                             E-mail {errors.email && <span className="text-red-500 font-bold">{errors.email}</span>}
                         </label>
                         <input id="email" name="email" type="email" placeholder="seu@email.com" value={form.email} onChange={onChange} className={inputCls(errors.email)} />
                     </div>
                     <div className="flex flex-col gap-1.5 md:gap-2">
-                        <label htmlFor="company" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
+                        <label htmlFor="company" className="flex justify-between text-[13px] md:text-sm font-medium text-white ml-1">
                             Empresa {errors.company && <span className="text-red-500 font-bold">{errors.company}</span>}
                         </label>
-                        <input id="company" name="company" type="text" placeholder="Nome da farmácia" value={form.company} onChange={onChange} className={inputCls(errors.company)} />
+                        <input id="company" name="company" type="text" placeholder="Nome da academia" value={form.company} onChange={onChange} className={inputCls(errors.company)} />
                     </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
                     <div className="flex flex-col gap-1.5 md:gap-2">
-                        <label htmlFor="city" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
+                        <label htmlFor="city" className="flex justify-between text-[13px] md:text-sm font-medium text-white ml-1">
                             Cidade {errors.city && <span className="text-red-500 font-bold">{errors.city}</span>}
                         </label>
                         <input id="city" name="city" type="text" placeholder="Sua cidade" value={form.city} onChange={onChange} className={inputCls(errors.city)} />
                     </div>
                     <div className="flex flex-col gap-1.5 md:gap-2">
-                        <label htmlFor="state" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
+                        <label htmlFor="state" className="flex justify-between text-[13px] md:text-sm font-medium text-white ml-1">
                             Estado {errors.state && <span className="text-red-500 font-bold">{errors.state}</span>}
                         </label>
                         <div className="relative">
-                            <select id="state" name="state" value={form.state} onChange={onChange} className={`${inputCls(errors.state)} appearance-none pr-10 ${!form.state ? 'text-surface-500' : 'text-dark-900'}`}>
+                            <select id="state" name="state" value={form.state} onChange={onChange} className={`${inputCls(errors.state)} appearance-none pr-10 ${!form.state ? 'text-gray-400' : 'text-white'}`}>
                                 <option value="" disabled>UF</option>
                                 {ESTADOS.map(uf => <option key={uf} value={uf}>{uf}</option>)}
                             </select>
-                            <ChevronDown size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-surface-400 pointer-events-none" />
+                            <ChevronDown size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                         </div>
                     </div>
                 </div>
 
                 <div className="flex flex-col gap-1.5 md:gap-2">
-                    <label htmlFor="moment" className="flex justify-between text-[13px] md:text-sm font-medium text-dark-900 ml-1">
+                    <label htmlFor="moment" className="flex justify-between text-[13px] md:text-sm font-medium text-white ml-1">
                         Qual o seu momento? {errors.moment && <span className="text-red-500 font-bold">{errors.moment}</span>}
                     </label>
                     <div className="relative">
-                        <select id="moment" name="moment" value={form.moment} onChange={onChange} className={`${inputCls(errors.moment)} appearance-none pr-10 ${!form.moment ? 'text-surface-500' : 'text-dark-900'}`}>
+                        <select id="moment" name="moment" value={form.moment} onChange={onChange} className={`${inputCls(errors.moment)} appearance-none pr-10 ${!form.moment ? 'text-gray-400' : 'text-white'}`}>
                             <option value="" disabled>Selecione seu momento atual</option>
                             {MOMENTOS.map(m => <option key={m} value={m}>{m}</option>)}
                         </select>
-                        <ChevronDown size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-surface-400 pointer-events-none" />
+                        <ChevronDown size={18} className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 pointer-events-none" />
                     </div>
                 </div>
 
                 <div className="pt-2">
-                    <button type="submit" className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-[15px] transition-all shadow-[0_8px_20px_rgba(59,130,246,0.25)] bg-blue-500 text-white hover:bg-blue-400 hover:shadow-[0_8px_25px_rgba(59,130,246,0.35)] w-full md:w-auto min-w-[220px]">
+                    <button type="submit" className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-[15px] transition-all shadow-[0_8px_20px_rgba(59,130,246,0.25)] bg-primary-500 text-white hover:bg-primary-400 hover:shadow-[0_8px_25px_rgba(59,130,246,0.35)] w-full md:w-auto min-w-[220px]">
                         Enviar Mensagem
                         <ArrowRight size={18} strokeWidth={2} className="group-hover:translate-x-1 transition-transform" />
                     </button>

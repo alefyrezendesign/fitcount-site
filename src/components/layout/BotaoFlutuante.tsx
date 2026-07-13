@@ -16,7 +16,7 @@ const BotaoFlutuante = () => {
   const handleOpenWhatsapp = () => {
     // Número e DDD genérico.
     const numero = "5521971807881";
-    const mensagem = encodeURIComponent("Olá! Vim pelo site da Farmacon e gostaria de falar com um especialista.");
+    const mensagem = encodeURIComponent("Olá! Vim pelo site da FitCount e gostaria de falar com um especialista.");
     window.open(`https://wa.me/${numero}?text=${mensagem}`, '_blank');
   };
 
@@ -25,7 +25,7 @@ const BotaoFlutuante = () => {
       <button
         aria-label="Abrir atendimento pelo WhatsApp"
         onClick={handleOpenWhatsapp}
-        className="w-14 h-14 sm:w-16 sm:h-16 rounded-[20px] sm:rounded-[22px] bg-gradient-to-tr from-[#2563eb] to-[#1d4ed8] text-white flex items-center justify-center shadow-[0_8px_30px_rgba(37,99,235,0.4)] hover:shadow-[0_15px_40px_rgba(37,99,235,0.6)] hover:-translate-y-1 transition-all duration-300 relative border border-white/20 z-10 group"
+        className="w-14 h-14 sm:w-16 sm:h-16 rounded-[20px] sm:rounded-[22px] bg-white text-primary-500 flex items-center justify-center shadow-[0_8px_30px_rgba(229,75,65,0.25)] hover:shadow-[0_15px_40px_rgba(229,75,65,0.4)] hover:-translate-y-1 transition-all duration-300 relative border border-white/10 z-10 group"
       >
         <WhatsappIcon size={28} className="sm:hidden group-hover:scale-110 transition-transform duration-300" />
         <WhatsappIcon size={32} className="hidden sm:block group-hover:scale-110 transition-transform duration-300" />

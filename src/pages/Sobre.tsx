@@ -14,7 +14,7 @@ import SobreDiretoria from '../components/sobre/SobreDiretoria';
 
 const Sobre = () => {
   return (
-    <div className="bg-white min-h-screen relative overflow-clip">
+    <div className="bg-dark-950 min-h-screen relative overflow-clip">
       <SobreHero />
       <SobreHistoria />
       <SobreSequence />

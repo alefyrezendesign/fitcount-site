@@ -1,351 +1,232 @@
-import { useState } from 'react';
-import { Quote, X, Play, ChevronLeft, ChevronRight, Handshake } from 'lucide-react';
-import SectionHeader from '../ui/SectionHeader';
-import { m, AnimatePresence  } from 'framer-motion';
+import { m } from 'framer-motion';
+import { useCallback } from 'react';
+import useEmblaCarousel from 'embla-carousel-react';
+import { useModalSolucoes } from '../../hooks/useModalSolucoes';
+import { ArrowRight, ArrowLeft, Quote, Star, CheckCircle } from 'lucide-react';
 
-const writtenTestimonials = [
+const depoimentos = [
   {
-    name: "Juliano Blotta",
-    pharmacy: "Farmácia Quero bem",
-    quote: "A FARMACON auxilia em todos os processos e são verdadeiros especialistas. O profissionalismo, capacidade técnica e agilidade da equipe são excelentes. Não imagino minha farmácia com outra empresa!"
+    quote: "Eu acompanhava o saldo da conta e acreditava que tinha controle financeiro. O problema era não conseguir enxergar os compromissos futuros nem entender quanto realmente receberíamos das vendas no cartão. A FitCount organizou o fluxo, os recebíveis e as projeções. Hoje, nossas decisões não dependem mais de uma fotografia do dia.",
+    author: "Rafael Souza",
+    role: "Proprietário da Academia Impacto",
+    image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=256&auto=format&fit=crop"
   },
   {
-    name: "Igor",
-    pharmacy: "Drogarias Unidas",
-    quote: "Notamos uma evolução de 95% na parte contábil, o que resultou em um grande crescimento para nossa rede. Estamos muito satisfeitos e confiamos na Farmacon para alcançarmos novos patamares."
+    quote: "A academia vendia bem, mas alguns planos geravam movimento sem entregar margem. A FitCount analisou custos, descontos e modalidades. Conseguimos entender quais planos precisavam ser revistos e passamos a discutir preço com base em dados, não em percepção.",
+    author: "Mariana Alves",
+    role: "Gestora do Studio Move",
+    image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=256&auto=format&fit=crop"
   },
   {
-    name: "Osvandir",
-    pharmacy: "MedFácil",
-    quote: "Recebemos uma assessoria contábil completa. A Farmacon nos ajuda no planejamento tributário e até já realizamos recuperação de créditos tributários graças ao excelente trabalho deles."
+    quote: "Antes da FitCount, nossa contabilidade estava concentrada em guias e obrigações. Não existia uma leitura estratégica da operação. A revisão tributária trouxe clareza sobre o enquadramento, corrigiu processos e mostrou quais pontos precisavam de acompanhamento contínuo.",
+    author: "Carlos Mendes",
+    role: "Sócio do CrossBox Elite",
+    image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=256&auto=format&fit=crop"
   },
   {
-    name: "Luciano",
-    pharmacy: "Grupo Medeiros de Farmácias",
-    quote: "O nível de atendimento superou as expectativas. Estou no ramo há 20 anos e nunca vi tamanha excelência e eficiência. Atingem um nível muito alto porque são exclusivos e especializados no segmento."
+    quote: "A estruturação do nosso controle de suplementos mudou o jogo. Antes, perdíamos produtos por validade e não sabíamos a margem real. Agora, a venda acessória paga quase todos os custos fixos da recepção. A visão comercial que eles trouxeram foi fantástica.",
+    author: "Fernanda Lima",
+    role: "Proprietária do IronGym",
+    image: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=256&auto=format&fit=crop"
   },
   {
-    name: "Cláudio",
-    pharmacy: "Famontão",
-    quote: "Sempre sou atendido com rapidez e agilidade. Vejo na Farmacon uma empresa comprometida em encontrar soluções para nossas demandas. A parceria é essencial para o sucesso da minha farmácia."
+    quote: "Ter acesso ao ecossistema de parceiros foi um divisor de águas. Quando precisamos estruturar o jurídico e as novas contratações, a FitCount nos conectou exatamente com quem precisávamos. Economizamos tempo e dinheiro no processo.",
+    author: "Ricardo Gomes",
+    role: "CEO da Rede PowerFit",
+    image: "https://images.unsplash.com/photo-1556157382-97eda2d62296?q=80&w=256&auto=format&fit=crop"
+  },
+  {
+    quote: "Sempre tivemos dificuldade em entender nosso custo de aquisição por aluno. Com os relatórios detalhados e as reuniões de diretoria, passamos a saber exatamente onde investir nosso orçamento de marketing. A segurança é outra.",
+    author: "Juliana Martins",
+    role: "Diretora da FitLife Center",
+    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=256&auto=format&fit=crop"
+  },
+  {
+    quote: "A terceirização do financeiro (BPO) foi a melhor escolha que fizemos. Nossa equipe da recepção passava horas conferindo caixa e boletos, com vários erros. Hoje tudo é automatizado e auditado diariamente.",
+    author: "Marcos Ferreira",
+    role: "Dono do Studio Funcional Fit",
+    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=256&auto=format&fit=crop"
+  },
+  {
+    quote: "Quando pensamos em abrir a segunda unidade, o planejamento tributário que eles fizeram evitou que entrássemos em um regime desvantajoso. O nível de especificidade que eles têm sobre o mercado fitness não tem preço.",
+    author: "Amanda Costa",
+    role: "Sócia-Fundadora da GymPoint",
+    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=256&auto=format&fit=crop"
   }
-];
-
-const availableThumbnails = [
-  "adriano.webp",
-  "ana.webp",
-  "andre.webp",
-  "douglas.webp",
-  "fernando.webp",
-  "gracielio souza.webp",
-  "jjoão paulo e daniele.webp",
-  "leila.webp",
-  "sheila.webp",
-  "vinicius.webp"
-];
-
-const getThumbnailForName = (name: string, videoId: string) => {
-  const normalizedName = name.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '');
-  
-  let match = availableThumbnails.find(file => {
-    const normalizedFile = file.replace('.webp', '').toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/\s+/g, '');
-    return normalizedFile.includes(normalizedName) || normalizedName.includes(normalizedFile);
-  });
-
-  // Fallback baseado no primeiro nome para suportar variações na grafia de sobrenomes (ex: Sousa vs Souza)
-  if (!match) {
-    const firstName = name.split(' ')[0].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-    match = availableThumbnails.find(file => {
-      const firstFileWord = file.replace('.webp', '').split(' ')[0].toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "");
-      return firstFileWord === firstName;
-    });
-  }
-
-  if (match) {
-    return `/thumbnail-clientes-parceiros/${match}`;
-  }
-  
-  return `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
-};
-
-const videos = [
-  { id: 'QYZIBtfL9Jc', name: 'Sheila Jensen', pharmacy: 'São Rafael', type: 'Cliente', desc: 'Suporte rápido, claro e preciso desde o primeiro contato.' },
-  { id: 'P4xOt35YOgI', name: 'Adriano Campos', pharmacy: 'City Farma', type: 'Cliente', desc: 'Estratégia tributária com impacto direto nos resultados.' },
-  { id: 'KWlvX9tjoXI', name: 'Leila Alvarenga', pharmacy: 'Drogarias SOL', type: 'Cliente', desc: 'Uma mudança tributária segura para crescer com confiança.' },
-  { id: '2nMaKuFsOyo', name: 'João Paulo e Daniele', pharmacy: 'Drogarias FarMelhor', type: 'Cliente', desc: 'Gestão mais ágil com suporte contábil completo.' },
-  { id: 'nkS9ZWhjeVc', name: 'Gracielio Sousa', pharmacy: 'Farmácias Bigfort', type: 'Cliente', desc: 'Atendimento técnico que facilita o dia a dia da farmácia.' },
-  { id: 'rZ9F9kfnfb8', name: 'Ana Gonçalves', pharmacy: 'Farmácias Mini Preços', type: 'Cliente', desc: 'Gestão tributária especializada para uma rede com 16 lojas.' },
-  { id: '8dU8XUvPi14', name: 'Douglas Gálias', pharmacy: 'Farmais Drogasil', type: 'Cliente', desc: 'Mais organização, crescimento e redução tributária.' },
-  { id: 'uScY1u6vS8c', name: 'Fernando Ferreira', pharmacy: 'Retail Jedi', type: 'Parceiro', desc: 'Contabilidade que entende a farmácia por dentro.' },
-  { id: 'msS5CNj8osw', name: 'Vinicius DallOvo', pharmacy: 'Abradilan', type: 'Parceiro', desc: 'Conteúdo e orientação fiscal que fortalecem o varejo farmacêutico.' },
-  { id: 'Bx0X2M9RhGQ', name: 'André Justino', pharmacy: 'Flux Farma', type: 'Parceiro', desc: 'Inovação, tecnologia e segurança para não errar na contabilidade.' },
 ];
 
 const Depoimentos = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [activeVideoId, setActiveVideoId] = useState<string | null>(null);
-  const [textCurrent, setTextCurrent] = useState(0);
+  const { openModal } = useModalSolucoes();
+  
+  const [emblaRef, emblaApi] = useEmblaCarousel({ 
+    align: 'start',
+    containScroll: 'trimSnaps',
+    dragFree: true,
+    loop: true
+  });
 
-  const openVideo = (id: string) => setActiveVideoId(id);
-  const closeVideo = () => setActiveVideoId(null);
+  const scrollPrev = useCallback(() => {
+    if (emblaApi) emblaApi.scrollPrev();
+  }, [emblaApi]);
 
-  const nextText = () => {
-    setTextCurrent(prev => (prev + 1) % writtenTestimonials.length);
-  };
-
-  const prevText = () => {
-    setTextCurrent(prev => (prev === 0 ? writtenTestimonials.length - 1 : prev - 1));
-  };
+  const scrollNext = useCallback(() => {
+    if (emblaApi) emblaApi.scrollNext();
+  }, [emblaApi]);
 
   return (
-    <section className="w-full pt-20 pb-10 md:pt-28 md:pb-14 bg-white relative">
-      <div className="container mx-auto px-5 md:px-10 xl:px-16">
+    <section className="w-full relative bg-[#070b11] py-24 lg:py-32 overflow-hidden isolate">
+
+      <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl">
         
-        {/* Header and Text Testimonials */}
-        <div className="flex flex-col lg:flex-row lg:items-start justify-between mb-12 gap-0 lg:gap-10">
-          <div className="lg:w-3/5">
-            <SectionHeader
-              badgeIcon={<Handshake className="w-3.5 h-3.5" />}
-              badgeText="Vem ser Farmacon"
-              titleLines={["3 novas farmácias", "por dia confiam", "em nossa expertise"]}
-              align="left"
-              className="mb-0 md:mb-0 [&_h2]:max-w-none [&_h2]:mb-0 lg:[&_h2]:mb-6"
-            />
-          </div>
+        {/* Header */}
+        <div className="flex flex-col items-center text-center max-w-3xl mx-auto mb-20 lg:mb-28">
+          <m.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full shadow-[0_0_15px_rgba(240,76,64,0.1)] bg-primary-500/15 border border-primary-500/30 mb-6 transition-all hover:bg-primary-500/25 mx-auto"
+          >
+            <span className="text-primary-400">
+              <CheckCircle size={14} strokeWidth={2.5} />
+            </span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-primary-300">
+              Resultados Validados
+            </span>
+          </m.div>
           
-          <div className="lg:w-2/5 flex items-center justify-end">
-            <div className="w-full flex flex-col -mt-2 md:mt-0 lg:pl-10">
-              <Quote size={32} className="text-primary-200 fill-primary-100 mb-5" />
-              
-              <div className="relative min-h-[140px] md:min-h-[120px] lg:min-h-[160px] flex flex-col">
-                <AnimatePresence mode="wait">
-                  <m.div
-                    key={textCurrent}
-                    initial={{ opacity: 0, x: 20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -20 }}
-                    transition={{ duration: 0.3 }}
-                    className="w-full flex-1 flex items-center"
-                  >
-                    <p className="text-surface-600 text-[15px] md:text-base leading-relaxed">
-                      "{writtenTestimonials[textCurrent].quote}"
-                    </p>
-                  </m.div>
-                </AnimatePresence>
-              </div>
+          <m.h2 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.1 }}
+            className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-6 text-white"
+          >
+            O impacto real dos <br className="hidden md:block" />
+            <span className="font-light italic text-slate-300">números na operação</span>
+          </m.h2>
+          
+          <m.p 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-[15px] md:text-[1.1rem] text-slate-400 font-medium leading-relaxed max-w-2xl mx-auto"
+          >
+            Estratégia contábil e financeira não deve ficar restrita a relatórios. Veja como transformamos dados em direcionamento claro para negócios fitness.
+          </m.p>
+        </div>
 
-              <div className="flex items-center justify-between mt-auto pt-5 border-t border-surface-200">
-                <div className="relative flex-1">
-                  <AnimatePresence mode="wait">
-                    <m.div
-                      key={textCurrent}
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="flex flex-col justify-center"
-                    >
-                      <h4 className="font-bold text-dark-900 text-sm">{writtenTestimonials[textCurrent].name}</h4>
-                      <p className="text-xs text-surface-500">{writtenTestimonials[textCurrent].pharmacy}</p>
-                    </m.div>
-                  </AnimatePresence>
-                </div>
+        {/* Testimonials Slider */}
+        <div className="relative mb-24 lg:mb-32 px-0 md:px-14 lg:px-16">
+          
+          {/* Left Arrow */}
+          <button 
+            onClick={scrollPrev} 
+            className="absolute left-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-[#0b1018]/90 backdrop-blur-md rounded-full border border-white/20 hidden md:flex items-center justify-center text-white/90 hover:text-white hover:bg-white/10 hover:border-white/40 transition-all shadow-[0_0_30px_rgba(0,0,0,0.8)]"
+            aria-label="Depoimento anterior"
+          >
+            <ArrowLeft size={20} />
+          </button>
 
-                <div className="flex items-center gap-2 shrink-0">
-                  <button
-                    onClick={prevText}
-                    title="Depoimento anterior"
-                    className="w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-surface-300 text-dark-900 hover:bg-surface-50 hover:shadow-sm cursor-pointer"
-                  >
-                    <ChevronLeft size={20} />
-                  </button>
-                  <button
-                    onClick={nextText}
-                    title="Próximo depoimento"
-                    className="w-10 h-10 rounded-full flex items-center justify-center transition-colors border border-surface-300 text-dark-900 hover:bg-surface-50 hover:shadow-sm cursor-pointer"
-                  >
-                    <ChevronRight size={20} />
-                  </button>
-                </div>
+          {/* Embla Viewport */}
+          <div 
+            ref={emblaRef}
+            className="overflow-hidden w-full pb-8 pt-4 cursor-grab active:cursor-grabbing"
+          >
+            <div className="flex -ml-6 lg:-ml-8 touch-pan-y">
+              {depoimentos.map((depoimento, index) => (
+                <div 
+                  key={index} 
+                  className="flex-[0_0_85vw] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-6 lg:pl-8 min-w-0"
+                >
+                <m.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true, margin: "-50px" }}
+                  transition={{ duration: 0.5, delay: index * 0.1 }}
+                  className="group relative bg-[#0b1018] border border-white/5 hover:border-white/10 rounded-[2rem] p-7 lg:p-8 flex flex-col w-full h-full overflow-hidden transition-all duration-500"
+                >
+                  {/* Card Hover Glow */}
+                  <div className="absolute top-0 right-0 -mr-8 -mt-8 w-40 h-40 bg-primary-500/10 rounded-full blur-[40px] opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none" />
+                  
+                  {/* Stars & Icon */}
+                  <div className="flex justify-between items-start mb-6 relative z-10">
+                    <div className="flex gap-1.5">
+                      {[1, 2, 3, 4, 5].map((i) => (
+                        <Star key={i} size={16} className="fill-[#F59E0B] text-[#F59E0B]" />
+                      ))}
+                    </div>
+                    <Quote size={32} className="text-white/5 rotate-180 group-hover:text-primary-500/10 transition-colors duration-500" />
+                  </div>
+
+                  {/* Quote Text */}
+                  <p className="text-base lg:text-[15.5px] text-slate-300 font-light leading-[1.75] italic flex-1 mb-6 relative z-10">
+                    "{depoimento.quote}"
+                  </p>
+
+                  {/* Author Profile */}
+                  <div className="flex items-center gap-4 relative z-10 pt-5 border-t border-white/5 mt-auto">
+                    <img 
+                      src={depoimento.image} 
+                      alt={depoimento.author}
+                      className="w-10 h-10 rounded-full object-cover border border-white/10 shrink-0 group-hover:border-primary-500/30 transition-colors"
+                    />
+                    <div>
+                      <h4 className="text-white font-medium text-[15px] mb-0.5">{depoimento.author}</h4>
+                      <p className="text-slate-400 text-[13px] font-light">{depoimento.role}</p>
+                    </div>
+                  </div>
+                </m.div>
               </div>
+            ))}
             </div>
           </div>
+
+          {/* Right Arrow */}
+          <button 
+            onClick={scrollNext} 
+            className="absolute right-0 top-1/2 -translate-y-1/2 z-20 w-12 h-12 bg-[#0b1018]/90 backdrop-blur-md rounded-full border border-white/20 hidden md:flex items-center justify-center text-white/90 hover:text-white hover:bg-white/10 hover:border-white/40 transition-all shadow-[0_0_30px_rgba(0,0,0,0.8)]"
+            aria-label="Próximo depoimento"
+          >
+            <ArrowRight size={20} />
+          </button>
         </div>
 
-        {/* Título Acima dos Vídeos */}
-        <div className="w-full mb-10 flex items-center justify-start gap-3">
-          <div className="flex items-center justify-center w-8 h-8 md:w-10 md:h-10 rounded-full bg-primary-100 text-primary-600 shadow-sm shrink-0">
-            <Play className="w-4 h-4 md:w-5 md:h-5 ml-[2px]" fill="currentColor" />
+        {/* CTA Section */}
+        <div className="bg-gradient-to-br from-primary-600 to-primary-800 rounded-[2.5rem] p-10 md:p-16 lg:p-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden relative isolate shadow-2xl shadow-primary-500/10">
+          {/* Abstract graphics inside CTA */}
+          <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/20 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
+
+          <div className="w-full lg:w-3/5 relative z-10 text-center lg:text-left">
+            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
+              Prepare seu negócio para o próximo movimento.
+            </h3>
+            <p className="text-white/80 text-lg max-w-xl mx-auto lg:mx-0 font-light">
+              Solicite um diagnóstico e entenda quais pontos da sua operação precisam de mais controle, clareza e direção.
+            </p>
           </div>
-          <h3 className="text-xl md:text-2xl lg:text-3xl font-bold text-dark-900 tracking-tight">
-            O que falam sobre nós
-          </h3>
-        </div>
 
-        {/* Video Accordion (Desktop) */}
-        <div 
-          className="hidden h-[500px] gap-2 lg:flex w-full mx-auto col-span-full"
-          onMouseLeave={() => setActiveIndex(null)}
-        >
-          {videos.map((video, index) => {
-            const isActive = activeIndex === index;
-            const src = getThumbnailForName(video.name, video.id);
-            const isYouTubeThumb = src.includes('youtube.com');
-            return (
-              <button
-                key={video.id}
-                onMouseEnter={() => setActiveIndex(index)}
-                onClick={() => openVideo(video.id)}
-                className={`relative cursor-pointer overflow-hidden rounded-3xl transition-[flex,width,max-width] duration-500 ease-out min-w-0 ${isActive ? 'flex-[0_0_400px] max-w-[400px]' : 'flex-1 max-w-none'}`}
-                aria-label={`Reproduzir depoimento de ${video.name}`}
-              >
-                {/* Thumbnail */}
-                <img 
-                  alt={video.name} 
-                  src={src}
-                  className={`absolute inset-0 w-full h-full object-cover bg-slate-100 origin-center ${isYouTubeThumb ? 'scale-[1.35]' : ''}`}
-                  loading="lazy"
-                  decoding="async"
-                />
-                
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-60'}`}></div>
-                
-                {/* Tag Cliente/Parceiro */}
-                {video.type && (
-                   <div className={`absolute top-5 right-5 z-30 transition-all duration-500 ease-out ${isActive ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 -translate-y-4 delay-0 pointer-events-none'}`}>
-                     <span className="inline-flex items-center px-3 py-1.5 rounded-lg text-[11px] font-bold uppercase tracking-wider bg-blue-600/90 text-white shadow-lg border border-blue-400/50 backdrop-blur-md">
-                       {video.type}
-                     </span>
-                   </div>
-                )}
-                
-                {/* Play Button */}
-                <figure className={`absolute top-1/2 left-1/2 z-20 flex w-12 h-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-blue-600 transition-all duration-300 ${isActive ? 'scale-100 opacity-100 shadow-[0_0_30px_rgba(37,99,235,0.8)]' : 'scale-75 opacity-0'}`}>
-                  <Play className="w-5 h-5 text-white ml-1" fill="currentColor" />
-                </figure>
-                
-                {/* Text Info */}
-                <div className={`absolute inset-x-0 bottom-0 p-6 text-left transition-all duration-500 ease-out ${isActive ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8 delay-0 pointer-events-none'}`}>
-                  <div className="w-[240px] xl:w-[280px]">
-                    <h1 className="text-2xl font-extrabold text-white mb-1.5 drop-shadow-md leading-tight">{video.name}</h1>
-                    {video.pharmacy && (
-                      <h3 className="text-base font-bold text-white mb-2 drop-shadow-md leading-tight">
-                        {video.pharmacy}
-                      </h3>
-                    )}
-                    <p className="text-[13px] font-medium text-white drop-shadow-md leading-relaxed">{video.desc}</p>
-                  </div>
-                </div>
-              </button>
-            );
-          })}
-        </div>
-
-        {/* Video Accordion (Mobile/Tablet) */}
-        <div className="flex flex-col gap-2 lg:hidden w-full mx-auto pb-8">
-          {videos.map((video, index) => {
-            const isActive = activeIndex === index;
-            const src = getThumbnailForName(video.name, video.id);
-            const isYouTubeThumb = src.includes('youtube.com');
-            
-            return (
-              <m.button
-                key={video.id}
-                onViewportEnter={() => setActiveIndex(index)}
-                viewport={{ margin: "-40% 0px -40% 0px" }}
-                onClick={() => {
-                  if (isActive) {
-                    openVideo(video.id);
-                  } else {
-                    setActiveIndex(index);
-                  }
-                }}
-                className={`relative cursor-pointer overflow-hidden rounded-2xl transition-[height] duration-500 ease-out w-full shrink-0 ${isActive ? 'h-[360px]' : 'h-[64px]'}`}
-                aria-label={`Reproduzir depoimento de ${video.name}`}
-              >
-                {/* Thumbnail */}
-                <img 
-                  alt={video.name} 
-                  src={src}
-                  className={`absolute inset-0 w-full h-full object-cover bg-slate-100 origin-center ${isYouTubeThumb ? 'scale-[1.35]' : ''}`}
-                  loading="lazy"
-                  decoding="async"
-                />
-                
-                {/* Gradient Overlay */}
-                <div className={`absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-60'}`}></div>
-                
-                {/* Tag Cliente/Parceiro */}
-                {video.type && (
-                   <div className={`absolute top-4 right-4 z-30 transition-all duration-500 ease-out ${isActive ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 -translate-y-4 delay-0 pointer-events-none'}`}>
-                     <span className="inline-flex items-center px-2.5 py-1 rounded-lg text-[10px] font-bold uppercase tracking-wider bg-blue-600/90 text-white shadow-lg border border-blue-400/50 backdrop-blur-md">
-                       {video.type}
-                     </span>
-                   </div>
-                )}
-                
-                {/* Play Button */}
-                <figure className={`absolute top-1/2 left-1/2 z-20 flex w-12 h-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-blue-600 transition-all duration-300 ${isActive ? 'scale-100 opacity-100 shadow-[0_0_30px_rgba(37,99,235,0.8)]' : 'scale-75 opacity-0'}`}>
-                  <Play className="w-5 h-5 text-white ml-1" fill="currentColor" />
-                </figure>
-                
-                {/* Text Info */}
-                <div className={`absolute inset-x-0 bottom-0 p-5 text-left transition-all duration-500 ease-out ${isActive ? 'opacity-100 translate-y-0 delay-150' : 'opacity-0 translate-y-8 delay-0 pointer-events-none'}`}>
-                  <h1 className="text-xl font-extrabold text-white mb-1 drop-shadow-md leading-tight">{video.name}</h1>
-                  {video.pharmacy && (
-                    <h3 className="text-sm font-bold text-white mb-1.5 drop-shadow-md leading-tight">
-                      {video.pharmacy}
-                    </h3>
-                  )}
-                  <p className="text-xs font-medium text-white drop-shadow-md leading-relaxed">{video.desc}</p>
-                </div>
-              </m.button>
-            );
-          })}
+          <div className="w-full lg:w-auto flex justify-center lg:justify-end relative z-10 shrink-0">
+            <button
+              onClick={() => {
+                window.dispatchEvent(new CustomEvent('open-painel-diagnostico'));
+                openModal();
+              }}
+              className="group flex items-center justify-center gap-4 px-8 py-4 lg:px-10 lg:py-5 rounded-full font-bold text-[15px] bg-[#070b11] text-white hover:bg-black transition-all duration-300 w-full sm:w-auto hover:shadow-[0_0_30px_rgba(0,0,0,0.5)] border border-white/5 hover:border-white/10"
+            >
+              <span className="tracking-wide uppercase">Solicitar um diagnóstico</span>
+              <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-primary-500 transition-colors">
+                <ArrowRight size={16} className="text-white group-hover:translate-x-0.5 transition-transform" />
+              </div>
+            </button>
+          </div>
         </div>
 
       </div>
-      {/* Video Modal (Lightbox) */}
-      <AnimatePresence>
-        {activeVideoId && (
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 flex items-center justify-center bg-black/95 p-4 md:p-10 backdrop-blur-sm"
-            onClick={closeVideo}
-          >
-            <button 
-              onClick={closeVideo}
-              className="absolute top-4 right-4 md:top-8 md:right-8 w-12 h-12 flex items-center justify-center rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-50"
-              aria-label="Fechar vídeo"
-            >
-              <X className="w-6 h-6" />
-            </button>
-            
-            <m.div 
-              initial={{ scale: 0.95, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.95, opacity: 0 }}
-              transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="relative w-[90vw] max-w-[420px] aspect-[9/16] bg-black rounded-xl overflow-hidden shadow-2xl border border-white/10"
-              onClick={(e) => e.stopPropagation()} // Prevent clicking video from closing modal
-            >
-              <iframe
-                src={`https://www.youtube.com/embed/${activeVideoId}?autoplay=1&rel=0&modestbranding=1&playsinline=1&controls=1`}
-                title="Depoimento Cliente Farmacon"
-                className="w-full h-full"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                allowFullScreen
-              ></iframe>
-            </m.div>
-          </m.div>
-        )}
-      </AnimatePresence>
-
     </section>
   );
 };
 
 export default Depoimentos;
+

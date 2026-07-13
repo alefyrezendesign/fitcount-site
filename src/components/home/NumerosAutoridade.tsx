@@ -1,202 +1,173 @@
-import { m  } from 'framer-motion';
-import SectionHeader from '../ui/SectionHeader';
+import { m, useMotionValue, useTransform, animate, useInView } from 'framer-motion';
+import { useModalSolucoes } from '../../hooks/useModalSolucoes';
+import { useEffect, useRef } from 'react';
 
-type Stat = {
-  value: string;
-  text: string;
-  desktopHeight: string;
-  mobileHeight: string;
-  delay: number;
-  highlight: boolean;
-};
+interface AnimatedNumberProps {
+  from: number;
+  to: number;
+  duration?: number;
+  prefix?: string;
+  suffix?: string;
+  className?: string;
+}
 
-const stats: Stat[] = [
-  { value: '9,2%', text: 'do Market Share no Brasil', desktopHeight: 'h-[150px]', mobileHeight: 'h-[150px]', delay: 0.1, highlight: false },
-  { value: '1.800', text: 'Municípios atendidos em todo o Brasil', desktopHeight: 'h-[200px]', mobileHeight: 'h-[150px]', delay: 0.2, highlight: false },
-  { value: '6.200+', text: 'Empresários confiam em nossa expertise', desktopHeight: 'h-[290px]', mobileHeight: 'h-[260px]', delay: 0.3, highlight: false },
-  { value: '22%', text: 'Nossos clientes cresceram em média 22% a mais do que o mercado', desktopHeight: 'h-full', mobileHeight: 'h-[260px]', delay: 0.4, highlight: true },
-];
-
-const AnimatedBarChart = ({ delay }: { delay: number }) => {
-  const bars = [
-    { height: '45%', delay: delay + 0.4, type: 'mercado' },
-    { height: '55%', delay: delay + 0.5, type: 'mercado' },
-    { height: '40%', delay: delay + 0.6, type: 'mercado' },
-    { height: '85%', delay: delay + 0.7, type: 'clientes' },
-    { height: '45%', delay: delay + 0.8, type: 'mercado' },
-  ];
+const AnimatedNumber = ({ from, to, duration = 2, prefix = "", suffix = "", className = "" }: AnimatedNumberProps) => {
+  const ref = useRef(null);
+  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const count = useMotionValue(from);
+  const rounded = useTransform(count, (latest) => Math.round(latest));
+  
+  useEffect(() => {
+    if (inView) {
+      const controls = animate(count, to, { duration, ease: 'easeOut' });
+      return controls.stop;
+    }
+  }, [inView, count, to, duration]);
 
   return (
-    <div className="absolute bottom-0 left-0 right-0 h-[50%] w-full z-0 pointer-events-none flex items-end">
-      <div className="w-full h-full flex items-end gap-0 px-0 pb-0">
-        {bars.map((bar, i) => (
-          <div key={i} className="flex-1 h-full relative flex items-end justify-center">
-            {bar.type === 'clientes' && (
-              <m.div
-                initial={{ opacity: 0, y: 10 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: delay + 1.2 }}
-                className="absolute z-20 flex items-center justify-center"
-                style={{ bottom: bar.height }}
-              >
-                <div className="w-10 h-10 rounded-full border border-blue-200/60 bg-white shadow-[0_4px_15px_rgba(37,99,235,0.2)] flex items-center justify-center overflow-hidden">
-                  <img src="/logo/simbolo.png" alt="Farmacon" className="w-6 h-6 object-contain" loading="lazy" decoding="async" />
-                </div>
-              </m.div>
-            )}
-
-            <m.div
-              initial={{ height: '0%' }}
-              whileInView={{ height: bar.height }}
-              viewport={{ once: true }}
-              transition={{ duration: 1, delay: bar.delay, ease: [0.22, 1, 0.36, 1] }}
-              className="w-full relative"
-            >
-              <div className={`absolute inset-0 blur-[8px] ${
-                bar.type === 'clientes'
-                  ? 'bg-gradient-to-t from-[#2563EB]/90 to-transparent'
-                  : 'bg-gradient-to-t from-[#60A5FA]/80 to-transparent'
-              }`} />
-
-              <div className={`absolute inset-0 rounded-t-lg ${
-                bar.type === 'clientes'
-                  ? 'bg-gradient-to-t from-[#2563EB] via-[#3B82F6]/90 to-transparent'
-                  : 'bg-gradient-to-t from-[#60A5FA] via-[#93C5FD]/60 to-transparent'
-              }`} />
-            </m.div>
-          </div>
-        ))}
-      </div>
-    </div>
+    <m.div
+      ref={ref}
+      initial={{ y: 40, opacity: 0 }}
+      whileInView={{ y: 0, opacity: 1 }}
+      viewport={{ once: true, margin: "-100px" }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
+      className={`flex items-center justify-center ${className}`}
+    >
+      <span className="font-inherit">{prefix}</span>
+      <m.span className="font-inherit">{rounded}</m.span>
+      <span className="font-inherit">{suffix}</span>
+    </m.div>
   );
 };
 
-const StatCard = ({ stat, heightClass, className = '' }: { stat: Stat; heightClass: string; className?: string }) => (
-  <m.div
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    viewport={{ once: true, amount: 0.1 }}
-    transition={{ duration: 0.8, delay: stat.delay, ease: [0.22, 1, 0.36, 1] }}
-    className={`w-full rounded-[24px] lg:rounded-3xl p-4 lg:p-7 flex flex-col justify-start items-start relative overflow-hidden ${
-      stat.highlight
-        ? 'bg-white text-[#2563EB] shadow-xl shadow-black/10'
-        : 'bg-[#3b82f6]/30 backdrop-blur-[16px] border border-white/20 text-white shadow-[0_8px_30px_rgb(0,0,0,0.12)]'
-    } ${heightClass} ${className}`}
-  >
-    <m.div
-      initial={{ opacity: 0, y: 15 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, amount: 0.1 }}
-      transition={{ duration: 0.5, delay: stat.delay + 0.4 }}
-      className="flex flex-col gap-1 lg:gap-2 relative z-10"
-    >
-      <div className={`text-[1.8rem] sm:text-[2.8rem] lg:text-[3.5rem] font-bold tracking-tighter leading-none ${stat.highlight ? 'text-[#2563EB]' : 'text-white'}`}>
-        {stat.value}
-      </div>
-
-      <p className={`text-[11px] sm:text-[13px] lg:text-[14px] font-medium leading-snug ${stat.highlight ? 'text-slate-700' : 'text-blue-100'}`}>
-        {stat.text}
-      </p>
-    </m.div>
-
-    {stat.value === '22%' && <AnimatedBarChart delay={stat.delay} />}
-
-    {stat.value === '6.200+' && (
-      <m.div
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.6, delay: stat.delay + 0.6 }}
-        className="absolute bottom-4 left-0 right-0 w-full px-4 h-[45%] z-0"
-      >
-        <div className="w-full h-full rounded-3xl overflow-hidden border border-white/10 relative bg-white/5 backdrop-blur-sm">
-          <img 
-            alt="Empresários confiando na Farmacon" 
-            className="w-full h-full object-cover" 
-            src="/images/parceiro-seção2.webp" 
-          />
-        </div>
-      </m.div>
-    )}
-  </m.div>
-);
-
-const AuthorityTextContent = () => (
-  <SectionHeader
-    badgeIcon={
-      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <rect x="2" y="4" width="20" height="16" rx="1" />
-        <polygon points="12,6 22,12 12,18 2,12" />
-        <circle cx="12" cy="12" r="3.5" />
-      </svg>
-    }
-    badgeText="Resultados reais no mercado farmacêutico"
-    titleLines={["Somos a maior da", "América Latina"]}
-    subtitle="Todos os anos, nossos clientes crescem acima da média do mercado. Todos os dias, empresários tomam decisões mais seguras com base em números claros."
-    align="mobile-center"
-    className="mb-0"
-    inverted={true}
-  />
-);
-
 const NumerosAutoridade = () => {
+  const { openModal } = useModalSolucoes();
+
   return (
-    <section 
-      id="sobre-nos" 
-      className="relative z-20 bg-[#2563eb] bg-cover bg-center w-full shadow-[0_-20px_60px_rgba(0,0,0,0.06)] lg:min-h-screen py-20 lg:py-0 overflow-hidden lg:flex lg:flex-col lg:justify-center"
-      style={{ backgroundImage: "url('/background/bg-azul.png')" }}
-    >
-      <div className="container mx-auto px-5 md:px-10 xl:px-16 lg:h-full relative z-10">
-        <div className="w-full max-w-7xl mx-auto lg:h-full">
-          <div className="lg:hidden flex flex-col">
-            <div className="mb-4">
-              <AuthorityTextContent />
-            </div>
-
-            <div className="w-full relative mt-0">
-              <div className="flex gap-3 w-full">
-                {/* Coluna Esquerda: Curto + Longo */}
-                <div className="flex flex-col gap-3 flex-1 w-1/2">
-                  <StatCard stat={stats[0]} heightClass={stats[0].mobileHeight} />
-                  <StatCard stat={stats[2]} heightClass={stats[2].mobileHeight} />
-                </div>
-                {/* Coluna Direita: Longo + Curto */}
-                <div className="flex flex-col gap-3 flex-1 w-1/2">
-                  <StatCard stat={stats[3]} heightClass={stats[3].mobileHeight} />
-                  <StatCard stat={stats[1]} heightClass={stats[1].mobileHeight} />
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="hidden lg:flex w-full h-full items-center justify-center py-28 xl:py-36">
-            <div className="relative w-full h-[460px] xl:h-[520px]">
-              <div className="absolute top-0 left-0 w-[48%] z-10 xl:-top-4">
-                <AuthorityTextContent />
-              </div>
-
-              <div className="absolute bottom-0 left-0 right-0 flex items-end gap-4 xl:gap-5">
-                <div className="flex-1">
-                  <StatCard stat={stats[0]} heightClass={stats[0].desktopHeight} />
-                </div>
-                <div className="flex-1">
-                  <StatCard stat={stats[1]} heightClass={stats[1].desktopHeight} />
-                </div>
-                <div className="flex-1">
-                  <StatCard stat={stats[2]} heightClass={stats[2].desktopHeight} />
-                </div>
-                <div className="flex-1">
-                  <StatCard stat={stats[3]} heightClass="h-[330px] xl:h-[370px]" />
-                </div>
-              </div>
+    <section className="relative w-full bg-white overflow-hidden isolate">
+      
+      {/* ================= FULL WIDTH SPLIT SECTION ================= */}
+      <div className="relative w-full flex flex-col md:flex-row min-h-[500px] md:h-[60vh] max-h-[700px] z-20">
+        
+        {/* Lado Esquerdo: Texto (Fundo Cinza) */}
+        <div className="w-full h-1/2 md:w-1/2 md:h-full bg-surface-200 flex items-center justify-center p-10 md:p-16 lg:p-24 relative overflow-hidden">
+          <div className="relative z-10 w-full max-w-lg">
+            <h2 className="text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold tracking-tight leading-[1.1] text-primary-500 mb-8 text-center md:text-left">
+              Inteligência contábil e financeira exclusiva para o mercado fitness.
+            </h2>
+            <div className="flex justify-center md:justify-start">
+              <button 
+                onClick={() => openModal()}
+                className="px-8 py-4 lg:px-10 lg:py-5 rounded-full font-bold text-[15px] text-white bg-[#07111F] hover:bg-[#0b1728] transition-colors shadow-lg shadow-black/20 w-full sm:w-auto"
+              >
+                Junte-se a nós
+              </button>
             </div>
           </div>
         </div>
+
+        {/* Lado Direito: Imagem Quadrada Edge-to-Edge */}
+        <div className="w-full h-1/2 md:w-1/2 md:h-full relative overflow-hidden bg-surface-100">
+          <div className="w-full h-full">
+            <img 
+              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" 
+              alt="Consultoria e Inteligência Fitness" 
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </div>
+        </div>
       </div>
+
+      <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl mt-20 mb-8">
+        
+        {/* ================= BOTTOM BENTO GRID ================= */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-stretch">
+          
+          {/* Card 1: Light Accent Card (Atuação 100%) */}
+          <div className="col-span-1 md:col-span-3 bg-white border border-slate-200 rounded-[2rem] p-6 lg:p-8 flex flex-col justify-end relative min-h-[250px] lg:min-h-[300px]">
+            {/* Arrow icon */}
+            <div className="absolute top-6 right-6 text-dark-900 bg-dark-900/10 p-2 rounded-full">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </div>
+            
+            <div className="mt-16">
+              <h4 className="text-dark-900 mb-3 italic">
+                Engajamento &<br/>Experiência
+              </h4>
+              <p className="text-gray-800 text-sm leading-relaxed font-medium">
+                Plataforma que oferece uma imersão financeira completa para líderes do segmento fitness.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 2: Dark Square (Visão Integrada) */}
+          <div className="col-span-1 md:col-span-3 bg-dark-950 rounded-[2rem] p-6 lg:p-8 shadow-xl text-white flex flex-col justify-end relative min-h-[250px] lg:min-h-[300px]">
+            {/* Avatares (Especialistas) no topo esquerdo */}
+            <div className="absolute top-6 left-6 flex -space-x-3">
+               <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" className="w-10 h-10 rounded-full border-[2.5px] border-dark-950 object-cover" />
+               <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" className="w-10 h-10 rounded-full border-[2.5px] border-dark-950 object-cover" />
+               <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" className="w-10 h-10 rounded-full border-[2.5px] border-dark-950 object-cover" />
+               <div className="w-10 h-10 rounded-full border-[2.5px] border-dark-950 bg-primary-500 text-white flex items-center justify-center text-sm font-medium z-10">
+                 +
+               </div>
+            </div>
+
+            {/* Arrow icon */}
+            <div className="absolute top-6 right-6 text-white/50 border border-white/20 p-2 rounded-full">
+               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </div>
+            
+            <div className="mt-16">
+              <h4 className="mb-3 italic text-white">Ferramentas &<br/>Suporte</h4>
+              <p className="text-surface-400 text-sm leading-relaxed">
+                Nós oferecemos análises prontas e templates para facilitar a tomada de decisão contábil e fiscal.
+              </p>
+            </div>
+          </div>
+
+          {/* Card 3: Big Numbers (Stats Area) */}
+          <div className="col-span-1 md:col-span-6 bg-transparent flex flex-col justify-center gap-12">
+             <div className="flex flex-row justify-between items-start gap-2 md:gap-4">
+                {/* Stat 1 */}
+                <div className="flex flex-col items-center">
+                   <AnimatedNumber from={0} to={100} prefix="+" className="text-dark-950 mb-2 md:mb-4 text-center text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight" />
+                   <p className="text-gray-700 font-medium text-xs md:text-sm lg:text-base leading-tight text-center">
+                     Clientes ativos<br className="hidden sm:block" /> na base
+                   </p>
+                </div>
+                {/* Stat 2 */}
+                <div className="flex flex-col items-center">
+                   <AnimatedNumber from={0} to={100} suffix="%" className="text-dark-950 mb-2 md:mb-4 text-center text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight" />
+                   <p className="text-gray-700 font-medium text-xs md:text-sm lg:text-base leading-tight text-center">
+                     Foco no<br className="hidden sm:block" /> mercado fitness
+                   </p>
+                </div>
+                {/* Stat 3 */}
+                <div className="flex flex-col items-center">
+                   <AnimatedNumber from={0} to={360} suffix="º" className="text-dark-950 mb-2 md:mb-4 text-center text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight" />
+                   <p className="text-gray-700 font-medium text-xs md:text-sm lg:text-base leading-tight text-center">
+                     Visão integrada<br className="hidden sm:block" /> do negócio
+                   </p>
+                </div>
+             </div>
+             
+             {/* Pill-shaped menu like the reference */}
+             <div>
+               <div className="hidden md:flex w-full justify-between items-center text-[10px] md:text-xs lg:text-sm font-semibold text-dark-950 border border-dark-950 rounded-full py-4 px-2">
+                 <span className="flex-1 text-center whitespace-nowrap cursor-default">Planejamento</span>
+                 <span className="flex-1 text-center whitespace-nowrap cursor-default border-l border-gray-300">BPO Financeiro</span>
+                 <span className="flex-1 text-center whitespace-nowrap cursor-default border-l border-gray-300">Contabilidade</span>
+                 <span className="flex-1 text-center whitespace-nowrap cursor-default border-l border-gray-300">Legalização</span>
+                 <span className="flex-1 text-center whitespace-nowrap cursor-default border-l border-gray-300">Gestão</span>
+               </div>
+             </div>
+          </div>
+
+        </div>
+      </div>
+
     </section>
   );
 };
 
 export default NumerosAutoridade;
-

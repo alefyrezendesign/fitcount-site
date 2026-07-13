@@ -16,7 +16,7 @@ export const RDStationGhostForm = forwardRef<RDStationGhostFormRef, Props>(({ fo
     submitForm: async (data: Record<string, string>) => {
       try {
         // Extrai o identificador de conversão do ID do form (remove o hash final)
-        // Ex: farmacon-falar-com-especialista-61970b97e7b14c7e127d -> farmacon-falar-com-especialista
+        // Ex: fitcount-falar-com-especialista -> fitcount-falar-com-especialista
         const conversionIdentifier = formId.split('-').slice(0, -1).join('-');
 
         const body = new URLSearchParams();

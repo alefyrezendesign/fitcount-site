@@ -43,7 +43,7 @@ const Demonstracao = () => {
           height: '100vh',
           overflow: 'hidden',
           zIndex: 0,
-          background: '#ffffff',
+          background: '#09090b',
           display: 'flex',
           alignItems: 'center',
           justifyContent: 'center',
@@ -82,7 +82,7 @@ const Demonstracao = () => {
               <source media="(min-width: 768px)" srcSet="/background/background-feira-desktop.webp" />
               <img
                 src="/background/background-feira-mobile.webp"
-                alt="Farmacon Experience — Stand no maior evento do setor farmacêutico"
+                alt="Fitcount Experience — Stand no maior evento do setor fitness"
                 className="w-full h-full object-cover object-center block"
                 loading="lazy"
               />
@@ -123,7 +123,7 @@ const Demonstracao = () => {
                 columnGap: '0.25em'
               }}
             >
-              {"Por trás de cada farmácia que cresce, existe uma estratégia e gestão que começou aqui.".split(' ').map((word, i, arr) => (
+              {"Por trás de cada negócio fitness que cresce, existe uma estratégia e gestão que começou aqui.".split(' ').map((word, i, arr) => (
                 <AnimatedWord key={i} word={word} progress={scrollYProgress} i={i} total={arr.length} />
               ))}
             </div>
