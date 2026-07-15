@@ -50,9 +50,9 @@ const NumerosAutoridade = () => {
       <div className="relative w-full flex flex-col md:flex-row min-h-[500px] md:h-[60vh] max-h-[700px] z-20">
         
         {/* Lado Esquerdo: Texto (Fundo Laranja) */}
-        <div className="w-full h-1/2 md:w-1/2 md:h-full bg-primary-500 flex items-center justify-center p-10 md:p-16 lg:p-24 relative overflow-hidden">
+        <div className="w-full md:w-1/2 md:h-full bg-primary-500 flex items-center justify-center p-10 md:p-16 lg:p-24 relative overflow-hidden order-2 md:order-1">
           <div className="relative z-10 w-full max-w-lg">
-            <h2 className="text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold tracking-tight leading-[1.1] text-white mb-8 text-center md:text-left">
+            <h2 className="text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold tracking-tight leading-[1.1] text-white mb-6 md:mb-8 text-center md:text-left">
               Inteligência contábil e financeira exclusiva para o mercado fitness.
             </h2>
             <div className="flex justify-center md:justify-start">
@@ -67,7 +67,7 @@ const NumerosAutoridade = () => {
         </div>
 
         {/* Lado Direito: Imagem Quadrada Edge-to-Edge */}
-        <div className="w-full h-1/2 md:w-1/2 md:h-full relative overflow-hidden bg-surface-100">
+        <div className="w-full min-h-[300px] md:min-h-0 md:h-full md:w-1/2 relative overflow-hidden bg-surface-100 shrink-0 order-1 md:order-2">
           <div className="w-full h-full">
             <img 
               src="/background/bg-consultor-02.jpg" 
@@ -78,7 +78,7 @@ const NumerosAutoridade = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl my-16 md:my-20">
+      <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl mt-16 mb-4 md:my-20">
         
         {/* ================= BOTTOM BENTO GRID ================= */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-stretch">
@@ -126,8 +126,8 @@ const NumerosAutoridade = () => {
           </div>
 
           {/* Card 3: Big Numbers (Stats Area) */}
-          <div className="col-span-1 md:col-span-6 bg-transparent flex flex-col justify-center gap-12">
-             <div className="flex flex-row justify-between items-start gap-2 md:gap-4">
+          <div className="col-span-1 md:col-span-6 bg-transparent flex flex-col justify-center gap-0 md:gap-12 mt-6 md:mt-0">
+             <div className="flex flex-row justify-between items-start gap-2 md:gap-4 pb-4 md:pb-0">
                 {/* Stat 1 */}
                 <div className="flex flex-col items-center">
                    <AnimatedNumber from={0} to={100} prefix="+" className="text-dark-950 mb-2 md:mb-4 text-center text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight" />
@@ -152,7 +152,7 @@ const NumerosAutoridade = () => {
              </div>
              
              {/* Pill-shaped menu like the reference */}
-             <div>
+             <div className="hidden md:block">
                 <div className="hidden md:flex w-full justify-between items-center text-[10px] md:text-xs lg:text-sm font-semibold text-dark-950 border border-dark-950 rounded-full py-4 px-8 lg:px-12">
                   <span className="cursor-default whitespace-nowrap">Planejamento</span>
                   <div className="h-4 w-[1px] bg-gray-300 shrink-0" />

@@ -27,7 +27,7 @@ const SecaoFotoFrase = () => {
           transition={{ duration: 0.8 }}
           className="relative z-10 w-full max-w-lg"
         >
-          <h2 className="text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold text-white leading-[1.2] tracking-tight text-center md:text-left mb-10">
+          <h2 className="text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold text-white leading-[1.2] tracking-tight text-center md:text-left mb-10">
             Transformando a complexidade do seu negócio em decisões claras.
           </h2>
           
