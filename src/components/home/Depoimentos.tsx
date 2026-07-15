@@ -193,7 +193,22 @@ const Depoimentos = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="bg-gradient-to-br from-primary-600 to-primary-800 rounded-[2.5rem] p-10 md:p-16 lg:p-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden relative isolate shadow-2xl shadow-primary-500/10">
+        <div className="rounded-[2.5rem] p-10 md:p-16 lg:p-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden relative isolate shadow-2xl shadow-primary-500/10">
+          
+          {/* Video Background */}
+          <div className="absolute inset-0 -z-10 w-full h-full bg-dark-900">
+            <video
+              autoPlay
+              muted
+              loop
+              playsInline
+              className="w-full h-full object-cover"
+            >
+              <source src="/background/cta-bg-laranja-final.mp4" type="video/mp4" />
+            </video>
+            <div className="absolute inset-0 bg-black/10" />
+          </div>
+
           {/* Abstract graphics inside CTA */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/4 pointer-events-none" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/20 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />

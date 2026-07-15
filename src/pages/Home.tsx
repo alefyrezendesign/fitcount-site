@@ -17,23 +17,30 @@ const Home = () => {
       <SecaoHero />
       <FraseImpactante />
       <SecaoFotoFrase />
-      <NumerosAutoridade />
+      <div id="autoridade">
+        <NumerosAutoridade />
+      </div>
       <EvolucaoMercado />
       
       <FaixaTransicao />
 
       {/* Rx Análises */}
-      <AnalisesRx />
+      <div id="rx-analises">
+        <AnalisesRx />
+      </div>
 
-      <ParallaxImpacto />
-      <ResumoSolucoes />
+      <div id="gestao">
+        <ParallaxImpacto />
+      </div>
       
-      {/* Rx Soluções (mantida exatamente como é) */}
-      <div id="rx-solucoes" className="relative z-30 w-full shrink-0 flex items-center justify-center">
+      <div id="rx-solucoes" className="relative z-30 w-full">
+        <ResumoSolucoes />
         <EcossistemaRx />
       </div>
 
-      <Depoimentos />
+      <div id="depoimentos">
+        <Depoimentos />
+      </div>
       <PainelDiagnostico />
     </>
   );

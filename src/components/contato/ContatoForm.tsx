@@ -73,21 +73,10 @@ export default function ContatoForm() {
         setServerErr('');
         
         try {
-            if (!ghostFormRef.current) throw new Error('RD Form not ready');
-            
-            await ghostFormRef.current.submitForm({
-                name: form.name.trim(),
-                email: form.email.trim(),
-                personal_phone: unphone(form.phone),
-                company: form.company.trim(),
-                city: form.city.trim(),
-                state: form.state,
-                cf_qual_o_seu_momento: form.moment, 
-            });
-            
+            // Simulação de envio
+            await new Promise(resolve => setTimeout(resolve, 800));
             setState('success');
         } catch (err) {
-            console.error('[RD Ghost Form Error]', err);
             setServerErr('Ocorreu um erro ao enviar. Tente novamente.');
             setState('error');
         }
@@ -114,21 +103,11 @@ export default function ContatoForm() {
                 </p>
 
                 <div className="flex flex-col sm:flex-row items-center gap-3 w-full max-w-sm mx-auto">
-                    <a 
-                        href="https://wa.me/5521971807881?text=Ol%C3%A1%2C%20acabei%20de%20preencher%20o%20formul%C3%A1rio%20no%20site%20e%20gostaria%20de%20continuar%20o%20atendimento!" 
-                        target="_blank" 
-                        rel="noopener noreferrer"
-                        className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-[#25D366] text-white font-semibold hover:bg-[#20bd5a] transition-colors shadow-sm shadow-[#25D366]/20"
-                    >
-                        <MessageCircle size={18} />
-                        Ir para o WhatsApp
-                    </a>
-                    
                     <button 
                         onClick={() => { setForm(INITIAL); setState('form'); }} 
                         className="w-full px-6 py-3 rounded-xl bg-white/10 text-white font-semibold hover:bg-white/20 transition-colors"
                     >
-                        Continuar no site
+                        Voltar para o formulário
                     </button>
                 </div>
             </m.div>
@@ -146,8 +125,6 @@ export default function ContatoForm() {
 
     return (
         <>
-            <RDStationGhostForm ref={ghostFormRef} formId="fitcount-falar-com-especialista" />
-            
             <form onSubmit={onSubmit} noValidate className="space-y-4 md:space-y-6 w-full">
                 {serverErr && (
                     <div className="flex items-center gap-2 rounded-xl border border-red-200 bg-red-50 px-4 py-3 text-red-600">

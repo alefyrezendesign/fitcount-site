@@ -6,6 +6,22 @@ const wrap = (min: number, max: number, v: number) => {
   return ((((v - min) % rangeSize) + rangeSize) % rangeSize) + min;
 };
 
+const primaryPhrases = [
+  "BASE SÓLIDA",
+  "DECISÕES CLARAS",
+  "MOVIMENTO CONTÍNUO",
+  "PERFORMANCE RESPONSÁVEL"
+];
+const primaryItems = Array(16).fill(primaryPhrases).flat();
+
+const secondaryPhrases = [
+  "CONTROLE",
+  "ESTRATÉGIA",
+  "PREVISIBILIDADE",
+  "EVOLUÇÃO"
+];
+const secondaryItems = Array(20).fill(secondaryPhrases).flat();
+
 const FaixaTransicao = () => {
   const { scrollY } = useScroll();
   const scrollVelocity = useVelocity(scrollY);
@@ -47,23 +63,29 @@ const FaixaTransicao = () => {
   });
 
   return (
-    <div className="relative w-full bg-white py-4 overflow-hidden flex items-center justify-center">
-      <section className="relative w-full overflow-hidden bg-primary-500 py-6 md:py-8 -rotate-2 scale-[1.05]">
+    <div className="relative z-30 w-full bg-white py-4 flex items-center justify-center">
+      <section className="relative w-full overflow-hidden bg-primary-500 py-4 md:py-5 -rotate-2 scale-[1.05]">
         
         {/* Primary Track (White Text) */}
-        <div className="flex whitespace-nowrap text-white font-bold text-3xl md:text-5xl tracking-tight uppercase">
-          <m.div style={{ x: x1 }} className="flex gap-8 px-4 items-center">
-            {Array(8).fill("BASE SÓLIDA · DECISÕES CLARAS · MOVIMENTO CONTÍNUO · PERFORMANCE RESPONSÁVEL · ").map((text, i) => (
-              <span key={i}>{text}</span>
+        <div className="flex whitespace-nowrap text-white font-bold text-xl md:text-3xl lg:text-4xl tracking-tight uppercase">
+          <m.div style={{ x: x1 }} className="flex gap-10 px-4 items-center">
+            {primaryItems.map((text, i) => (
+              <span key={i} className="flex items-center gap-10">
+                {text}
+                <span className="opacity-40">·</span>
+              </span>
             ))}
           </m.div>
         </div>
 
         {/* Secondary Track (Thin Text / Details) - Hidden on Mobile */}
-        <div className="hidden md:flex whitespace-nowrap text-white/70 font-bold text-xl tracking-[0.2em] uppercase mt-2">
-          <m.div style={{ x: x2 }} className="flex gap-12 px-4 items-center">
-            {Array(10).fill("CONTROLE // ESTRATÉGIA // PREVISIBILIDADE // EVOLUÇÃO // ").map((text, i) => (
-              <span key={i}>{text}</span>
+        <div className="hidden md:flex whitespace-nowrap text-white/70 font-bold text-[13px] md:text-sm lg:text-base tracking-[0.15em] uppercase mt-2">
+          <m.div style={{ x: x2 }} className="flex gap-10 px-4 items-center">
+            {secondaryItems.map((text, i) => (
+              <span key={i} className="flex items-center gap-10">
+                {text}
+                <span className="opacity-40">//</span>
+              </span>
             ))}
           </m.div>
         </div>

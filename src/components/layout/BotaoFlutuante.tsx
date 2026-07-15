@@ -14,10 +14,8 @@ const WhatsappIcon = ({ size = 32, className = "" }: { size?: number, className?
 
 const BotaoFlutuante = () => {
   const handleOpenWhatsapp = () => {
-    // Número e DDD genérico.
-    const numero = "5521971807881";
-    const mensagem = encodeURIComponent("Olá! Vim pelo site da FitCount e gostaria de falar com um especialista.");
-    window.open(`https://wa.me/${numero}?text=${mensagem}`, '_blank');
+    // Redirecionamento fictício
+    window.open(`https://google.com.br`, '_blank');
   };
 
   return (

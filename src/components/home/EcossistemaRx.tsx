@@ -4,7 +4,7 @@ import { useModalRxSolucoes } from '../../hooks/useModalRxSolucoes';
 
 const accordionData = [
   {
-    title: 'Fitcount Análises',
+    title: 'RX Análises',
     description: 'Inteligência estratégica baseada em dados reais do seu negócio fitness. Avaliamos cenários, identificamos oportunidades e entregamos diagnósticos precisos para decisões mais seguras.',
     tags: ['Diagnóstico Estratégico', 'Análise de Dados', 'Inteligência de Mercado', 'Relatórios Personalizados'],
   },
@@ -31,7 +31,11 @@ const EcossistemaRx = () => {
 
   return (
     <section id="rx-solucoes" className="flex flex-col bg-[#070b11] relative overflow-hidden w-full z-20 min-h-[103.125vw]">
-
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0 pointer-events-none"
+        style={{ backgroundImage: "url('/background/bg-rx-gradient.jpg')" }}
+      />
 
       {/* SECTION 1: HERO */}
       <div className="min-h-[100svh] flex flex-col justify-center pt-[12rem] lg:pt-[14rem] pb-0 relative z-10">
@@ -142,10 +146,10 @@ const EcossistemaRx = () => {
         {/* Bottom Section - Logo + Description */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8 lg:gap-16 py-8 md:py-12 border-t-[3px] md:border-b-[3px] border-white/10 lg:mt-0 items-center">
           <div className="flex items-center gap-4 md:gap-8 min-w-0">
-            <img src="/logo/logo-fitcount-hz-cor-clara.png" alt="Fitcount" className="h-8 sm:h-9 md:h-11 object-contain shrink" loading="lazy" decoding="async" />
+            <img src="/logo/rx-logo-branca.webp" alt="RX" className="h-8 sm:h-9 md:h-11 object-contain shrink" loading="lazy" decoding="async" />
           </div>
           <p className="text-[15px] md:text-xl text-slate-300/90 leading-relaxed font-light">
-            A <strong className="text-white font-medium">Fitcount</strong> é um hub contábil que integra um ecossistema de serviços, diagnóstico, operação e parceiros estratégicos. Conectamos sua academia às melhores soluções de maneira aderentes ao seu momento de crescimento.
+            O <strong className="text-white font-medium">RX Soluções</strong> é um hub contábil que integra um ecossistema de serviços, diagnóstico, operação e parceiros estratégicos. Conectamos sua academia às melhores soluções de maneira aderentes ao seu momento de crescimento.
           </p>
         </div>
         </div>

@@ -50,7 +50,7 @@ export const TypewriterBadge = ({
             >
                 {displayed}
                 {!done && (
-                    <span className={`inline-block w-[2px] h-[0.85em] ml-[1px] align-middle animate-pulse transition-colors duration-700 ${inverted ? 'bg-white' : 'bg-primary-500'}`} aria-hidden="true" />
+                    <span className="inline-block w-[2px] h-[0.85em] ml-[1px] align-middle bg-primary-500 animate-cursor-blink" aria-hidden="true" />
                 )}
             </span>
         </div>

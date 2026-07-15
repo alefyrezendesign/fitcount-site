@@ -44,15 +44,15 @@ const NumerosAutoridade = () => {
   const { openModal } = useModalSolucoes();
 
   return (
-    <section className="relative w-full bg-white overflow-hidden isolate">
+    <section className="relative w-full bg-surface-200 overflow-hidden isolate">
       
       {/* ================= FULL WIDTH SPLIT SECTION ================= */}
       <div className="relative w-full flex flex-col md:flex-row min-h-[500px] md:h-[60vh] max-h-[700px] z-20">
         
-        {/* Lado Esquerdo: Texto (Fundo Cinza) */}
-        <div className="w-full h-1/2 md:w-1/2 md:h-full bg-surface-200 flex items-center justify-center p-10 md:p-16 lg:p-24 relative overflow-hidden">
+        {/* Lado Esquerdo: Texto (Fundo Laranja) */}
+        <div className="w-full h-1/2 md:w-1/2 md:h-full bg-primary-500 flex items-center justify-center p-10 md:p-16 lg:p-24 relative overflow-hidden">
           <div className="relative z-10 w-full max-w-lg">
-            <h2 className="text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold tracking-tight leading-[1.1] text-primary-500 mb-8 text-center md:text-left">
+            <h2 className="text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold tracking-tight leading-[1.1] text-white mb-8 text-center md:text-left">
               Inteligência contábil e financeira exclusiva para o mercado fitness.
             </h2>
             <div className="flex justify-center md:justify-start">
@@ -70,7 +70,7 @@ const NumerosAutoridade = () => {
         <div className="w-full h-1/2 md:w-1/2 md:h-full relative overflow-hidden bg-surface-100">
           <div className="w-full h-full">
             <img 
-              src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop" 
+              src="/background/bg-consultor-02.jpg" 
               alt="Consultoria e Inteligência Fitness" 
               className="absolute inset-0 w-full h-full object-cover"
             />
@@ -78,7 +78,7 @@ const NumerosAutoridade = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl mt-20 mb-8">
+      <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl my-16 md:my-20">
         
         {/* ================= BOTTOM BENTO GRID ================= */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-stretch">
@@ -153,13 +153,17 @@ const NumerosAutoridade = () => {
              
              {/* Pill-shaped menu like the reference */}
              <div>
-               <div className="hidden md:flex w-full justify-between items-center text-[10px] md:text-xs lg:text-sm font-semibold text-dark-950 border border-dark-950 rounded-full py-4 px-2">
-                 <span className="flex-1 text-center whitespace-nowrap cursor-default">Planejamento</span>
-                 <span className="flex-1 text-center whitespace-nowrap cursor-default border-l border-gray-300">BPO Financeiro</span>
-                 <span className="flex-1 text-center whitespace-nowrap cursor-default border-l border-gray-300">Contabilidade</span>
-                 <span className="flex-1 text-center whitespace-nowrap cursor-default border-l border-gray-300">Legalização</span>
-                 <span className="flex-1 text-center whitespace-nowrap cursor-default border-l border-gray-300">Gestão</span>
-               </div>
+                <div className="hidden md:flex w-full justify-between items-center text-[10px] md:text-xs lg:text-sm font-semibold text-dark-950 border border-dark-950 rounded-full py-4 px-8 lg:px-12">
+                  <span className="cursor-default whitespace-nowrap">Planejamento</span>
+                  <div className="h-4 w-[1px] bg-gray-300 shrink-0" />
+                  <span className="cursor-default whitespace-nowrap">BPO Financeiro</span>
+                  <div className="h-4 w-[1px] bg-gray-300 shrink-0" />
+                  <span className="cursor-default whitespace-nowrap">Contabilidade</span>
+                  <div className="h-4 w-[1px] bg-gray-300 shrink-0" />
+                  <span className="cursor-default whitespace-nowrap">Legalização</span>
+                  <div className="h-4 w-[1px] bg-gray-300 shrink-0" />
+                  <span className="cursor-default whitespace-nowrap">Gestão</span>
+                </div>
              </div>
           </div>
 

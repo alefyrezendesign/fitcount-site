@@ -1,5 +1,7 @@
 import { m, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import { Activity } from 'lucide-react';
+import { TypewriterBadge } from '../ui/TypewriterBadge';
 
 const ParallaxImpacto = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,8 +29,8 @@ const ParallaxImpacto = () => {
         className="absolute inset-0 w-full h-[140%] -top-[20%] z-0"
       >
         <img 
-          src="https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=2070&auto=format&fit=crop" 
-          alt="Academia vazia preparada para o treino" 
+          src="/background/bg-impacto.jpg" 
+          alt="Impacto Fitcount" 
           className="w-full h-full object-cover opacity-30 grayscale"
         />
         {/* Dark Overlays for legibility */}
@@ -38,6 +40,15 @@ const ParallaxImpacto = () => {
 
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10 flex flex-col items-center justify-center text-center">
+        <div className="mb-6 md:mb-8">
+          <TypewriterBadge 
+            text="GESTÃO E PERFORMANCE"
+            icon={<Activity size={14} />}
+            inverted
+            autoStart
+          />
+        </div>
+
         <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] max-w-5xl">
           <m.span 
             initial={{ opacity: 0, y: 30 }}

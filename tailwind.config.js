@@ -57,7 +57,7 @@ export default {
         }
       },
       fontFamily: {
-        sans: ['"Acumin Pro"', 'Acumin', 'Inter', 'sans-serif'],
+        sans: ['Roboto', 'sans-serif'],
       },
       animation: {
         'fade-in': 'fadeIn 1s ease-out',

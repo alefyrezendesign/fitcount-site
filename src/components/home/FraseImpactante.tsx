@@ -4,7 +4,7 @@ import type { ReactNode } from 'react';
 
 const words = [
   "Acreditamos", "que", "contabilidade", "para", "negócios", "fitness", "é", "muito", "mais", "do", "que", "apurar", "impostos.",
-  "É", "gerar", "previsibilidade", "e", "proteger", "sua", "margem", "de", "lucro."
+  "É", "gerar", "previsibilidade", "e", "proteger", "sua", "margem", "de\u00A0lucro."
 ] as const;
 
 const FraseImpactante = () => {
@@ -30,10 +30,10 @@ const FraseImpactante = () => {
 
 const WordRevealBlock = ({ progress }: { progress: MotionValue<number> }) => {
   return (
-    <p className="flex flex-wrap justify-center text-center text-[clamp(1.5rem,3.5vw,2.5rem)] md:text-4xl xl:text-5xl font-normal leading-[1.3] gap-x-[0.25em] gap-y-[0.1em] max-w-5xl mx-auto">
+    <p className="flex flex-wrap justify-center text-center text-[clamp(1.35rem,3.2vw,2.25rem)] md:text-[2.2rem] xl:text-[2.75rem] font-normal leading-[1.35] gap-x-[0.25em] gap-y-[0.1em] max-w-5xl mx-auto">
       {words.map((word, i) => {
-        // Highlight "sua margem de lucro."
-        const isHighlight = i >= words.length - 4;
+        // Highlight "sua margem de lucro." (the last 3 items: "sua", "margem", "de lucro.")
+        const isHighlight = i >= words.length - 3;
         const total = words.length;
         
         const animStart = 0.0;

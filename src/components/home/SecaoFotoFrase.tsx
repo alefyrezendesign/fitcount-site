@@ -10,7 +10,7 @@ const SecaoFotoFrase = () => {
       {/* Lado Esquerdo: Foto */}
       <div className="w-full h-1/2 md:w-1/2 md:h-full relative overflow-hidden">
         <img 
-          src="https://images.unsplash.com/photo-1571019614242-c5c5dee9f50b?q=80&w=2070&auto=format&fit=crop" 
+          src="/background/bg-foto-frase.jpg" 
           alt="Treinamento e FOco" 
           className="absolute inset-0 w-full h-full object-cover"
         />

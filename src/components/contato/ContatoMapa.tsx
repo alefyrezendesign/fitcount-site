@@ -5,6 +5,7 @@ import { TypewriterBadge } from '../ui/TypewriterBadge';
 const unidades = [
   { cidade: "Itaboraí", estado: "RJ", pais: "Brasil", flagCode: "br" },
   { cidade: "Rio de Janeiro", estado: "RJ", pais: "Brasil", flagCode: "br" },
+  { cidade: "São Paulo", estado: "SP", pais: "Brasil", flagCode: "br" },
   { cidade: "Goiânia", estado: "GO", pais: "Brasil", flagCode: "br" },
   { cidade: "Curitiba", estado: "PR", pais: "Brasil", flagCode: "br" },
   { cidade: "Lisboa", estado: "", pais: "Portugal", flagCode: "pt" },

@@ -117,14 +117,14 @@ const Rodape = () => {
                     <div className="flex flex-col gap-5 w-full sm:w-[45%] lg:w-[20%] shrink-0">
                         <h3 className="text-white font-semibold tracking-wider uppercase text-[13px] opacity-90">Contato</h3>
                         <div className="flex flex-col gap-4">
-                            <a href="tel:+552126354903" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors w-fit group">
+                            <a href="https://google.com.br" target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors w-fit group">
                                 <div className="w-8 h-8 rounded-full bg-white/5 border border-white/10 group-hover:bg-primary-600 group-hover:border-primary-500 flex items-center justify-center shrink-0 transition-all">
                                     <Phone className="w-3.5 h-3.5 text-slate-400 group-hover:text-white transition-colors" />
                                 </div>
                                 <span className="font-medium text-sm">(21) 2635-4903</span>
                             </a>
                             <a 
-                                href="https://wa.me/5521971807881?text=Ol%C3%A1%2C%20vim%20pelo%20site%20da%20Fitcount%20e%20gostaria%20de%20falar%20com%20um%20especialista." 
+                                href="https://google.com.br" 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="flex items-center gap-3 text-slate-300 hover:text-white transition-colors w-fit group"
@@ -183,7 +183,7 @@ const Rodape = () => {
                                 Soluções Fit
                             </a>
                             <a 
-                                href="https://app.vaggou.com.br/fitcount" 
+                                href="https://google.com.br" 
                                 target="_blank" 
                                 rel="noopener noreferrer" 
                                 className="text-slate-400 hover:text-primary-400 transition-colors w-fit flex items-center gap-3 group text-[13px]"
@@ -217,16 +217,16 @@ const Rodape = () => {
                     {/* Coluna 5: Redes Sociais */}
                     <div className="flex w-full sm:w-full lg:justify-end lg:flex-1 shrink-0">
                         <div className="flex items-start gap-4">
-                            <a href="https://www.instagram.com/fitcount/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-primary-500 hover:text-white hover:-translate-y-1 transition-all duration-300">
+                            <a href="https://google.com.br" target="_blank" rel="noopener noreferrer" aria-label="Instagram" className="text-primary-500 hover:text-white hover:-translate-y-1 transition-all duration-300">
                                 <Instagram size={20} />
                             </a>
-                            <a href="https://www.facebook.com/fitcount" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-primary-500 hover:text-white hover:-translate-y-1 transition-all duration-300">
+                            <a href="https://google.com.br" target="_blank" rel="noopener noreferrer" aria-label="Facebook" className="text-primary-500 hover:text-white hover:-translate-y-1 transition-all duration-300">
                                 <Facebook size={20} />
                             </a>
-                            <a href="https://www.linkedin.com/company/fitcount/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-primary-500 hover:text-white hover:-translate-y-1 transition-all duration-300">
+                            <a href="https://google.com.br" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" className="text-primary-500 hover:text-white hover:-translate-y-1 transition-all duration-300">
                                 <Linkedin size={20} />
                             </a>
-                            <a href="https://www.youtube.com/@fitcount" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-primary-500 hover:text-white hover:-translate-y-1 transition-all duration-300">
+                            <a href="https://google.com.br" target="_blank" rel="noopener noreferrer" aria-label="YouTube" className="text-primary-500 hover:text-white hover:-translate-y-1 transition-all duration-300">
                                 <Youtube size={20} />
                             </a>
                         </div>

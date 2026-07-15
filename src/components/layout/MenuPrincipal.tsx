@@ -72,10 +72,12 @@ const MenuPrincipal = () => {
 
     const navLinks = [
         { name: 'Início', path: '/' },
-        { name: 'Sobre nós', path: '/sobre' },
-        { name: 'Soluções Fit', path: '/#rx-solucoes' },
+        { name: 'RX Análises', path: '/#rx-analises', isSubItem: true },
+        { name: 'Gestão e Performance', path: '/#gestao', isSubItem: true },
+        { name: 'Ecossistema RX', path: '/#rx-solucoes', isSubItem: true },
+        { name: 'Depoimentos', path: '/#depoimentos', isSubItem: true },
         { name: 'Contato', path: '/contato' },
-        { name: 'Trabalhe conosco', path: 'https://app.vaggou.com.br/fitcount', external: true },
+        { name: 'Trabalhe conosco', path: 'https://google.com.br', external: true },
     ];
 
     return (
@@ -123,7 +125,7 @@ const MenuPrincipal = () => {
                                 animate={{ opacity: 1, y: 0, scale: 1 }}
                                 exit={{ opacity: 0, y: -10, scale: 0.96 }}
                                 transition={{ duration: 0.25, type: "spring", stiffness: 350, damping: 25 }}
-                                className="absolute top-full mt-4 right-0 w-[calc(100vw-32px)] md:w-auto md:min-w-[280px] bg-dark-900 border border-white/10 rounded-3xl p-4 md:p-5 shadow-2xl origin-top-right flex flex-col overflow-hidden"
+                                className="absolute top-full mt-4 right-0 w-[calc(100vw-32px)] md:w-auto md:min-w-[280px] bg-dark-950 border border-white/10 rounded-3xl p-4 md:p-5 shadow-2xl origin-top-right flex flex-col gap-1 overflow-hidden"
                             >
                                 {navLinks.map((link, i) => (
                                     <m.a
@@ -141,17 +143,26 @@ const MenuPrincipal = () => {
                                         initial={{ opacity: 0, x: 20 }}
                                         animate={{ opacity: 1, x: 0 }}
                                         transition={{ delay: i * 0.05 + 0.05, duration: 0.3 }}
-                                        className={`group flex items-center justify-between p-2 md:p-3 rounded-2xl hover:bg-white/5 transition-all cursor-pointer relative z-10 ${
-                                            location.pathname === link.path ? 'bg-white/5' : ''
-                                        }`}
+                                        className={`group flex items-center justify-between cursor-pointer relative z-10 transition-all ${
+                                            link.isSubItem
+                                                ? 'py-2 px-3 md:px-4 hover:bg-white/5 rounded-xl'
+                                                : 'p-2 md:p-3 rounded-2xl hover:bg-white/5'
+                                        } ${location.pathname === link.path && !link.isSubItem ? 'bg-white/10' : ''}`}
                                     >
-                                        <span className={`text-xs md:text-sm font-semibold tracking-wide group-hover:text-primary-500 transition-colors uppercase ${
-                                            location.pathname === link.path ? 'text-primary-500' : 'text-gray-200'
-                                        }`}>
-                                            {link.name}
-                                        </span>
+                                        <div className="flex items-center">
+                                            {link.isSubItem && (
+                                                <div className={`w-1.5 h-1.5 rounded-full mr-2.5 transition-colors ${location.pathname === link.path ? 'bg-primary-500' : 'bg-white/20 group-hover:bg-primary-400'}`} />
+                                            )}
+                                            <span className={`transition-colors uppercase ${
+                                                link.isSubItem
+                                                    ? 'text-[10px] md:text-xs font-semibold tracking-wider text-gray-400 group-hover:text-primary-400'
+                                                    : 'text-xs md:text-sm font-bold tracking-widest text-white group-hover:text-primary-500'
+                                            } ${location.pathname === link.path ? 'text-primary-500' : ''}`}>
+                                                {link.name}
+                                            </span>
+                                        </div>
                                         <ArrowRight size={16} className={`transition-all duration-300 ${
-                                            location.pathname === link.path ? 'opacity-100 translate-x-0 text-primary-600' : 'text-surface-300 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary-600'
+                                            location.pathname === link.path && !link.isSubItem ? 'opacity-100 translate-x-0 text-primary-600' : 'text-surface-300 -translate-x-2 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 group-hover:text-primary-600'
                                         }`} />
                                     </m.a>
                                 ))}

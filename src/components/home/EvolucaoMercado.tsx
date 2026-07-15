@@ -1,6 +1,7 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { m, AnimatePresence } from 'framer-motion';
 import { Rocket, ShieldCheck, BarChart3, CalendarDays, TrendingUp, ChevronDown } from 'lucide-react';
+import { useModalSolucoes } from '../../hooks/useModalSolucoes';
 
 const items = [
   {
@@ -35,19 +36,34 @@ const items = [
 
 const EvolucaoMercado = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
+  const { openModal } = useModalSolucoes();
+  const popupOpenedRef = useRef(false);
 
   const toggleAccordion = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
   };
 
   return (
-    <section className="bg-white py-24 lg:py-32 font-sans relative overflow-hidden isolate">
-
+    <section className="bg-white pt-12 lg:pt-16 pb-24 lg:pb-32 font-sans relative overflow-hidden isolate">
       <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl">
         <div className="flex flex-col lg:flex-row lg:items-start lg:gap-16 xl:gap-20">
           
           {/* Coluna Esquerda - Texto Sticky */}
-          <div className="lg:w-[40%] mb-12 lg:mb-0 lg:sticky lg:top-32 z-10">
+          <m.div 
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.7 }}
+            onViewportEnter={() => {
+              if (!popupOpenedRef.current) {
+                setTimeout(() => {
+                  openModal();
+                  popupOpenedRef.current = true;
+                }, 600);
+              }
+            }}
+            className="lg:w-[40%] mb-12 lg:mb-0 lg:sticky lg:top-32 z-10"
+          >
             <div className="flex flex-col items-center text-center lg:items-start lg:text-left mx-auto lg:mx-0 max-w-2xl">
               
               {/* Badge - Agora usando as cores primary padrão */}
@@ -73,7 +89,7 @@ const EvolucaoMercado = () => {
               </p>
               
             </div>
-          </div>
+          </m.div>
 
           {/* Coluna Direita - Accordion */}
           <div className="lg:w-[60%] flex flex-col gap-4 z-10">

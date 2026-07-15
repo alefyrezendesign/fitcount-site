@@ -91,3 +91,13 @@ html, body {
   );
   animation: glow-rotate 2.5s linear infinite;
 }
+
+/* Typewriter Cursor Blink */
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.animate-cursor-blink {
+  animation: cursor-blink 0.8s step-end infinite;
+}

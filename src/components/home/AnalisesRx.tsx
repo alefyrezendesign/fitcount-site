@@ -59,7 +59,6 @@ const MAX_FLOAT = services.length - VISIBLE; // 6
 const AnalisesRx = () => {
   const sectionRef = useRef<HTMLElement>(null);
   const { openModal } = useModalSolucoes();
-  const popupOpenedRef = useRef(false);
 
   const [desktop, setDesktop] = useState(false);
   const [hovered, setHovered] = useState<number | null>(null);
@@ -102,7 +101,8 @@ const AnalisesRx = () => {
 
       {/* Sticky wrapper for desktop, static for mobile */}
       <div className="md:sticky md:top-0 md:h-screen w-full flex items-center justify-center md:overflow-hidden pt-8 pb-6 md:py-0">
-        <div className="container mx-auto px-4 md:px-8 xl:px-12 w-full max-w-7xl relative">
+        
+        <div className="container mx-auto px-4 md:px-8 xl:px-12 w-full max-w-7xl relative z-10">
           <div className="flex flex-col md:flex-row items-center md:items-center justify-between gap-12 md:gap-10 xl:gap-24">
 
             {/* ══ LEFT COLUMN: Fixed Content ══ */}
@@ -111,14 +111,6 @@ const AnalisesRx = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.7 }}
-              onViewportEnter={() => {
-                if (!popupOpenedRef.current) {
-                  setTimeout(() => {
-                    openModal();
-                    popupOpenedRef.current = true;
-                  }, 600);
-                }
-              }}
               className="w-full md:w-[45%] xl:w-[40%] shrink-0 flex flex-col justify-center relative z-20 items-center text-center md:items-start md:text-left pt-0"
             >
               {/* Badge Light Theme */}

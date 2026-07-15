@@ -26,7 +26,7 @@ interface UseTypewriterOptions {
 export function useTypewriter(
     text: string,
     ref: React.RefObject<Element | null>,
-    { autoStart = false, baseDelay = 72, threshold = 0.5, startDelay = 300 }: UseTypewriterOptions = {}
+    { autoStart = false, baseDelay = 40, threshold = 0.05, startDelay = 100 }: UseTypewriterOptions = {}
 ) {
     const [displayed, setDisplayed] = useState('');
     const [done, setDone] = useState(false);
@@ -35,24 +35,22 @@ export function useTypewriter(
 
     const getDelay = (char: string, nextChar: string): number => {
         // Pause after spaces (between words) — feels like lifting finger
-        if (char === ' ') return baseDelay * 2.8 + Math.random() * baseDelay;
+        if (char === ' ') return baseDelay * 2.2 + Math.random() * baseDelay;
         // Pause after punctuation
-        if ('.,:;!?'.includes(char)) return baseDelay * 3.5 + Math.random() * baseDelay;
-        // Uppercase at word start (shift key mental overhead)
-        if (nextChar && nextChar === nextChar.toUpperCase() && nextChar !== ' ')
-            return baseDelay * 1.6 + Math.random() * baseDelay * 0.8;
-        // Normal character: slight natural variation ±40%
-        const jitter = (Math.random() - 0.5) * baseDelay * 0.8;
-        // Occasional micro-hesitation (~10% chance)
-        const hesitation = Math.random() < 0.10 ? baseDelay * 1.5 : 0;
-        return Math.max(Math.min(15, baseDelay), baseDelay + jitter + hesitation);
+        if ('.,:;!?'.includes(char)) return baseDelay * 3.0 + Math.random() * baseDelay;
+        // Uppercase at word start (shift key mental overhead) — only if starting a word
+        if (nextChar && nextChar === nextChar.toUpperCase() && nextChar !== ' ' && char === ' ')
+            return baseDelay * 1.5 + Math.random() * baseDelay * 0.5;
+        // Normal character: slight natural variation ±30%
+        const jitter = (Math.random() - 0.5) * baseDelay * 0.6;
+        // Occasional micro-hesitation (~5% chance)
+        const hesitation = Math.random() < 0.05 ? baseDelay * 1.2 : 0;
+        return Math.max(Math.min(10, baseDelay), baseDelay + jitter + hesitation);
     };
 
     const start = () => {
         if (startedRef.current) return;
         startedRef.current = true;
-
-
 
         let i = 0;
 
@@ -69,13 +67,13 @@ export function useTypewriter(
             rafRef.current = setTimeout(typeNext, delay);
         };
 
-        // Initial pause before typing starts (person "focusing")
-        rafRef.current = setTimeout(typeNext, startDelay + Math.random() * 200);
+        // Initial pause before typing starts (person "focusing") — very short response
+        rafRef.current = setTimeout(typeNext, startDelay + Math.random() * 50);
     };
 
     useEffect(() => {
         if (autoStart) {
-            const t = setTimeout(start, 150);
+            const t = setTimeout(start, 100);
             return () => {
                 clearTimeout(t);
                 if (rafRef.current) clearTimeout(rafRef.current);
@@ -92,8 +90,7 @@ export function useTypewriter(
                     observer.disconnect();
                 }
             },
-            // Only fire when the element is inside the central 50% of the screen
-            { threshold, rootMargin: '-25% 0px -25% 0px' }
+            { threshold }
         );
         observer.observe(el);
 

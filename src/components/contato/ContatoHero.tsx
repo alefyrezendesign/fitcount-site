@@ -14,7 +14,7 @@ const ContatoHero = () => {
           {/* Background Image */}
           <div className="absolute inset-0 z-0 pointer-events-none">
             <img 
-              src="/background/background-contato.webp" 
+              src="/background/bg-contato.jpg" 
               alt="Fundo Contato" 
               className="w-full h-full object-cover" 
               fetchPriority="high"
