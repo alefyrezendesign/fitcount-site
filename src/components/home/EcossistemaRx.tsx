@@ -30,7 +30,7 @@ const EcossistemaRx = () => {
   };
 
   return (
-    <section id="rx-solucoes" className="flex flex-col bg-[#070b11] relative overflow-hidden w-full z-20 min-h-[103.125vw]">
+    <section id="rx-solucoes" className="flex flex-col bg-[#070b11] relative overflow-hidden w-full z-20">
       {/* Background Image */}
       <div 
         className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat z-0 pointer-events-none"
@@ -38,7 +38,7 @@ const EcossistemaRx = () => {
       />
 
       {/* SECTION 1: HERO */}
-      <div className="min-h-[100svh] flex flex-col justify-center pt-24 lg:pt-[14rem] pb-0 relative z-10">
+      <div className="flex flex-col justify-center pt-24 lg:pt-[10rem] pb-0 relative z-10">
         <div className="container mx-auto px-5 md:px-10 xl:px-16 flex flex-col gap-8 lg:gap-24">
         
         {/* Top Section */}
@@ -156,7 +156,7 @@ const EcossistemaRx = () => {
       </div>
 
       {/* SECTION 2: CARDS GRID */}
-      <div className="w-full relative z-10 py-16 lg:py-24 mt-auto">
+      <div className="w-full relative z-10 py-16 lg:py-24">
         <div className="container mx-auto px-5 md:px-10 xl:px-16">
           <div className="grid grid-cols-1 md:grid-cols-3 border-t-[3px] md:border-y-[3px] border-white/10 md:divide-x-[3px] md:divide-y-0 divide-y-[3px] divide-white/10 border-x-0 md:border-x-[3px]">
             
