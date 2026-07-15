@@ -116,7 +116,7 @@ const ResumoSolucoes = () => {
               </p>
 
               {/* Bottom Glow & Button */}
-              <div className="mt-auto relative z-10 flex items-center">
+              <div className="mt-auto md:relative z-10 flex items-center justify-end md:justify-between w-full">
                 
                 {/* Glow Effect at bottom left */}
                 <div className="absolute -bottom-8 -left-8 w-40 h-40 bg-primary-500/10 rounded-full blur-[40px] group-hover:bg-primary-500/30 transition-colors duration-700 pointer-events-none" />

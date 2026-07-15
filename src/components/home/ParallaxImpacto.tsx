@@ -40,17 +40,23 @@ const ParallaxImpacto = () => {
 
       {/* Content */}
       <div className="container mx-auto px-6 relative z-10 flex flex-col items-center justify-center text-center">
-        <div className="mb-6 md:mb-8">
-          <TypewriterBadge 
-            text="GESTÃO E PERFORMANCE"
-            icon={<Activity size={16} />}
-            inverted
-            autoStart
-            className="!text-[10px] md:!text-[11px] px-3 py-1.5 md:px-3.5 md:py-1.5"
-          />
+        <div className="mb-6 md:mb-8 flex justify-center">
+          <m.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full shadow-[0_0_15px_rgba(240,76,64,0.1)] bg-primary-500/15 border border-primary-500/30 transition-all hover:bg-primary-500/25 w-fit"
+          >
+            <span className="text-primary-400">
+              <Activity size={14} strokeWidth={2.5} />
+            </span>
+            <span className="text-[11px] font-bold uppercase tracking-[0.08em] text-primary-300">
+              Gestão e Performance
+            </span>
+          </m.div>
         </div>
 
-        <h2 className="text-[2.25rem] sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] max-w-5xl">
+        <h2 className="text-[2.75rem] sm:text-5xl md:text-5xl lg:text-7xl font-bold text-white tracking-tight leading-[1] max-w-5xl">
           <m.span 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -58,13 +64,13 @@ const ParallaxImpacto = () => {
             transition={{ duration: 0.8 }}
             className="block"
           >
-            Performance de verdade
+            Performance <br className="block md:hidden" /> de verdade
           </m.span>
           <m.span 
             style={{ opacity: opacitySecond, y: ySecond, filter: blurSecond }}
-            className="block text-primary-500 p-2 -m-2 mt-2"
+            className="block text-primary-500"
           >
-            começa na gestão.
+            começa na <br className="block md:hidden" /> gestão.
           </m.span>
         </h2>
       </div>

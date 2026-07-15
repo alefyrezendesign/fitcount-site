@@ -62,7 +62,7 @@ const ContatoHero = () => {
             >
               <button 
                 onClick={() => openModal()} 
-                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-[15px] transition-all shadow-[0_8px_20px_rgba(59,130,246,0.25)] bg-primary-500 text-white hover:bg-primary-400 hover:shadow-[0_8px_25px_rgba(59,130,246,0.35)] cursor-pointer"
+                className="w-full sm:w-auto group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-[15px] transition-all shadow-sm hover:shadow-md bg-primary-500 text-white hover:bg-primary-400 cursor-pointer"
               >
                 Falar com especialista
                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="lucide lucide-arrow-right group-hover:translate-x-1 transition-transform" aria-hidden="true">
@@ -83,13 +83,12 @@ const ContatoHero = () => {
             transition={{ duration: 0.7 }}
             className="text-[2.2rem] md:text-5xl lg:text-[4rem] font-medium tracking-tight text-white leading-[1.2] inline-flex flex-wrap justify-center items-center gap-x-3 gap-y-2"
           >
-            {/* Mobile Photos (Above text) */}
             <span className="md:hidden flex justify-center w-full mb-2">
-              <span className="inline-flex items-center bg-primary-500 rounded-full p-1 border border-primary-600 shadow-sm">
-                <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" className="w-11 h-11 rounded-full border-[3px] border-primary-500 object-cover" />
-                <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" className="w-11 h-11 rounded-full border-[3px] border-primary-500 object-cover -ml-4" />
-                <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" className="w-11 h-11 rounded-full border-[3px] border-primary-500 object-cover -ml-4" />
-                <div className="w-11 h-11 rounded-full border-[3px] border-primary-500 bg-dark-900 text-white flex items-center justify-center -ml-4 text-base font-medium z-10 shadow-sm">
+              <span className="inline-flex items-center bg-slate-800 rounded-full p-1 border border-slate-700 shadow-sm">
+                <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" className="w-11 h-11 rounded-full border-[3px] border-slate-800 object-cover" />
+                <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" className="w-11 h-11 rounded-full border-[3px] border-slate-800 object-cover -ml-4" />
+                <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" className="w-11 h-11 rounded-full border-[3px] border-slate-800 object-cover -ml-4" />
+                <div className="w-11 h-11 rounded-full border-[3px] border-slate-800 bg-white text-primary-500 flex items-center justify-center -ml-4 text-xl font-bold z-10 shadow-sm">
                   +
                 </div>
               </span>
@@ -99,11 +98,11 @@ const ContatoHero = () => {
             <span>da inteligência em</span>
             
             {/* Desktop Photos (Between text) */}
-            <span className="hidden md:inline-flex items-center mx-2 bg-primary-500 rounded-full p-1.5 border border-primary-600 shadow-sm align-middle">
-              <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-primary-500 object-cover" />
-              <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-primary-500 object-cover -ml-4" />
-              <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-primary-500 object-cover -ml-4" />
-              <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-primary-500 bg-dark-900 text-white flex items-center justify-center -ml-4 text-xl font-medium z-10 shadow-sm">
+            <span className="hidden md:inline-flex items-center mx-2 bg-slate-800 rounded-full p-1.5 border border-slate-700 shadow-sm align-middle">
+              <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-slate-800 object-cover" />
+              <img src="/small-fotos-contato/small-fotos-contato-2.jpg" alt="Especialista 2" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-slate-800 object-cover -ml-4" />
+              <img src="/small-fotos-contato/small-fotos-contato-3.jpg" alt="Especialista 3" className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-slate-800 object-cover -ml-4" />
+              <div className="w-14 h-14 lg:w-16 lg:h-16 rounded-full border-[3px] border-slate-800 bg-white text-primary-500 flex items-center justify-center -ml-4 text-2xl font-bold z-10 shadow-sm">
                 +
               </div>
             </span>
