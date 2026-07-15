@@ -8,7 +8,7 @@ const SecaoFotoFrase = () => {
     <section className="relative w-full flex flex-col md:flex-row min-h-[500px] md:h-[60vh] max-h-[600px] z-20">
       
       {/* Lado Esquerdo: Foto */}
-      <div className="w-full h-1/2 md:w-1/2 md:h-full relative overflow-hidden">
+      <div className="w-full min-h-[300px] md:min-h-0 md:h-full md:w-1/2 relative overflow-hidden shrink-0">
         <img 
           src="/background/bg-foto-frase.jpg" 
           alt="Treinamento e FOco" 
@@ -19,7 +19,7 @@ const SecaoFotoFrase = () => {
       </div>
 
       {/* Lado Direito: Fundo Azul Escuro com Frase */}
-      <div className="w-full h-1/2 md:w-1/2 md:h-full bg-dark-950 flex items-center justify-center p-10 md:p-16 lg:p-24 relative overflow-hidden">
+      <div className="w-full md:w-1/2 md:h-full bg-dark-950 flex items-center justify-center p-10 py-16 md:p-16 lg:p-24 relative overflow-hidden">
         <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}

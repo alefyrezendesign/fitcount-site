@@ -193,7 +193,7 @@ const Depoimentos = () => {
         </div>
 
         {/* CTA Section */}
-        <div className="rounded-[2.5rem] p-10 md:p-16 lg:p-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden relative isolate shadow-2xl shadow-primary-500/10">
+        <div className="rounded-[2.5rem] p-8 sm:p-10 md:p-16 lg:p-20 flex flex-col lg:flex-row items-center justify-between gap-10 overflow-hidden relative isolate shadow-2xl shadow-primary-500/10">
           
           {/* Video Background */}
           <div className="absolute inset-0 -z-10 w-full h-full bg-dark-900">
@@ -214,7 +214,7 @@ const Depoimentos = () => {
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-black/20 rounded-full blur-3xl translate-y-1/3 -translate-x-1/4 pointer-events-none" />
 
           <div className="w-full lg:w-3/5 relative z-10 text-center lg:text-left">
-            <h3 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
+            <h3 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white leading-[1.1] tracking-tight mb-6">
               Prepare seu negócio para o próximo movimento.
             </h3>
             <p className="text-white/80 text-lg max-w-xl mx-auto lg:mx-0 font-light">

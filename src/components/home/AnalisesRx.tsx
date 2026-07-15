@@ -267,7 +267,7 @@ const AnalisesRx = () => {
                         </button>
                         
                         <div className={`overflow-hidden transition-all duration-300 ease-out ${isOpen ? 'max-h-[250px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                          <div className="flex items-start gap-3 pb-6 pl-[2.75rem]">
+                          <div className="flex items-start gap-3 pb-6 pl-0">
                             <div className="w-9 h-9 rounded-lg bg-primary-50 text-primary-600 flex items-center justify-center shrink-0 border border-primary-100">
                               <Icon className="w-[18px] h-[18px]" strokeWidth={2} />
                             </div>

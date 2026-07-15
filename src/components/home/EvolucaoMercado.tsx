@@ -138,7 +138,7 @@ const EvolucaoMercado = () => {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
                       >
-                        <div className="px-6 pb-6 md:px-8 md:pb-8 pt-0 ml-[88px] md:ml-[112px]">
+                        <div className="px-6 pb-6 md:px-8 md:pb-8 pt-0 md:ml-[112px]">
                            {/* Subtítulo usando cor primária em vez do azul claro antigo */}
                            <h4 className="text-primary-600 font-semibold text-[15px] mb-2">{item.subtitle}</h4>
                            <p className="text-slate-500 leading-relaxed text-[15px] md:text-base max-w-xl">
