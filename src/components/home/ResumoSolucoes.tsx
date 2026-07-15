@@ -37,7 +37,7 @@ const ResumoSolucoes = () => {
       <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl relative z-10">
         
         {/* Header matching reference style - Flex layout para não quebrar o título */}
-        <div className="w-full mb-16 lg:mb-24 flex flex-col lg:flex-row items-start lg:items-end justify-between gap-8 lg:gap-12">
+        <div className="w-full mb-16 lg:mb-24 flex flex-col lg:flex-row items-center lg:items-end justify-between gap-8 lg:gap-12">
           
           <div className="shrink-0 flex flex-col items-center md:items-start text-center md:text-left">
             <m.div

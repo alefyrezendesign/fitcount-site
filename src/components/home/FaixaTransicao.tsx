@@ -63,8 +63,8 @@ const FaixaTransicao = () => {
   });
 
   return (
-    <div className="relative z-30 w-full bg-white py-6 md:py-8 -my-[2px] flex items-center justify-center">
-      <section className="relative w-full overflow-hidden bg-primary-500 py-4 md:py-5 -rotate-2 scale-[1.05]">
+    <div className="relative z-30 w-full flex items-center justify-center -my-6 md:-my-10 pointer-events-none">
+      <section className="relative w-full overflow-hidden bg-primary-500 py-4 md:py-5 -rotate-2 scale-[1.05] pointer-events-auto shadow-xl shadow-primary-500/10 border-none outline-none ring-0">
         
         {/* Primary Track (White Text) */}
         <div className="flex whitespace-nowrap text-white font-bold text-xl md:text-3xl lg:text-4xl tracking-tight uppercase">

@@ -38,7 +38,7 @@ const EcossistemaRx = () => {
       />
 
       {/* SECTION 1: HERO */}
-      <div className="min-h-[100svh] flex flex-col justify-center pt-[12rem] lg:pt-[14rem] pb-0 relative z-10">
+      <div className="min-h-[100svh] flex flex-col justify-center pt-24 lg:pt-[14rem] pb-0 relative z-10">
         <div className="container mx-auto px-5 md:px-10 xl:px-16 flex flex-col gap-8 lg:gap-24">
         
         {/* Top Section */}
