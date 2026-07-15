@@ -59,9 +59,9 @@ const Depoimentos = () => {
   const { openModal } = useModalSolucoes();
   
   const [emblaRef, emblaApi] = useEmblaCarousel({ 
-    align: 'start',
+    align: 'center',
     containScroll: 'trimSnaps',
-    dragFree: true,
+    dragFree: false,
     loop: true
   });
 
@@ -137,7 +137,7 @@ const Depoimentos = () => {
               {depoimentos.map((depoimento, index) => (
                 <div 
                   key={index} 
-                  className="flex-[0_0_85vw] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-6 lg:pl-8 min-w-0"
+                  className="flex-[0_0_90vw] sm:flex-[0_0_80vw] md:flex-[0_0_50%] lg:flex-[0_0_33.333%] pl-6 lg:pl-8 min-w-0"
                 >
                 <m.div
                   initial={{ opacity: 0, y: 30 }}
@@ -190,6 +190,24 @@ const Depoimentos = () => {
           >
             <ArrowRight size={20} />
           </button>
+          
+          {/* Mobile Navigation Arrows */}
+          <div className="flex md:hidden items-center justify-center gap-4 mt-8">
+            <button 
+              onClick={scrollPrev} 
+              className="w-12 h-12 bg-[#0b1018]/90 rounded-full border border-white/20 flex items-center justify-center text-white/90 hover:bg-white/10 transition-all"
+              aria-label="Depoimento anterior"
+            >
+              <ArrowLeft size={20} />
+            </button>
+            <button 
+              onClick={scrollNext} 
+              className="w-12 h-12 bg-[#0b1018]/90 rounded-full border border-white/20 flex items-center justify-center text-white/90 hover:bg-white/10 transition-all"
+              aria-label="Próximo depoimento"
+            >
+              <ArrowRight size={20} />
+            </button>
+          </div>
         </div>
 
         {/* CTA Section */}
