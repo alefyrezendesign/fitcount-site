@@ -83,14 +83,14 @@ const MenuPrincipal = () => {
     return (
         <header
             className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 border-b ${
-                isScrolled ? 'py-3 bg-dark-950/90 backdrop-blur-xl border-white/10 shadow-sm' : 'py-4 md:py-6 bg-transparent border-transparent'
+                isScrolled ? 'py-4 md:py-3 bg-dark-950/90 backdrop-blur-xl border-white/10 shadow-sm' : 'py-5 md:py-6 bg-transparent border-transparent'
             }`}
         >
             <div className="w-full px-3 sm:px-4 md:px-8 xl:px-12 mx-auto flex items-center justify-between mt-1 md:mt-2 transition-all">
                 
                 {/* Logo */}
                 <a href="/" onClick={(e) => handleNavigation(e, '/')} className="flex items-center z-50 relative min-w-0">
-                    <img src="/logo/logo-fitcount-hz-cor-clara.png" alt="Fitcount" className="h-5 sm:h-7 md:h-8 w-auto transition-opacity duration-300" />
+                    <img src="/logo/logo-fitcount-hz-cor-clara.png" alt="Fitcount" className="h-7 sm:h-8 md:h-8 w-auto transition-opacity duration-300" />
                 </a>
 
                 {/* Right Group: CTA + Menu Dropdown Toggle */}
@@ -98,7 +98,7 @@ const MenuPrincipal = () => {
                     
                     <button
                         onClick={() => openModal()}
-                        className="px-2.5 py-1.5 sm:px-4 sm:py-2 md:px-6 md:py-2.5 rounded-full font-semibold text-[10px] sm:text-[11px] md:text-sm transition-all shadow-sm cursor-pointer border bg-primary-500 border-primary-500 text-white hover:bg-primary-600 hover:border-primary-600"
+                        className="px-3.5 py-2 sm:px-5 sm:py-2.5 md:px-6 md:py-2.5 rounded-full font-semibold text-[11px] sm:text-xs md:text-sm transition-all shadow-sm cursor-pointer border bg-primary-500 border-primary-500 text-white hover:bg-primary-600 hover:border-primary-600"
                     >
                         <span className="hidden sm:inline">Solicitar um diagnóstico</span>
                         <span className="sm:hidden">Diagnóstico</span>
@@ -106,7 +106,7 @@ const MenuPrincipal = () => {
 
                     <button
                         onClick={() => setIsMenuOpen(!isMenuOpen)}
-                        className={`group flex items-center justify-center gap-1 sm:gap-1.5 md:gap-3 px-2.5 py-1.5 sm:px-5 sm:py-2 md:py-2.5 rounded-full font-bold text-[10px] sm:text-xs md:text-sm tracking-widest uppercase transition-all duration-300 border backdrop-blur-md cursor-pointer ${isMenuOpen ? 'bg-primary-600 text-white border-transparent shadow-md' : 'bg-white/10 text-white border-white/20 hover:bg-white/20'}`}
+                        className={`group flex items-center justify-center gap-1 sm:gap-1.5 md:gap-3 px-3.5 py-2 sm:px-5 sm:py-2.5 md:py-2.5 rounded-full font-bold text-[11px] sm:text-xs md:text-sm tracking-widest uppercase transition-all duration-300 border backdrop-blur-md cursor-pointer ${isMenuOpen ? 'bg-primary-600 text-white border-transparent shadow-md' : 'bg-white/10 text-white border-white/20 hover:bg-white/20'}`}
                     >
                         <span className="mt-[1px]">{isMenuOpen ? 'Fechar' : 'Menu'}</span>
                         

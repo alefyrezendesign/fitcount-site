@@ -97,21 +97,21 @@ const ResumoSolucoes = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#0b1018] border border-white/5 hover:border-white/10 rounded-[2rem] p-6 md:p-8 lg:p-10 flex flex-col relative overflow-hidden group transition-all duration-500 min-h-[220px] md:min-h-[380px]"
+              className="bg-[#0b1018] border border-white/5 hover:border-white/10 rounded-[1.5rem] md:rounded-[2rem] p-5 md:p-8 lg:p-10 flex flex-col relative overflow-hidden group transition-all duration-500 min-h-[160px] md:min-h-[380px]"
             >
               
               {/* Number */}
-              <span className="text-slate-500 text-sm font-medium mb-6 block tracking-widest">
+              <span className="text-slate-500 text-sm font-medium mb-4 md:mb-6 block tracking-widest">
                 {String(index + 1).padStart(2, '0')}
               </span>
 
               {/* Title */}
-              <h3 className="text-2xl font-bold text-white leading-tight mb-5 tracking-tight">
+              <h3 className="text-[1.3rem] md:text-2xl font-bold text-white leading-tight mb-3 md:mb-5 tracking-tight pr-10 md:pr-0">
                 {sol.title}
               </h3>
 
               {/* Description */}
-              <p className="text-slate-400 text-[15px] leading-relaxed mb-12 flex-1">
+              <p className="text-slate-400 text-[14px] md:text-[15px] leading-relaxed mb-0 md:mb-12 flex-1">
                 {sol.desc}
               </p>
 
@@ -124,10 +124,10 @@ const ResumoSolucoes = () => {
                 {/* Circular + Button -> Arrow and Modal Action */}
                 <button 
                   onClick={() => openModal()}
-                  className="relative z-10 w-11 h-11 rounded-full bg-primary-500 flex items-center justify-center text-white shadow-[0_0_15px_rgba(240,76,64,0.3)] group-hover:shadow-[0_0_25px_rgba(240,76,64,0.6)] group-hover:scale-110 transition-all duration-300"
+                  className="absolute top-5 right-5 md:relative md:top-auto md:right-auto z-10 w-9 h-9 md:w-11 md:h-11 rounded-full bg-primary-500 flex items-center justify-center text-white shadow-[0_0_15px_rgba(240,76,64,0.3)] group-hover:shadow-[0_0_25px_rgba(240,76,64,0.6)] group-hover:scale-110 transition-all duration-300"
                   title="Saber mais"
                 >
-                  <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="group-hover:translate-x-0.5 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" className="w-[18px] h-[18px] md:w-[20px] md:h-[20px] group-hover:translate-x-0.5 transition-transform"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </button>
               </div>
 

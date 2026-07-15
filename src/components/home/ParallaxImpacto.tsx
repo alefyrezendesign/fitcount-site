@@ -43,13 +43,14 @@ const ParallaxImpacto = () => {
         <div className="mb-6 md:mb-8">
           <TypewriterBadge 
             text="GESTÃO E PERFORMANCE"
-            icon={<Activity size={14} />}
+            icon={<Activity size={16} />}
             inverted
             autoStart
+            className="!text-[10px] md:!text-[11px] px-3 py-1.5 md:px-3.5 md:py-1.5"
           />
         </div>
 
-        <h2 className="text-3xl md:text-5xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] max-w-5xl">
+        <h2 className="text-[2.25rem] sm:text-4xl md:text-5xl lg:text-7xl font-bold text-white tracking-tight leading-[1.1] max-w-5xl">
           <m.span 
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
