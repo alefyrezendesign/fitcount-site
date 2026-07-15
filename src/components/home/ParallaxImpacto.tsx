@@ -1,7 +1,6 @@
 import { m, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 import { Activity } from 'lucide-react';
-import { TypewriterBadge } from '../ui/TypewriterBadge';
 
 const ParallaxImpacto = () => {
   const containerRef = useRef<HTMLDivElement>(null);

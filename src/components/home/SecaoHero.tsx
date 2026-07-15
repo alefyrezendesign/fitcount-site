@@ -5,7 +5,7 @@ import { TypewriterBadge } from '../ui/TypewriterBadge';
 
 const SecaoHero = () => {
   const { openModal } = useModalSolucoes();
-  const heroRef = useRef<HTMLElement>(null);
+  const heroRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: heroRef,
@@ -16,8 +16,8 @@ const SecaoHero = () => {
   const opacity = useTransform(scrollYProgress, [0, 0.5, 1], [1, 0.5, 0]);
 
   return (
-    <div className="relative w-full h-[200vh] z-0">
-      <section ref={heroRef} className="sticky top-0 w-full h-screen bg-dark-950 flex flex-col items-center justify-center overflow-hidden isolate pt-24 md:pt-0 pb-10 md:pb-0">
+    <div ref={heroRef} className="relative w-full h-[200vh] z-0">
+      <section className="sticky top-0 w-full h-screen bg-dark-950 flex flex-col items-center justify-center overflow-hidden isolate pt-24 md:pt-0 pb-10 md:pb-0">
         
         {/* Video Background (Full Screen) */}
         <video 

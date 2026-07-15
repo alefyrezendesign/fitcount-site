@@ -1,7 +1,6 @@
-import { useState, useCallback, useRef, type FormEvent, type ChangeEvent } from 'react';
+import { useState, useCallback, type FormEvent, type ChangeEvent } from 'react';
 import { m } from 'framer-motion';
-import { CheckCircle2, Loader2, AlertCircle, ChevronDown, ArrowRight, MessageCircle } from 'lucide-react';
-import { RDStationGhostForm, type RDStationGhostFormRef } from './RDStationGhostForm';
+import { CheckCircle2, Loader2, AlertCircle, ChevronDown, ArrowRight } from 'lucide-react';
 
 interface FormFields {
     name: string;
@@ -55,8 +54,6 @@ export default function ContatoForm() {
     const [errors, setErrors] = useState<FieldError>({});
     const [state, setState] = useState<'form' | 'submitting' | 'success' | 'error'>('form');
     const [serverErr, setServerErr] = useState('');
-    
-    const ghostFormRef = useRef<RDStationGhostFormRef>(null);
 
     const onChange = useCallback((e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         const { name, value } = e.target;
@@ -198,7 +195,7 @@ export default function ContatoForm() {
                 </div>
 
                 <div className="pt-2">
-                    <button type="submit" className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-[15px] transition-all shadow-[0_8px_20px_rgba(59,130,246,0.25)] bg-primary-500 text-white hover:bg-primary-400 hover:shadow-[0_8px_25px_rgba(59,130,246,0.35)] w-full md:w-auto min-w-[220px]">
+                    <button type="submit" className="group inline-flex items-center justify-center gap-2 px-8 py-4 rounded-full font-semibold text-[15px] transition-all shadow-sm hover:shadow-md bg-primary-500 text-white hover:bg-primary-400 w-full md:w-auto min-w-[220px]">
                         Enviar Mensagem
                         <ArrowRight size={18} strokeWidth={2} className="group-hover:translate-x-1 transition-transform" />
                     </button>
