@@ -96,7 +96,7 @@ const AnalisesRx = () => {
     <section
       ref={sectionRef}
       id="fitcount-analises"
-      className="relative w-full bg-white lg:h-[250vh]" // Fundo branco puro como solicitado
+      className="relative w-full bg-white pt-10 md:pt-16 lg:h-[250vh]" // Added padding to compensate for FaixaTransicao negative margin
     >
 
       {/* Sticky wrapper for desktop, static for mobile */}
