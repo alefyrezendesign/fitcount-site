@@ -58,9 +58,9 @@ const ResumoSolucoes = () => {
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white whitespace-nowrap"
+              className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] text-white md:whitespace-nowrap"
             >
-              Soluções para <br className="hidden md:block" />
+              Soluções para <br />
               <span className="font-light italic text-slate-300">resultados reais</span>
             </m.h2>
           </div>
@@ -74,7 +74,7 @@ const ResumoSolucoes = () => {
             className="w-full lg:w-auto flex-1 max-w-[680px] flex flex-col md:flex-row items-center justify-between bg-primary-500 rounded-3xl p-8 lg:px-10 lg:py-10 shadow-xl shadow-primary-500/20 gap-6"
           >
             <span className="text-white text-base lg:text-xl font-medium text-center md:text-left">
-              Quer estruturar e proteger seu negócio fitness?
+              Quer estruturar e proteger <br className="block sm:hidden" /> seu negócio fitness?
             </span>
             <button
               onClick={() => openModal()}
@@ -97,7 +97,7 @@ const ResumoSolucoes = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: "-50px" }}
               transition={{ duration: 0.5, delay: index * 0.1 }}
-              className="bg-[#0b1018] border border-white/5 hover:border-white/10 rounded-[2rem] p-8 lg:p-10 flex flex-col relative overflow-hidden group transition-all duration-500 min-h-[380px]"
+              className="bg-[#0b1018] border border-white/5 hover:border-white/10 rounded-[2rem] p-6 md:p-8 lg:p-10 flex flex-col relative overflow-hidden group transition-all duration-500 min-h-[220px] md:min-h-[380px]"
             >
               
               {/* Number */}

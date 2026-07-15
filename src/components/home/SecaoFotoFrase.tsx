@@ -19,7 +19,7 @@ const SecaoFotoFrase = () => {
       </div>
 
       {/* Lado Direito: Fundo Azul Escuro com Frase */}
-      <div className="w-full md:w-1/2 md:h-full bg-dark-950 flex items-center justify-center p-10 py-16 md:p-16 lg:p-24 relative overflow-hidden">
+      <div className="w-full md:w-1/2 md:h-full bg-dark-950 flex items-center justify-center px-8 py-16 md:p-16 lg:p-24 relative overflow-hidden">
         <m.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -34,7 +34,7 @@ const SecaoFotoFrase = () => {
           <div className="flex justify-center md:justify-start">
             <button 
               onClick={() => openModal()}
-              className="px-8 py-4 rounded-full font-bold text-[15px] text-white bg-primary-500 hover:bg-primary-600 transition-colors shadow-lg shadow-primary-500/20 flex items-center gap-3 group"
+              className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-[15px] text-white bg-primary-500 hover:bg-primary-600 transition-colors shadow-lg shadow-primary-500/20 flex items-center justify-center gap-3 group"
             >
               Solicitar diagnóstico
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform group-hover:translate-x-1"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>

@@ -13,7 +13,7 @@ interface AnimatedNumberProps {
 
 const AnimatedNumber = ({ from, to, duration = 2, prefix = "", suffix = "", className = "" }: AnimatedNumberProps) => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, amount: 0.1 });
   const count = useMotionValue(from);
   const rounded = useTransform(count, (latest) => Math.round(latest));
   
@@ -29,7 +29,7 @@ const AnimatedNumber = ({ from, to, duration = 2, prefix = "", suffix = "", clas
       ref={ref}
       initial={{ y: 40, opacity: 0 }}
       whileInView={{ y: 0, opacity: 1 }}
-      viewport={{ once: true, margin: "-100px" }}
+      viewport={{ once: true, amount: 0.1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
       className={`flex items-center justify-center ${className}`}
     >
@@ -50,15 +50,15 @@ const NumerosAutoridade = () => {
       <div className="relative w-full flex flex-col md:flex-row min-h-[500px] md:h-[60vh] max-h-[700px] z-20">
         
         {/* Lado Esquerdo: Texto (Fundo Laranja) */}
-        <div className="w-full md:w-1/2 md:h-full bg-primary-500 flex items-center justify-center p-10 md:p-16 lg:p-24 relative overflow-hidden order-2 md:order-1">
+        <div className="w-full md:w-1/2 md:h-full bg-primary-500 flex items-center justify-center px-8 py-16 md:p-16 lg:p-24 relative overflow-hidden order-2 md:order-1">
           <div className="relative z-10 w-full max-w-lg">
-            <h2 className="text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold tracking-tight leading-[1.1] text-white mb-6 md:mb-8 text-center md:text-left">
+            <h2 className="text-[1.75rem] sm:text-[2rem] md:text-[2.5rem] lg:text-[3rem] font-bold tracking-tight leading-[1.2] text-white mb-10 text-center md:text-left">
               Inteligência contábil e financeira exclusiva para o mercado fitness.
             </h2>
             <div className="flex justify-center md:justify-start">
               <button 
                 onClick={() => openModal()}
-                className="px-8 py-4 lg:px-10 lg:py-5 rounded-full font-bold text-[15px] text-white bg-[#07111F] hover:bg-[#0b1728] transition-colors shadow-lg shadow-black/20 w-full sm:w-auto"
+                className="w-full sm:w-auto px-8 py-4 rounded-full font-bold text-[15px] text-white bg-[#07111F] hover:bg-[#0b1728] transition-colors shadow-lg shadow-black/20 flex items-center justify-center"
               >
                 Junte-se a nós
               </button>
@@ -78,21 +78,21 @@ const NumerosAutoridade = () => {
         </div>
       </div>
 
-      <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl mt-16 mb-4 md:my-20">
+      <div className="container mx-auto px-6 md:px-10 lg:px-12 max-w-7xl my-10 md:my-20">
         
         {/* ================= BOTTOM BENTO GRID ================= */}
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6 md:gap-8 items-stretch">
           
           {/* Card 1: Light Accent Card (Atuação 100%) */}
-          <div className="col-span-1 md:col-span-3 bg-white border border-slate-200 rounded-[2rem] p-6 lg:p-8 flex flex-col justify-end relative min-h-[250px] lg:min-h-[300px]">
+          <div className="col-span-1 md:col-span-3 bg-white border border-slate-200 rounded-[2rem] p-6 lg:p-8 flex flex-col justify-end relative min-h-[180px] lg:min-h-[300px]">
             {/* Arrow icon */}
             <div className="absolute top-6 right-6 text-dark-900 bg-dark-900/10 p-2 rounded-full">
                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
             </div>
             
-            <div className="mt-16">
-              <h4 className="text-dark-900 mb-3 italic">
-                Engajamento &<br/>Experiência
+            <div className="mt-12 lg:mt-16">
+              <h4 className="text-dark-900 mb-2 lg:mb-3 italic">
+                Engajamento & Experiência
               </h4>
               <p className="text-gray-800 text-sm leading-relaxed font-medium">
                 Plataforma que oferece uma imersão financeira completa para líderes do segmento fitness.
@@ -101,7 +101,7 @@ const NumerosAutoridade = () => {
           </div>
 
           {/* Card 2: Dark Square (Visão Integrada) */}
-          <div className="col-span-1 md:col-span-3 bg-dark-950 rounded-[2rem] p-6 lg:p-8 shadow-xl text-white flex flex-col justify-end relative min-h-[250px] lg:min-h-[300px]">
+          <div className="col-span-1 md:col-span-3 bg-dark-950 rounded-[2rem] p-6 lg:p-8 shadow-xl text-white flex flex-col justify-end relative min-h-[180px] lg:min-h-[300px]">
             {/* Avatares (Especialistas) no topo esquerdo */}
             <div className="absolute top-6 left-6 flex -space-x-3">
                <img src="/small-fotos-contato/small-fotos-contato-1.jpg" alt="Especialista 1" className="w-10 h-10 rounded-full border-[2.5px] border-dark-950 object-cover" />
@@ -117,8 +117,8 @@ const NumerosAutoridade = () => {
                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
             </div>
             
-            <div className="mt-16">
-              <h4 className="mb-3 italic text-white">Ferramentas &<br/>Suporte</h4>
+            <div className="mt-12 lg:mt-16">
+              <h4 className="mb-2 lg:mb-3 italic text-white">Ferramentas & Suporte</h4>
               <p className="text-surface-400 text-sm leading-relaxed">
                 Nós oferecemos análises prontas e templates para facilitar a tomada de decisão contábil e fiscal.
               </p>
@@ -132,21 +132,21 @@ const NumerosAutoridade = () => {
                 <div className="flex flex-col items-center">
                    <AnimatedNumber from={0} to={100} prefix="+" className="text-dark-950 mb-2 md:mb-4 text-center text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight" />
                    <p className="text-gray-700 font-medium text-xs md:text-sm lg:text-base leading-tight text-center">
-                     Clientes ativos<br className="hidden sm:block" /> na base
+                     Clientes ativos<br/>na base
                    </p>
                 </div>
                 {/* Stat 2 */}
                 <div className="flex flex-col items-center">
                    <AnimatedNumber from={0} to={100} suffix="%" className="text-dark-950 mb-2 md:mb-4 text-center text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight" />
                    <p className="text-gray-700 font-medium text-xs md:text-sm lg:text-base leading-tight text-center">
-                     Foco no<br className="hidden sm:block" /> mercado fitness
+                     Foco no mercado<br/>fitness
                    </p>
                 </div>
                 {/* Stat 3 */}
                 <div className="flex flex-col items-center">
                    <AnimatedNumber from={0} to={360} suffix="º" className="text-dark-950 mb-2 md:mb-4 text-center text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight" />
                    <p className="text-gray-700 font-medium text-xs md:text-sm lg:text-base leading-tight text-center">
-                     Visão integrada<br className="hidden sm:block" /> do negócio
+                     Visão integrada<br/>do negócio
                    </p>
                 </div>
              </div>

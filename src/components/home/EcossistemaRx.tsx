@@ -45,7 +45,7 @@ const EcossistemaRx = () => {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-20 items-center">
 
           {/* Left — Large Title */}
-          <div className="flex flex-col items-start lg:pr-10">
+          <div className="flex flex-col items-center lg:items-start text-center lg:text-left lg:pr-10">
             <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight leading-[1.1] mb-0 text-white max-w-full">
               Muito além <br />
               da contabilidade <br />
